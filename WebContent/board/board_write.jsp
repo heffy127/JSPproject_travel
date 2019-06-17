@@ -107,8 +107,7 @@
 								<li><a href="../main/main.html">Home</a></li>
 								<li><a href="../place/place.html">여행지</a></li>
 								<li><a href="../course/course.html">코스</a></li>
-								<li class="active"><a href="../board/board.html">지역별
-										게시판</a></li>
+								<li class="active"><a href="board.jsp">소통광장</a></li>
 								<li><a href="../news/news.html">뉴스</a>
 								<li><a href="../mypage/mypage.html">MyPage</a></li>
 								<li><a href="../contact/contact.html">고객의 소리</a></li>
