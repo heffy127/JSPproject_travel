@@ -71,13 +71,17 @@
 
 <script type="text/javascript">
 	function check() {
+		if(f.preface.value == 0){
+			alert("말머리를 선택하세요.")
+			return false;
+		}
 		if (f.subject.value == "") {
-			alert("제목을 입력하세요")
+			alert("제목을 입력하세요.")
 			f.subject.focus()
 			return false;
 		}
 		if (f.content.value == "") {
-			alert("내용을 입력하세요")
+			alert("내용을 입력하세요.")
 			f.content.focus()
 			return false;
 		}
@@ -152,7 +156,7 @@
 									<tr height="50px">
 										<td colspan="2" align="center">
 											<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-												<a class="navbar-brand" href="#">자유게시판</a>
+												<a class="navbar-brand" href="board.jsp">자유게시판</a>
 												<button class="navbar-toggler" type="button"
 													data-toggle="collapse" data-target="#navbarColor01"
 													aria-controls="navbarColor01" aria-expanded="false"
@@ -165,11 +169,10 @@
 									<tr>
 										<td width="115px" height="35px"><select name="preface"
 											style="width: 100px; height: 30px; font-size: 15px">
-												<option value="x" selected="selected">말머리</option>
-												<option value="일상">일상</option>
-												<option value="추천">추천</option>
-												<option value="질문">질문</option>
-												<option value="진지">동행</option>
+												<option value="0" selected="selected">--말머리--</option>
+												<option value="life">일상</option>
+												<option value="reco">추천</option>
+												<option value="quest">질문</option>
 										</select></td>
 										<td align="right"><input type="text" name="subject" size="157px"
 											placeholder="제목 입력"></td>

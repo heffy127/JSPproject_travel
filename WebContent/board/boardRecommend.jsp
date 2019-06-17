@@ -64,16 +64,10 @@
 	<![endif]-->
 
 
-
-
 </head>
 <body>
 	<jsp:useBean id="bdto" class="board.BoardDTO" />
 	<jsp:useBean id="bdao" class="board.BoardDAO" />
-	<%
-		String num = request.getParameter("num");
-		bdto = bdao.selectSubject("제목 클릭으로 넘어옴", num);
-	%>
 
 	<div class="colorlib-loader"></div>
 
@@ -113,7 +107,7 @@
 									class="col-md-6 col-md-offset-3 col-sm-12 col-xs-12 slider-text">
 									<div class="slider-text-inner text-center">
 										<h2>지역별 여행 정보</h2>
-										<h1>지역별 게시판</h1>
+										<h1>소통광장</h1>
 									</div>
 								</div>
 							</div>
@@ -127,7 +121,7 @@
 			<div class="div_board" align="center">
 				<table border="1">
 					<tr>
-						<td width="800">
+						<td width="1000">
 							<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
 								<a class="navbar-brand" href="board.jsp">자유게시판</a>
 								<button class="navbar-toggler" type="button"
@@ -139,17 +133,17 @@
 
 								<div class="collapse navbar-collapse" id="navbarColor01">
 									<ul class="navbar-nav mr-auto">
-										<li class="nav-item active"><a class="nav-link" href="board.jsp"><font size="3">전체</font>
+										<li class="nav-item"><a class="nav-link" href="board.jsp"><font size="3">전체</font>
 												<span class="sr-only">(current)</span>
 										</a></li>
 										<li class="nav-item"><a class="nav-link" href="boardLife.jsp"><font size="2">일상</font></a>
 										</li>
-										<li class="nav-item"><a class="nav-link" href="boardRecommend.jsp"><font size="2">추천</font></a>
+										<li class="nav-item active"><a class="nav-link" href="boardRecommend.jsp"><font size="2">추천</font></a>
 										</li>
 										<li class="nav-item"><a class="nav-link" href="boardQuestion.jsp"><font size="2">질문</font></a>
 										</li>
 									</ul>
-								<form class="form-inline my-2 my-lg-0" name="f_search" method="get" action="board_search.jsp">
+							<form class="form-inline my-2 my-lg-0" name="f_search" method="get" action="board_search.jsp">
 										<table>
 											<tr>
 												<td width="20">
@@ -172,76 +166,53 @@
 									</form>
 								</div>
 							</nav>
-							<div align="center">
-								<form name="f" method="post">	<!-- 글 내용 수정위해 전달될 폼 -->
-										<input type="hidden" name="num" value=<%=bdto.getNum()%>>
-										<input type="hidden" name="writer" value="<%=bdto.getWriter()%>"> 
-										<input type="hidden" name="preface" value="<%=bdto.getPreface()%>"> 
-										<input type="hidden" name="subject" value="<%=bdto.getSubject()%>"> 
-										<input type="hidden" name="content" value="<%=bdto.getContent()%>"> 
-	
-									<table border="0" width="97%"> <!-- 글 보기 -->
-										<tr>
-											<td><font size="7"><b><%=bdto.getSubject()%></b></font><br></td>
-											<td align="center"><font size="3"><b><%=bdto.getWriter()%></b></font><br>
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<font size="2"><b>글번호</b>&nbsp;&nbsp;&nbsp;&nbsp;</font>
-												<font size="2" color="gray"><%=bdto.getNum()%> &nbsp;&nbsp;| &nbsp;&nbsp;<%=bdto.getReg_date()%></font>
-											</td>
-											<td align="center">
-												추천 &nbsp;
-												<font size="2" color="gray"><b><%=bdto.getGood()%></b></font> &nbsp;&nbsp;&nbsp;
-												조회 &nbsp;
-												<font size="2" color="gray"><b><%=bdto.getReadcount()%></b></font>
-											</td>
-										</tr>
-										<tr>
-											<td colspan="2"><br>
-												<div
-													style="background-color: #f7f4f4; font-size: 14px; margin-top: 10px;"><%=bdto.getContent()%></div>
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<div align="left">
-													<font size="2" color="#25774d">이 글이 마음에 들었다면&nbsp;&nbsp;</font> <button type="button" class="btn btn-success">추천</button>
-												</div>
-											</td>
-											<td>
-												<div align="right">
-													<script type="text/javascript">
-														function delete_confirm() {
-															var cf = confirm("게시글을 정말 삭제하시겠습니까?")
-															if (cf) { /* 회원관리 완성 완료되면 DB와 연동 예정 */
-																document.f.action = "board_delete_ok.jsp"
-																document.f.submit()
-															} else {
-																return false;
-															}
-														}
-														
-														function modify() {
-															document.f.action = "board_modify.jsp"
-															document.f.submit()
-														}
-													</script>
-													<button type="button" class="btn btn-outline-warning" 
-														onclick="modify()">수정하기</button>
-													<button type="button" class="btn btn-outline-danger"
-														onclick="delete_confirm()">삭제하기</button>
-													<button type="button" class="btn btn-outline-info"
-														onclick="window.location='board.jsp'">목록으로</button>
-												</div></td>
-										</tr>
-									</table>
-								</form>
-							</div>
+							<table class="table table-hover">
 
+									<thead>
+									<tr align="center">
+										<th scope="col" width="30"><h5>글 번호</h5></th>
+										<th scope="col" width="40"><h5>말머리</h5></th>
+										<th scope="col" width="130"><h5>제목</h5></th>
+										<th scope="col" width="40"><h5>글쓴이</h5></th>
+										<th scope="col" width="10"><h5>조회수</h5></th>
+										<th scope="col" width="10"><h5>추천수</h5></th>
+										<th scope="col" width="60"><h5>작성일</h5></th>
+									</tr>
+								</thead>
+								<tbody>
+									<%
+										ArrayList<BoardDTO> list = bdao.listBoard_reco();
+										if (list.size() == 0) {
+									%>
+									<tr class="table-warning">
+										<td colspan="7" align="center"><h4>등록된 글이 없습니다.</h4></td>
+									</tr>
+									<%
+										} else {
+											for (BoardDTO d : list) {
+									%>
+									<tr class="table-light">
+										<td align="center"><h4><%=d.getNum()%></h4></td>
+										<td align="center"><h4><%=d.getPreface()%></h4></td>
+										<td><a href="board_view.jsp?num=<%=d.getNum()%>"><h4><%=d.getSubject()%></h4></a></td>
+										<td align="center"><h4><%=d.getWriter()%></h4></td>
+										<td align="center"><h4><%=d.getReadcount()%></h4></td>
+										<td align="center"><h4><%=d.getGood()%></h4></td>
+										<td align="center"><h4><%=d.getReg_date()%></h4></td>
+									</tr>
+									<%
+										}
+										}
+									%>
+
+								</tbody>
+							</table>
+							<div align="right">
+								<button type="button" class="btn btn-secondary"
+									onclick="window.location='board_write.jsp'">글쓰기</button>
+							</div>
 						</td>
-						<td width="200" align="center">게시판 버튼 들어갈곳</td>
+						<td width="250" align="center">게시판 버튼 들어갈곳</td>
 					</tr>
 				</table>
 			</div>

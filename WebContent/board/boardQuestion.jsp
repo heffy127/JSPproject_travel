@@ -121,7 +121,7 @@
 			<div class="div_board" align="center">
 				<table border="1">
 					<tr>
-						<td width="800">
+						<td width="1000">
 							<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
 								<a class="navbar-brand" href="board.jsp">자유게시판</a>
 								<button class="navbar-toggler" type="button"
@@ -133,25 +133,24 @@
 
 								<div class="collapse navbar-collapse" id="navbarColor01">
 									<ul class="navbar-nav mr-auto">
-										<li class="nav-item"><a class="nav-link" href="#"><font size="3">전체</font>
+										<li class="nav-item"><a class="nav-link" href="board.jsp"><font size="3">전체</font>
 												<span class="sr-only">(current)</span>
 										</a></li>
 										<li class="nav-item"><a class="nav-link" href="boardLife.jsp"><font size="2">일상</font></a>
 										</li>
-										<li class="nav-item active"><a class="nav-link" href="boardRecommend"><font size="2">추천</font></a>
+										<li class="nav-item"><a class="nav-link" href="boardRecommend.jsp"><font size="2">추천</font></a>
 										</li>
-										<li class="nav-item"><a class="nav-link" href="boardQuestion"><font size="2">질문</font></a>
+										<li class="nav-item active"><a class="nav-link" href="boardQuestion.jsp"><font size="2">질문</font></a>
 										</li>
 									</ul>
-									<form class="form-inline my-2 my-lg-0">
+								<form class="form-inline my-2 my-lg-0" name="f_search" method="get" action="board_search.jsp">
 										<table>
 											<tr>
 												<td width="20">
 													<div class="form-group">
-														<select class="custom-select">
-															<option selected="" value="1">제목</option>
-															<option value="2">글쓴이</option>
-															<option value="3">말머리</option>
+														<select class="custom-select" name="select">
+															<option selected="" value="subject">제목</option>
+															<option value="writer">글쓴이</option>
 														</select>
 													</div>
 												</td>
@@ -159,7 +158,7 @@
 												&nbsp;&nbsp;
 												</td>
 												<td><input class="form-control mr-sm-2" type="text"
-													placeholder="Search">
+													placeholder="전체 검색" name="keyword">
 													<button class="btn btn-secondary my-2 my-sm-0"
 														type="submit">Search</button></td>
 											</tr>
@@ -169,23 +168,24 @@
 							</nav>
 							<table class="table table-hover">
 
-								<thead>
+									<thead>
 									<tr align="center">
 										<th scope="col" width="30"><h5>글 번호</h5></th>
 										<th scope="col" width="40"><h5>말머리</h5></th>
 										<th scope="col" width="130"><h5>제목</h5></th>
 										<th scope="col" width="40"><h5>글쓴이</h5></th>
 										<th scope="col" width="10"><h5>조회수</h5></th>
+										<th scope="col" width="10"><h5>추천수</h5></th>
 										<th scope="col" width="60"><h5>작성일</h5></th>
 									</tr>
 								</thead>
 								<tbody>
 									<%
-										ArrayList<BoardDTO> list = bdao.listBoard();
+										ArrayList<BoardDTO> list = bdao.listBoard_quest();
 										if (list.size() == 0) {
 									%>
 									<tr class="table-warning">
-										<td colspan="6" align="center">등록된 글이 없습니다.</td>
+										<td colspan="7" align="center"><h4>등록된 글이 없습니다.</h4></td>
 									</tr>
 									<%
 										} else {
@@ -197,6 +197,7 @@
 										<td><a href="board_view.jsp?num=<%=d.getNum()%>"><h4><%=d.getSubject()%></h4></a></td>
 										<td align="center"><h4><%=d.getWriter()%></h4></td>
 										<td align="center"><h4><%=d.getReadcount()%></h4></td>
+										<td align="center"><h4><%=d.getGood()%></h4></td>
 										<td align="center"><h4><%=d.getReg_date()%></h4></td>
 									</tr>
 									<%
@@ -211,7 +212,7 @@
 									onclick="window.location='board_write.jsp'">글쓰기</button>
 							</div>
 						</td>
-						<td width="200" align="center">게시판 버튼 들어갈곳</td>
+						<td width="250" align="center">게시판 버튼 들어갈곳</td>
 					</tr>
 				</table>
 			</div>

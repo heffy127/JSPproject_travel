@@ -33,6 +33,7 @@ public class BoardDAO {
 			dto.setContent(rs.getString("content"));
 			dto.setReg_date(rs.getString("reg_date"));
 			dto.setReadcount(rs.getInt("readcount"));
+			dto.setGood(rs.getInt("good"));
 			list.add(dto);
 		}
 		return list;
@@ -41,6 +42,107 @@ public class BoardDAO {
 	public ArrayList<BoardDTO> listBoard() {
 		ArrayList<BoardDTO> list = new ArrayList<BoardDTO>();
 		sql = "select * from board order by num desc";
+		try {
+			con = mgr.getConnection();
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+			list = makeList(rs);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+				if (ps != null)
+					ps.close();
+				if (con != null)
+					con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return list;
+	}
+	
+	// mysql한글화 작업 후 수정해야함
+	public ArrayList<BoardDTO> listBoard_life() {
+		ArrayList<BoardDTO> list = new ArrayList<BoardDTO>();
+		sql = "select * from board where preface = 'life' order by num desc";
+		try {
+			con = mgr.getConnection();
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+			list = makeList(rs);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+				if (ps != null)
+					ps.close();
+				if (con != null)
+					con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return list;
+	}
+	
+	public ArrayList<BoardDTO> listBoard_reco() {
+		ArrayList<BoardDTO> list = new ArrayList<BoardDTO>();
+		sql = "select * from board where preface = 'reco' order by num desc";
+		try {
+			con = mgr.getConnection();
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+			list = makeList(rs);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+				if (ps != null)
+					ps.close();
+				if (con != null)
+					con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return list;
+	}
+	
+	public ArrayList<BoardDTO> listBoard_quest() {
+		ArrayList<BoardDTO> list = new ArrayList<BoardDTO>();
+		sql = "select * from board where preface = 'quest' order by num desc";
+		try {
+			con = mgr.getConnection();
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+			list = makeList(rs);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+				if (ps != null)
+					ps.close();
+				if (con != null)
+					con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return list;
+	}
+	
+	public ArrayList<BoardDTO> search(String select, String keyword) {
+		ArrayList<BoardDTO> list = new ArrayList<BoardDTO>();
+		sql = "select * from board where " + select + " like '%" + keyword + "%' order by num desc" ;
 		try {
 			con = mgr.getConnection();
 			ps = con.prepareStatement(sql);
@@ -82,6 +184,7 @@ public class BoardDAO {
 				dto.setContent(rs.getString("content"));
 				dto.setReg_date(rs.getString("reg_date"));
 				dto.setReadcount(rs.getInt("readcount"));
+				dto.setGood(rs.getInt("good"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -123,8 +226,31 @@ public class BoardDAO {
 		return res;
 	}
 	
+	public int plusGood(String num) {
+		sql = "update board set good = good + 1 where num = ?";
+		try {
+			con = mgr.getConnection();
+			ps = con.prepareStatement(sql);
+			ps.setString(1, num);
+			res = ps.executeUpdate();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				if (ps != null)
+					ps.close();
+				if (con != null)
+					con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return res;
+	}
+	
 	public int insertBoard(BoardDTO dto) {
-		sql = "insert into board values(null,?,?,?,?,current_timestamp, 0)";
+		sql = "insert into board values(null,?,?,?,?,current_timestamp, 0, 0)";
 		try {
 			con = mgr.getConnection();
 			ps = con.prepareStatement(sql);
@@ -132,6 +258,31 @@ public class BoardDAO {
 			ps.setString(2, dto.getPreface());
 			ps.setString(3, dto.getSubject());
 			ps.setString(4, dto.getContent());
+			res = ps.executeUpdate();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				if (ps != null)
+					ps.close();
+				if (con != null)
+					con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return res;
+	}
+	
+	public int updateBoard(BoardDTO dto) {
+		sql = "update board set preface = ?, subject = ? where num = ?";
+		try {
+			con = mgr.getConnection();
+			ps = con.prepareStatement(sql);
+			ps.setString(1, dto.getPreface());
+			ps.setString(2, dto.getSubject());
+			ps.setInt(3, dto.getNum());
 			res = ps.executeUpdate();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

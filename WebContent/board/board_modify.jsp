@@ -63,17 +63,37 @@
 	<script src="js/respond.min.js"></script>
 	<![endif]-->
 
+<!-- ckeditor -->
+<script src="../ckeditor/ckeditor.js"></script>
+<script type="text/javascript" src="../ckfinder/ckfinder.js"></script>
 
 
+
+<script type="text/javascript">
+	function check() {
+		if(f.preface.value == 0){
+			alert("말머리를 선택하세요.")
+			return false;
+		}
+		if (f.subject.value == "") {
+			alert("제목을 입력하세요")
+			f.subject.focus()
+			return false;
+		}
+		if (f.content.value == "") {
+			alert("내용을 입력하세요")
+			f.content.focus()
+			return false;
+		}
+		return true;
+	}
+</script>
 
 </head>
 <body>
 	<jsp:useBean id="bdto" class="board.BoardDTO" />
+	<jsp:setProperty property="*" name="bdto"/>
 	<jsp:useBean id="bdao" class="board.BoardDAO" />
-	<%
-		String num = request.getParameter("num");
-		bdto = bdao.selectSubject("제목 클릭으로 넘어옴", num);
-	%>
 
 	<div class="colorlib-loader"></div>
 
@@ -124,129 +144,72 @@
 		</aside>
 
 		<div id="colorlib-blog">
-			<div class="div_board" align="center">
-				<table border="1">
+			<div align="center">
+				<table>
 					<tr>
-						<td width="800">
-							<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-								<a class="navbar-brand" href="board.jsp">자유게시판</a>
-								<button class="navbar-toggler" type="button"
-									data-toggle="collapse" data-target="#navbarColor01"
-									aria-controls="navbarColor01" aria-expanded="false"
-									aria-label="Toggle navigation">
-									<span class="navbar-toggler-icon"></span>
-								</button>
 
-								<div class="collapse navbar-collapse" id="navbarColor01">
-									<ul class="navbar-nav mr-auto">
-										<li class="nav-item active"><a class="nav-link" href="board.jsp"><font size="3">전체</font>
-												<span class="sr-only">(current)</span>
-										</a></li>
-										<li class="nav-item"><a class="nav-link" href="boardLife.jsp"><font size="2">일상</font></a>
-										</li>
-										<li class="nav-item"><a class="nav-link" href="boardRecommend.jsp"><font size="2">추천</font></a>
-										</li>
-										<li class="nav-item"><a class="nav-link" href="boardQuestion.jsp"><font size="2">질문</font></a>
-										</li>
-									</ul>
-								<form class="form-inline my-2 my-lg-0" name="f_search" method="get" action="board_search.jsp">
-										<table>
-											<tr>
-												<td width="20">
-													<div class="form-group">
-														<select class="custom-select" name="select">
-															<option selected="" value="subject">제목</option>
-															<option value="writer">글쓴이</option>
-														</select>
-													</div>
-												</td>
-												<td>
-												&nbsp;&nbsp;
-												</td>
-												<td><input class="form-control mr-sm-2" type="text"
-													placeholder="전체 검색" name="keyword">
-													<button class="btn btn-secondary my-2 my-sm-0"
-														type="submit">Search</button></td>
-											</tr>
-										</table>
-									</form>
-								</div>
-							</nav>
-							<div align="center">
-								<form name="f" method="post">	<!-- 글 내용 수정위해 전달될 폼 -->
-										<input type="hidden" name="num" value=<%=bdto.getNum()%>>
-										<input type="hidden" name="writer" value="<%=bdto.getWriter()%>"> 
-										<input type="hidden" name="preface" value="<%=bdto.getPreface()%>"> 
-										<input type="hidden" name="subject" value="<%=bdto.getSubject()%>"> 
-										<input type="hidden" name="content" value="<%=bdto.getContent()%>"> 
-	
-									<table border="0" width="97%"> <!-- 글 보기 -->
-										<tr>
-											<td><font size="7"><b><%=bdto.getSubject()%></b></font><br></td>
-											<td align="center"><font size="3"><b><%=bdto.getWriter()%></b></font><br>
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<font size="2"><b>글번호</b>&nbsp;&nbsp;&nbsp;&nbsp;</font>
-												<font size="2" color="gray"><%=bdto.getNum()%> &nbsp;&nbsp;| &nbsp;&nbsp;<%=bdto.getReg_date()%></font>
-											</td>
-											<td align="center">
-												추천 &nbsp;
-												<font size="2" color="gray"><b><%=bdto.getGood()%></b></font> &nbsp;&nbsp;&nbsp;
-												조회 &nbsp;
-												<font size="2" color="gray"><b><%=bdto.getReadcount()%></b></font>
-											</td>
-										</tr>
-										<tr>
-											<td colspan="2"><br>
-												<div
-													style="background-color: #f7f4f4; font-size: 14px; margin-top: 10px;"><%=bdto.getContent()%></div>
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<div align="left">
-													<font size="2" color="#25774d">이 글이 마음에 들었다면&nbsp;&nbsp;</font> <button type="button" class="btn btn-success">추천</button>
-												</div>
-											</td>
-											<td>
-												<div align="right">
-													<script type="text/javascript">
-														function delete_confirm() {
-															var cf = confirm("게시글을 정말 삭제하시겠습니까?")
-															if (cf) { /* 회원관리 완성 완료되면 DB와 연동 예정 */
-																document.f.action = "board_delete_ok.jsp"
-																document.f.submit()
-															} else {
-																return false;
-															}
-														}
-														
-														function modify() {
-															document.f.action = "board_modify.jsp"
-															document.f.submit()
-														}
-													</script>
-													<button type="button" class="btn btn-outline-warning" 
-														onclick="modify()">수정하기</button>
-													<button type="button" class="btn btn-outline-danger"
-														onclick="delete_confirm()">삭제하기</button>
-													<button type="button" class="btn btn-outline-info"
-														onclick="window.location='board.jsp'">목록으로</button>
-												</div></td>
-										</tr>
-									</table>
-								</form>
-							</div>
+					</tr>
+					<tr>
+						<td width="1000">
+							<form action="board_modify_ok.jsp" name="f" method="post"
+								onsubmit="return check()">
+								<table border="0" width="99%" height="90%">
+									<tr height="50px">
+										<td colspan="2" align="center">
+											<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+												<a class="navbar-brand" href="board.jsp">자유게시판</a>
+												<button class="navbar-toggler" type="button"
+													data-toggle="collapse" data-target="#navbarColor01"
+													aria-controls="navbarColor01" aria-expanded="false"
+													aria-label="Toggle navigation">
+													<span class="navbar-toggler-icon"></span>
+												</button>
+											</nav>
+										</td>
+									</tr>
+									<tr>
+										<td width="115px" height="35px"><select name="preface"
+											style="width: 100px; height: 30px; font-size: 15px">
+												<option value="0" selected="selected">--말머리--</option>
+												<option value="life">일상</option>
+												<option value="reco">추천</option>
+												<option value="quest">질문</option>
+										</select></td>
+										<td align="right"><input type="text" name="subject" size="157px"
+											placeholder="제목 입력" value="<%=bdto.getSubject()%>"></td>
+									</tr>
 
+									<tr height="600">
+										<td colspan="2"><textarea name="content" id="editor1"
+												rows="" cols="">
+            									</textarea> <script>
+																						// Replace the <textarea id="editor1"> with a CKEditor
+																						// instance, using default configuration.
+																						CKEDITOR
+																								.replace(
+																										'editor1',
+																										{
+																											height : '500px'
+																										});
+																					</script></td>
+									</tr>
+									<tr>
+										<td colspan="2" align="right">
+										<br>
+										<input type="hidden" value="me" name="writer"> <!-- 세션 생기기전에 임시 글쓴이 -->
+										<input type="hidden" value="<%=bdto.getNum() %>" name="num"> <!-- 글 번호 num값 넘겨주기 -->
+										<button type="submit" class="btn btn-primary btn-lg"><font size="4">글 수정하기</font></button>
+										</td>
+									</tr>
+								</table>
+							</form>
 						</td>
-						<td width="200" align="center">게시판 버튼 들어갈곳</td>
 					</tr>
 				</table>
 			</div>
 		</div>
 	</div>
+
 
 	<footer id="colorlib-footer" role="contentinfo">
 		<div class="container">

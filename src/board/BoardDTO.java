@@ -16,7 +16,14 @@ public class BoardDTO {
 	private String content;
 	private String reg_date;
 	private int readcount;
+	private int good;
 	
+	public int getGood() {
+		return good;
+	}
+	public void setGood(int good) {
+		this.good = good;
+	}
 	public int getNum() {
 		return num;
 	}
