@@ -107,7 +107,7 @@
 									class="col-md-6 col-md-offset-3 col-sm-12 col-xs-12 slider-text">
 									<div class="slider-text-inner text-center">
 										<h2>지역별 여행 정보</h2>
-										<h1>지역별 게시판</h1>
+										<h1>소통광장</h1>
 									</div>
 								</div>
 							</div>
