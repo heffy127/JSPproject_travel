@@ -150,7 +150,7 @@
 					</tr>
 					<tr>
 						<td width="1000">
-							<form action="board_write_ok.jsp" name="f" method="post"
+							<form action="board_write_ok.jsp" name="f" method="get"
 								onsubmit="return check()">
 								<table border="0" width="99%" height="90%">
 									<tr height="50px">
