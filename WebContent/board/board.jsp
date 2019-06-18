@@ -62,7 +62,16 @@
 <!--[if lt IE 9]>
 	<script src="js/respond.min.js"></script>
 	<![endif]-->
-
+<script type="text/javascript">
+	function check_session() {
+		var ss = '<%=(String)session.getAttribute("id")%>'
+		if(ss!="null"){
+			location.href = "board_write.jsp"
+		} else {
+			alert("로그인이 필요한 서비스입니다.")
+		}
+	}
+</script>
 
 </head>
 <body>
@@ -78,12 +87,12 @@
 					<div class="row">
 						<div class="col-xs-2">
 							<div id="colorlib-logo">
-								<a href="../main/main.html">HT</a>
+								<a href="../main/main.jsp">HT</a>
 							</div>
 						</div>
 						<div class="col-xs-10 text-right menu-1">
 							<ul>
-								<li><a href="../main/main.html">Home</a></li>
+								<li><a href="../main/main.jsp">Home</a></li>
 								<li><a href="../place/place.html">여행지</a></li>
 								<li><a href="../course/course.html">코스</a></li>
 								<li class="active"><a href="board.jsp">소통광장</a></li>
@@ -106,7 +115,7 @@
 								<div
 									class="col-md-6 col-md-offset-3 col-sm-12 col-xs-12 slider-text">
 									<div class="slider-text-inner text-center">
-										<h2>지역별 여행 정보</h2>
+										<h2>HT 회원들의 커뮤니티</h2>
 										<h1>소통광장</h1>
 									</div>
 								</div>
@@ -209,7 +218,7 @@
 							</table>
 							<div align="right">
 								<button type="button" class="btn btn-secondary"
-									onclick="window.location='board_write.jsp'">글쓰기</button>
+									onclick="check_session()">글쓰기</button>
 							</div>
 						</td>
 						<td width="250" align="center">게시판 버튼 들어갈곳</td>

@@ -1,0 +1,8 @@
+create table board_comment(
+num int(10) default 0,
+board_num int(10) not null,
+writer varchar(20) not null,
+content text not null,
+reg_date varchar(20) not null,
+constraint pri_num_bnum primary key(num, board_num),
+constraint fri_board_num FOREIGN KEY(board_num) REFERENCES board(num) on delete cascade);

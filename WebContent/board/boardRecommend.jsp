@@ -78,12 +78,12 @@
 					<div class="row">
 						<div class="col-xs-2">
 							<div id="colorlib-logo">
-								<a href="../main/main.html">HT</a>
+								<a href="../main/main.jsp">HT</a>
 							</div>
 						</div>
 						<div class="col-xs-10 text-right menu-1">
 							<ul>
-								<li><a href="../main/main.html">Home</a></li>
+								<li><a href="../main/main.jsp">Home</a></li>
 								<li><a href="../place/place.html">여행지</a></li>
 								<li><a href="../course/course.html">코스</a></li>
 								<li class="active"><a href="board.jsp">소통광장</a></li>
@@ -106,7 +106,7 @@
 								<div
 									class="col-md-6 col-md-offset-3 col-sm-12 col-xs-12 slider-text">
 									<div class="slider-text-inner text-center">
-										<h2>지역별 여행 정보</h2>
+										<h2>HT 회원들의 커뮤니티</h2>
 										<h1>소통광장</h1>
 									</div>
 								</div>

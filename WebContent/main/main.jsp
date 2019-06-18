@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -66,6 +68,9 @@
 
 </head>
 <body>
+<%
+	session.setAttribute("id", "user");
+%>
 	<div class="colorlib-loader"></div>
 	<div id="page">
 		<nav class="colorlib-nav" role="navigation">
@@ -74,12 +79,12 @@
 					<div class="row">
 						<div class="col-xs-2">
 							<div id="colorlib-logo">
-								<a href="main.html">HT</a>
+								<a href="main.jsp">HT</a>
 							</div>
 						</div>
 						<div class="col-xs-10 text-right menu-1">
 							<ul>
-								<li class="active"><a href="main.html">Home</a></li>
+								<li class="active"><a href="main.jsp">Home</a></li>
 								<li><a href="../place/place.html">여행지</a></li>
 								<li><a href="../course/course.html">코스</a></li>
 								<li><a href="../board/board.jsp">소통광장</a></li>

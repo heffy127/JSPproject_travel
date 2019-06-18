@@ -11,11 +11,9 @@
 	<jsp:setProperty property="*" name="bdto" />
 	<jsp:useBean id="bdao" class="board.BoardDAO" />
 	<%
-		request.setCharacterEncoding("utf-8");
-		if (bdto.getWriter().trim() == "") {
+		if (bdto.getWriter().trim() == "") {	// 작성자가 없는 경우 게시판으로 되돌아가기
 			response.sendRedirect("board.jsp");
 		}
-
 		int res = bdao.insertBoard(bdto);
 		String alert = null;
 		String url = null;

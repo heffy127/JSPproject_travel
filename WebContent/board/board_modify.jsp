@@ -94,7 +94,9 @@
 	<jsp:useBean id="bdto" class="board.BoardDTO" />
 	<jsp:setProperty property="*" name="bdto"/>
 	<jsp:useBean id="bdao" class="board.BoardDAO" />
-
+	<%
+	String content = bdto.getContent().substring(3, bdto.getContent().length()-3);
+	%>
 	<div class="colorlib-loader"></div>
 
 	<div id="page">
@@ -104,12 +106,12 @@
 					<div class="row">
 						<div class="col-xs-2">
 							<div id="colorlib-logo">
-								<a href="../main/main.html">HT</a>
+								<a href="../main/main.jsp">HT</a>
 							</div>
 						</div>
 						<div class="col-xs-10 text-right menu-1">
 							<ul>
-								<li><a href="../main/main.html">Home</a></li>
+								<li><a href="../main/main.jsp">Home</a></li>
 								<li><a href="../place/place.html">여행지</a></li>
 								<li><a href="../course/course.html">코스</a></li>
 								<li class="active"><a href="board.jsp">소통광장</a></li>
@@ -132,8 +134,8 @@
 								<div
 									class="col-md-6 col-md-offset-3 col-sm-12 col-xs-12 slider-text">
 									<div class="slider-text-inner text-center">
-										<h2>지역별 여행 정보</h2>
-										<h1>지역별 게시판</h1>
+										<h2>HT 회원들의 커뮤니티</h2>
+										<h1>소통광장</h1>
 									</div>
 								</div>
 							</div>
@@ -151,7 +153,7 @@
 					</tr>
 					<tr>
 						<td width="1000">
-							<form action="board_modify_ok.jsp" name="f" method="post"
+							<form action="board_modify_ok.jsp" name="f" method="get"
 								onsubmit="return check()">
 								<table border="0" width="99%" height="90%">
 									<tr height="50px">
@@ -175,23 +177,21 @@
 												<option value="reco">추천</option>
 												<option value="quest">질문</option>
 										</select></td>
-										<td align="right"><input type="text" name="subject" size="157px"
+										<td align="right"><input type="text" name="subject" size="170px"
 											placeholder="제목 입력" value="<%=bdto.getSubject()%>"></td>
 									</tr>
 
 									<tr height="600">
 										<td colspan="2"><textarea name="content" id="editor1"
 												rows="" cols="">
-            									</textarea> <script>
-																						// Replace the <textarea id="editor1"> with a CKEditor
-																						// instance, using default configuration.
-																						CKEDITOR
-																								.replace(
-																										'editor1',
-																										{
-																											height : '500px'
-																										});
-																					</script></td>
+            									</textarea> 
+            									<script>
+														// Replace the <textarea id="editor1"> with a CKEditor
+														// instance, using default configuration.
+														CKEDITOR.replace('editor1',{height : '500px'});
+														CKEDITOR.instances.editor1.setData('<p><%=content%></p>')
+												</script>
+										</td>
 									</tr>
 									<tr>
 										<td colspan="2" align="right">

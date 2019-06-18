@@ -67,7 +67,7 @@ public class BoardDAO {
 	// mysql한글화 작업 후 수정해야함
 	public ArrayList<BoardDTO> listBoard_life() {
 		ArrayList<BoardDTO> list = new ArrayList<BoardDTO>();
-		sql = "select * from board where preface = 'life' order by num desc";
+		sql = "select * from board where preface = '일상' order by num desc";
 		try {
 			con = mgr.getConnection();
 			ps = con.prepareStatement(sql);
@@ -92,7 +92,7 @@ public class BoardDAO {
 	
 	public ArrayList<BoardDTO> listBoard_reco() {
 		ArrayList<BoardDTO> list = new ArrayList<BoardDTO>();
-		sql = "select * from board where preface = 'reco' order by num desc";
+		sql = "select * from board where preface = '추천' order by num desc";
 		try {
 			con = mgr.getConnection();
 			ps = con.prepareStatement(sql);
@@ -117,7 +117,7 @@ public class BoardDAO {
 	
 	public ArrayList<BoardDTO> listBoard_quest() {
 		ArrayList<BoardDTO> list = new ArrayList<BoardDTO>();
-		sql = "select * from board where preface = 'quest' order by num desc";
+		sql = "select * from board where preface = '질문' order by num desc";
 		try {
 			con = mgr.getConnection();
 			ps = con.prepareStatement(sql);
@@ -166,7 +166,7 @@ public class BoardDAO {
 	}
 	
 	public BoardDTO selectSubject(String fromSubject, String num) {
-		if(fromSubject != null ) {	// 제목을 눌러서 게시글 확인할때만 조회수 증가
+		if(!(fromSubject == null || fromSubject.trim().equals(""))) {	// 제목을 눌러서 게시글 확인할때만 조회수 증가
 			readCountPlus(num);
 		}
 		sql = "select * from board where num = ?";
@@ -276,13 +276,14 @@ public class BoardDAO {
 	}
 	
 	public int updateBoard(BoardDTO dto) {
-		sql = "update board set preface = ?, subject = ? where num = ?";
+		sql = "update board set preface = ?, subject = ?, content = ? where num = ?";
 		try {
 			con = mgr.getConnection();
 			ps = con.prepareStatement(sql);
 			ps.setString(1, dto.getPreface());
 			ps.setString(2, dto.getSubject());
-			ps.setInt(3, dto.getNum());
+			ps.setString(3, dto.getContent());
+			ps.setInt(4, dto.getNum());
 			res = ps.executeUpdate();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
