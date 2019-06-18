@@ -11,7 +11,6 @@
 	<jsp:setProperty property="*" name="bdto" />
 	<jsp:useBean id="bdao" class="board.BoardDAO" />
 	<%
-		request.setCharacterEncoding("utf-8");
 		if (bdto.getWriter().trim() == "") {
 			response.sendRedirect("board.jsp");
 		}
