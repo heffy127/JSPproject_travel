@@ -14,7 +14,7 @@
 	if (cdto.getWriter().trim() == "") {	// 작성자가 없는 경우 게시판으로 되돌아가기
 		response.sendRedirect("board_view.jsp?num=" + cdto.getBoard_num());
 	}
-	int res = cdao.insertComment(cdto);
+	int res = cdao.insertCommentCnt(cdto);
 	String alert = null;
 	String url = null;
 	if (res > 0) {

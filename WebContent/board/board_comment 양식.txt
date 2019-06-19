@@ -1,8 +1,12 @@
 create table board_comment(
-num int(10) default 0,
-board_num int(10) not null,
+comment_num int(10) auto_increment,
+board_num int(10),
 writer varchar(20) not null,
 content text not null,
 reg_date varchar(20) not null,
-constraint pri_num_bnum primary key(num, board_num),
+constraint pri_num_bnum primary key(comment_num),
 constraint fri_board_num FOREIGN KEY(board_num) REFERENCES board(num) on delete cascade);
+
+create table comment_count(
+no_comment int(10) primary key auto_increment,
+no_board int(10) not null);

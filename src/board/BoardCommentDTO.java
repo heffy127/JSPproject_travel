@@ -1,16 +1,17 @@
 package board;
 
 public class BoardCommentDTO {
-	private int num;
+	private int comment_num;
 	private int board_num;
 	private String writer;
 	private String content;
 	private String reg_date;
-	public int getNum() {
-		return num;
+
+	public int getComment_num() {
+		return comment_num;
 	}
-	public void setNum(int num) {
-		this.num = num;
+	public void setComment_num(int comment_num) {
+		this.comment_num = comment_num;
 	}
 	public int getBoard_num() {
 		return board_num;

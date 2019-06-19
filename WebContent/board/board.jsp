@@ -77,6 +77,7 @@
 <body>
 	<jsp:useBean id="bdto" class="board.BoardDTO" />
 	<jsp:useBean id="bdao" class="board.BoardDAO" />
+	<jsp:useBean id="cdao" class="board.BoardCommentDAO" />
 
 	<div class="colorlib-loader"></div>
 
@@ -199,11 +200,12 @@
 									<%
 										} else {
 											for (BoardDTO d : list) {
+											int count = cdao.CommentCnt(d.getNum());
 									%>
 									<tr class="table-light">
 										<td align="center"><h4><%=d.getNum()%></h4></td>
 										<td align="center"><h4><%=d.getPreface()%></h4></td>
-										<td><a href="board_view.jsp?num=<%=d.getNum()%>"><h4><%=d.getSubject()%></h4></a></td>
+										<td><a href="board_view.jsp?num=<%=d.getNum()%>"><h4><%=d.getSubject()%>&nbsp;<font color="red">[<%=count %>]</font></h4></a></td>
 										<td align="center"><h4><%=d.getWriter()%></h4></td>
 										<td align="center"><h4><%=d.getReadcount()%></h4></td>
 										<td align="center"><h4><%=d.getGood()%></h4></td>
