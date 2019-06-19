@@ -76,11 +76,7 @@
 		String num = request.getParameter("num");
 		bdto = bdao.selectSubject("조회수 증가용", num); /* 제목을 눌러서 들어왔을때만 조회수 증가용 */
 	%>
-<<<<<<< HEAD
 	<script type="text/javascript">
-=======
-<script type="text/javascript">
->>>>>>> f4bef24f5a0e1908faf575e5dc1dfa8f4608fd5b
 	var ss = '<%=(String) session.getAttribute("id")%>'
 	
 	function check_session() {
@@ -276,8 +272,7 @@
 															document.f.action = "board_modify.jsp"
 															document.f.submit()
 														}
-													
-												</script>
+													</script>
 													<button type="button" class="btn btn-outline-warning"
 														onclick="modify()">수정하기</button>
 													<button type="button" class="btn btn-outline-danger"
@@ -328,15 +323,9 @@
 											<td align="center"><h5><%=d.getContent()%></h5></td>
 											<td align="center" width="15%"><h5><%=d.getReg_date()%></h5></td>
 											<td align="center" width="5%">
-<<<<<<< HEAD
 												<button type="button" class="btn btn-link"
 													onclick="window.location='board_comment_delete_ok.jsp?comment_num=<%=d.getComment_num()%>&board_num=<%=d.getBoard_num()%>&writer=<%=d.getWriter()%>'">삭제</button>
 
-=======
-												<button type="button" class="btn btn-link" 
-												onclick="window.location='board_comment_delete_ok.jsp?num=<%=d.getNum()%>&board_num=<%=d.getBoard_num()%>&writer=<%=d.getWriter()%>'">삭제</button> 
-												
->>>>>>> f4bef24f5a0e1908faf575e5dc1dfa8f4608fd5b
 											</td>
 										</tr>
 										<%
@@ -359,14 +348,9 @@
 								<div style="width: 925px;" align="right">
 									<button type="button" class="btn btn-primary btn-sm"
 										onclick="check_session()">댓글등록</button>
-<<<<<<< HEAD
 									<input type="hidden" name="board_num"
 										value="<%=bdto.getNum()%>"> <input type="hidden"
 										name="writer" value=<%=(String) session.getAttribute("id")%>>
-=======
-									<input type="hidden" name="board_num" value="<%=bdto.getNum()%>"> 
-									<input type="hidden" name="writer" value=<%=(String) session.getAttribute("id")%>>
->>>>>>> f4bef24f5a0e1908faf575e5dc1dfa8f4608fd5b
 								</div>
 							</form>
 						</td>
