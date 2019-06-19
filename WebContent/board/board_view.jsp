@@ -65,21 +65,6 @@
 	<![endif]-->
 
 
-<script type="text/javascript">
-	function check_session() {
-		var ss = '<%=(String)session.getAttribute("id")%>'
-		if(ss=="null"){
-			alert("로그인이 필요한 서비스입니다.")
-			return false
-		}
-		if(f_comment.content.value.trim()==""){
-			alert("내용을 입력해주세요.")
-			f_comment.content.focus()
-			return false
-		}
-			document.f_comment.submit()
-	}
-</script>
 
 </head>
 <body>
@@ -91,6 +76,23 @@
 		String num = request.getParameter("num");
 		bdto = bdao.selectSubject("조회수 증가용", num); /* 제목을 눌러서 들어왔을때만 조회수 증가용 */
 	%>
+<script type="text/javascript">
+	var ss = '<%=(String) session.getAttribute("id")%>'
+	
+	function check_session() {
+		if(ss=="null"){
+			alert("로그인이 필요한 서비스입니다.")
+			return false
+		}
+		if(f_comment.content.value.trim()==""){
+			alert("내용을 입력해주세요.")
+			f_comment.content.focus()
+			return false
+		}
+			document.f_comment.submit()
+	}
+
+</script>
 
 	<div class="colorlib-loader"></div>
 
@@ -217,8 +219,9 @@
 										<tr>
 											<td colspan="2"><br>
 												<div
-													style="background-color: #f7f4f4; font-size: 14px; margin-top: 10px;" align="center">
-													<table border="0" >
+													style="background-color: #f7f4f4; font-size: 14px; margin-top: 10px;"
+													align="center">
+													<table border="0">
 														<tr>
 															<td width="850"><%=bdto.getContent()%></td>
 														</tr>
@@ -226,9 +229,7 @@
 												</div></td>
 										</tr>
 										<tr>
-											<td>
-												<br>
-											</td>
+											<td><br></td>
 										</tr>
 										<tr>
 											<td>
@@ -241,42 +242,45 @@
 											<td>
 												<div align="right">
 													<script type="text/javascript">
-														var ss = '<%=(String)session.getAttribute("id")%>'
+														var ss = '<%=(String) session.getAttribute("id")%>'
 														var writer = '<%=bdto.getWriter()%>'
-														
+
 														function delete_confirm() {
-																
-															if(ss!=writer){
+
+															if (ss != writer) {
 																alert("본인 계정으로 작성한 글만 삭제가 가능합니다.")
 																return false;
 															}
-															
+
 															var cf = confirm("게시글을 정말 삭제하시겠습니까?")
 															if (cf) {
 																document.f.action = "board_delete_ok.jsp"
-																document.f.submit()
+																document.f
+																		.submit()
 															} else {
 																return false;
 															}
 														}
 
 														function modify() {
-															
-															if(ss!=writer){
+
+															if (ss != writer) {
 																alert("본인 계정으로 작성한 글만 수정이 가능합니다.")
 																return false;
 															}
-															
+
 															document.f.action = "board_modify.jsp"
 															document.f.submit()
 														}
-													</script>
+													
+												</script>
 													<button type="button" class="btn btn-outline-warning"
 														onclick="modify()">수정하기</button>
 													<button type="button" class="btn btn-outline-danger"
 														onclick="delete_confirm()">삭제하기</button>
 													<button type="button" class="btn btn-outline-info"
 														onclick="window.location='board.jsp'">목록으로</button>
+
 												</div>
 											</td>
 										</tr>
@@ -311,8 +315,10 @@
 												</h5></td>
 											<td align="center"><h5><%=d.getContent()%></h5></td>
 											<td align="center" width="15%"><h5><%=d.getReg_date()%></h5></td>
-											<td align="center">
-												<button type="button" class="btn btn-link">삭제</button>
+											<td align="center" width="5%">
+												<button type="button" class="btn btn-link" 
+												onclick="window.location='board_comment_delete_ok.jsp?num=<%=d.getNum()%>&board_num=<%=d.getBoard_num()%>&writer=<%=d.getWriter()%>'">삭제</button> 
+												
 											</td>
 										</tr>
 										<%
@@ -322,7 +328,6 @@
 									</tbody>
 								</table>
 							</div></td>
-
 					</tr>
 					<tr>
 						<td align="center">
@@ -333,9 +338,10 @@
 										placeholder="댓글은 자신을 나타내는 얼굴입니다." name="content"></textarea>
 								</div>
 								<div style="width: 925px;" align="right">
-									<button type="button" class="btn btn-primary btn-sm" onclick="check_session()">댓글등록</button>
+									<button type="button" class="btn btn-primary btn-sm"
+										onclick="check_session()">댓글등록</button>
 									<input type="hidden" name="board_num" value="<%=bdto.getNum()%>"> 
-									<input type="hidden" name="writer" value=<%=(String)session.getAttribute("id")%>>
+									<input type="hidden" name="writer" value=<%=(String) session.getAttribute("id")%>>
 								</div>
 							</form>
 						</td>
