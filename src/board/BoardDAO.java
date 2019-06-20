@@ -323,5 +323,28 @@ public class BoardDAO {
 		}
 		return res;
 	}
-
+	
+	public int updateGood(int signal, int num) {	// 추천수 증가
+		sql = "update board set where good = good + 1 where num = ?";
+		try {
+			con = mgr.getConnection();
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, num);
+			res = ps.executeUpdate();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				if (ps != null)
+					ps.close();
+				if (con != null)
+					con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return res;
+	}
+	
 }
