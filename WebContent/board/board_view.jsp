@@ -77,6 +77,7 @@
 		bdto = bdao.selectSubject("조회수 증가용", num); /* 첫번째 인자는 제목을 눌러서 들어왔을때만 조회수 증가용 */
 	%>
 	<script type="text/javascript">
+<<<<<<< HEAD
 		var ss = '<%=(String) session.getAttribute("id")%>'
 
 		function check_session() {
@@ -89,9 +90,24 @@
 				f_comment.content.focus()
 				return false
 			}
+=======
+	var ss = '<%=(String) session.getAttribute("id")%>'
+	
+	function check_session() {
+		if(ss=="null"){
+			alert("로그인이 필요한 서비스입니다.")
+			return false
+		}
+		if(f_comment.content.value.trim()==""){
+			alert("내용을 입력해주세요.")
+			f_comment.content.focus()
+			return false
+		}
+>>>>>>> e4b423104995e23e88381a43e60e3bfec7af574e
 			document.f_comment.submit()
 		}
 
+<<<<<<< HEAD
 	</script>
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -114,6 +130,15 @@
 			})
 		})
 	</script>
+=======
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript">
+	$(function() {
+		
+	})
+</script>
+>>>>>>> e4b423104995e23e88381a43e60e3bfec7af574e
 	<div class="colorlib-loader"></div>
 
 	<div id="page">
@@ -378,8 +403,14 @@
 								<div style="width: 925px;" align="right">
 									<button type="button" class="btn btn-primary btn-sm"
 										onclick="check_session()">댓글등록</button>
+<<<<<<< HEAD
 									<input type="hidden" name="board_num" value="<%=bdto.getNum()%>"> <input
 										type="hidden" name="writer" value=<%=(String) session.getAttribute("id")%>>
+=======
+									<input type="hidden" name="board_num"
+										value="<%=bdto.getNum()%>"> <input type="hidden"
+										name="writer" value=<%=(String)session.getAttribute("id")%>>
+>>>>>>> e4b423104995e23e88381a43e60e3bfec7af574e
 								</div>
 							</form>
 						</td>

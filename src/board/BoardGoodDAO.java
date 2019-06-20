@@ -21,13 +21,22 @@ public class BoardGoodDAO {
 
 	}
 	
+<<<<<<< HEAD
 	public int insertBoardGood(String user, int num) {
+=======
+	public int insertBoardGood(BoardGoodDTO dto) {
+>>>>>>> e4b423104995e23e88381a43e60e3bfec7af574e
 		sql = "insert into board_good values(?, ?)";
 		try {
 			con = mgr.getConnection();
 			ps = con.prepareStatement(sql);
+<<<<<<< HEAD
 			ps.setString(1, user);
 			ps.setInt(2, num);
+=======
+			ps.setString(1, dto.getUser());
+			ps.setInt(1, dto.getBoard_num());
+>>>>>>> e4b423104995e23e88381a43e60e3bfec7af574e
 			res = ps.executeUpdate();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
