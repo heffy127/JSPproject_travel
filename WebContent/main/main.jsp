@@ -69,7 +69,7 @@
 </head>
 <body>
 <%
-	session.setAttribute("id", "user1");
+	session.setAttribute("id", "user2");
 %>
 	<div class="colorlib-loader"></div>
 	<div id="page">

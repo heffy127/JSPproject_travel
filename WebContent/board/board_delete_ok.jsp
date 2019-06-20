@@ -11,7 +11,9 @@
 	<jsp:useBean id="bdao" class="board.BoardDAO" />
 	<jsp:setProperty property="*" name="bdto" />
 	<%
-		request.setCharacterEncoding("utf-8");
+	 	String getNum = request.getParameter("num");
+		int num = Integer.parseInt(getNum);
+		bdto = bdao.selectSubject(null, num);
 		String alert = null, url = null;
 		if (bdto.getWriter() == null) {
 			alert = "잘못된 접근입니다.";

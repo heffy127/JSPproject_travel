@@ -197,7 +197,15 @@
 										<td><a href="board_view.jsp?num=<%=d.getNum()%>"><h4><%=d.getSubject()%></h4></a></td>
 										<td align="center"><h4><%=d.getWriter()%></h4></td>
 										<td align="center"><h4><%=d.getReadcount()%></h4></td>
+										<%
+										if(10 <= d.getGood()){	
+										%>
+										<td align="center"><h4><font color="red"><%=d.getGood()%></font></h4></td>
+										<%
+										}else {										
+										%>
 										<td align="center"><h4><%=d.getGood()%></h4></td>
+										<% }%>
 										<td align="center"><h4><%=d.getReg_date()%></h4></td>
 									</tr>
 									<%

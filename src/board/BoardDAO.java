@@ -64,7 +64,6 @@ public class BoardDAO {
 		return list;
 	}
 	
-	// mysql한글화 작업 후 수정해야함
 	public ArrayList<BoardDTO> listBoard_life() {
 		ArrayList<BoardDTO> list = new ArrayList<BoardDTO>();
 		sql = "select * from board where preface = '일상' order by num desc";
@@ -165,7 +164,7 @@ public class BoardDAO {
 		return list;
 	}
 	
-	public BoardDTO selectSubject(String fromSubject, String num) {
+	public BoardDTO selectSubject(String fromSubject, int num) {
 		if(!(fromSubject == null || fromSubject.trim().equals(""))) {	// 제목을 눌러서 게시글 확인할때만 조회수 증가
 			readCountPlus(num);
 		}
@@ -174,7 +173,7 @@ public class BoardDAO {
 		try {
 			con = mgr.getConnection();
 			ps = con.prepareStatement(sql);
-			ps.setString(1, num);
+			ps.setInt(1, num);
 			rs = ps.executeQuery();
 			if(rs.next()) {
 				dto.setNum(rs.getInt("num"));
@@ -203,35 +202,12 @@ public class BoardDAO {
 		return dto;
 	}
 	
-	public int readCountPlus(String num) {
+	public int readCountPlus(int num) {
 		sql = "update board set readcount = readcount + 1 where num = ? ";
 		try {
 			con = mgr.getConnection();
 			ps = con.prepareStatement(sql);
-			ps.setString(1, num);
-			res = ps.executeUpdate();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} finally {
-			try {
-				if (ps != null)
-					ps.close();
-				if (con != null)
-					con.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
-		return res;
-	}
-	
-	public int plusGood(String num) {
-		sql = "update board set good = good + 1 where num = ?";
-		try {
-			con = mgr.getConnection();
-			ps = con.prepareStatement(sql);
-			ps.setString(1, num);
+			ps.setInt(1, num);
 			res = ps.executeUpdate();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -323,5 +299,28 @@ public class BoardDAO {
 		}
 		return res;
 	}
-
+	
+	public int plusGood(int num) {	// 추천수 증가
+		sql = "update board set good = good + 1 where num = ?";
+		try {
+			con = mgr.getConnection();
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, num);
+			res = ps.executeUpdate();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				if (ps != null)
+					ps.close();
+				if (con != null)
+					con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return res;
+	}
+	
 }

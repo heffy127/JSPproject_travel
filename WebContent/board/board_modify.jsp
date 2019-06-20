@@ -92,9 +92,11 @@
 </head>
 <body>
 	<jsp:useBean id="bdto" class="board.BoardDTO" />
-	<jsp:setProperty property="*" name="bdto"/>
 	<jsp:useBean id="bdao" class="board.BoardDAO" />
 	<%
+ 	String getNum = request.getParameter("num");
+	int num = Integer.parseInt(getNum);
+	bdto = bdao.selectSubject(null, num);
 	String content = bdto.getContent().substring(3, bdto.getContent().length()-3);
 	%>
 	<div class="colorlib-loader"></div>
@@ -173,9 +175,9 @@
 										<td width="115px" height="35px"><select name="preface"
 											style="width: 100px; height: 30px; font-size: 15px">
 												<option value="0" selected="selected">--말머리--</option>
-												<option value="life">일상</option>
-												<option value="reco">추천</option>
-												<option value="quest">질문</option>
+												<option value="일상">일상</option>
+												<option value="추천">추천</option>
+												<option value="질문">질문</option>
 										</select></td>
 										<td align="right"><input type="text" name="subject" size="170px"
 											placeholder="제목 입력" value="<%=bdto.getSubject()%>"></td>

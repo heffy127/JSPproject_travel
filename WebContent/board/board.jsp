@@ -186,7 +186,7 @@
 										<th scope="col" width="40"><h5>글쓴이</h5></th>
 										<th scope="col" width="10"><h5>조회수</h5></th>
 										<th scope="col" width="10"><h5>추천수</h5></th>
-										<th scope="col" width="60"><h5>작성일</h5></th>
+										<th scope="col" width="40"><h5>작성일</h5></th>
 									</tr>
 								</thead>
 								<tbody>
@@ -208,7 +208,15 @@
 										<td><a href="board_view.jsp?num=<%=d.getNum()%>"><h4><%=d.getSubject()%>&nbsp;<font color="red">[<%=count %>]</font></h4></a></td>
 										<td align="center"><h4><%=d.getWriter()%></h4></td>
 										<td align="center"><h4><%=d.getReadcount()%></h4></td>
+										<%
+										if(10 <= d.getGood()){	
+										%>
+										<td align="center"><h4><font color="red"><%=d.getGood()%></font></h4></td>
+										<%
+										}else {										
+										%>
 										<td align="center"><h4><%=d.getGood()%></h4></td>
+										<% }%>
 										<td align="center"><h4><%=d.getReg_date()%></h4></td>
 									</tr>
 									<%
