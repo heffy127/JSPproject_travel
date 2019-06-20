@@ -93,7 +93,12 @@
 	}
 
 </script>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript">
+	$(function() {
+		
+	})
+</script>
 	<div class="colorlib-loader"></div>
 
 	<div id="page">
@@ -350,7 +355,7 @@
 										onclick="check_session()">댓글등록</button>
 									<input type="hidden" name="board_num"
 										value="<%=bdto.getNum()%>"> <input type="hidden"
-										name="writer" value=<%=(String) session.getAttribute("id")%>>
+										name="writer" value=<%=(String)session.getAttribute("id")%>>
 								</div>
 							</form>
 						</td>
