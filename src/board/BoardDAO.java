@@ -323,4 +323,35 @@ public class BoardDAO {
 		return res;
 	}
 	
+	public ArrayList<BoardPopularDTO> listPopular(String popularDate) {
+		ArrayList<BoardPopularDTO> list = new ArrayList<>();
+		BoardPopularDTO bpdto = null;
+		sql = "select num, nullif(good, 0) as good_chk from board where reg_date like ('" + popularDate + "%') order by good desc limit 3";
+		try {
+			con = mgr.getConnection();
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				bpdto = new BoardPopularDTO();
+				bpdto.setNum(rs.getInt("num"));
+				bpdto.setGood_chk(rs.getInt("good_chk"));
+				list.add(bpdto);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+				if (ps != null)
+					ps.close();
+				if (con != null)
+					con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return list;
+	}
 }
