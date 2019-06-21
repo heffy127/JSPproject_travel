@@ -1,3 +1,7 @@
+<%@page import="board.BoardPopularDTO"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.Formatter"%>
+<%@page import="java.util.Calendar"%>
 <%@page import="board.BoardDTO"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -78,6 +82,7 @@
 	<jsp:useBean id="bdto" class="board.BoardDTO" />
 	<jsp:useBean id="bdao" class="board.BoardDAO" />
 	<jsp:useBean id="cdao" class="board.BoardCommentDAO" />
+	<jsp:useBean id="bpdto" class="board.BoardPopularDTO"/>
 
 	<div class="colorlib-loader"></div>
 
@@ -131,7 +136,7 @@
 			<div class="div_board" align="center">
 				<table border="1">
 					<tr>
-						<td width="1000">
+						<td width="1000" rowspan="10">
 							<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
 								<a class="navbar-brand" href="board.jsp">자유게시판</a>
 								<button class="navbar-toggler" type="button"
@@ -205,11 +210,17 @@
 									<tr class="table-light">
 										<td align="center"><h4><%=d.getNum()%></h4></td>
 										<td align="center"><h4><%=d.getPreface()%></h4></td>
+										<%
+										if(0 < count){ // 제목옆 댓글 수 표시
+										%>
 										<td><a href="board_view.jsp?num=<%=d.getNum()%>"><h4><%=d.getSubject()%>&nbsp;<font color="red">[<%=count %>]</font></h4></a></td>
+										<% } else { %>
+										<td><a href="board_view.jsp?num=<%=d.getNum()%>"><h4><%=d.getSubject()%></h4></a></td>
+										<%} %>
 										<td align="center"><h4><%=d.getWriter()%></h4></td>
 										<td align="center"><h4><%=d.getReadcount()%></h4></td>
 										<%
-										if(10 <= d.getGood()){	
+										if(10 <= d.getGood()){	// 추천수 10개 이상일때 빨간색
 										%>
 										<td align="center"><h4><font color="red"><%=d.getGood()%></font></h4></td>
 										<%
@@ -231,9 +242,81 @@
 									onclick="check_session()">글쓰기</button>
 							</div>
 						</td>
-						<td width="250" align="center">게시판 버튼 들어갈곳</td>
+						
 					</tr>
-				</table>
+					<tr>
+					<% // 인기글 공간 코드
+					 Calendar now = Calendar.getInstance();
+					 SimpleDateFormat title_sdf = new SimpleDateFormat("MM월 dd일");
+					 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+					 String titleDate = title_sdf.format(now.getTime()).trim();
+					 String popularDate = sdf.format(now.getTime()).trim();
+					%>
+						<td width="250" align="center">
+							<table border="1"> <!-- 인기글 보여주는 테이블 -->
+								<tr>
+									<td width="250" align="center">
+										<h4><b><%=titleDate %> 인기글</b></h4>	
+									</td>
+								</tr>
+								<%
+								ArrayList<BoardPopularDTO> bplist = bdao.listPopular(popularDate);
+								for (int i=0 ; i < 3 ; i++ ) {
+									bpdto = bplist.get(i);
+									if(bpdto == null)
+								%>
+								<tr>
+									<td>
+										등록된 글이 없습니다.
+									</td>
+								</tr>
+								<%
+								}
+								%>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<td>
+						asdf
+						</td>
+					</tr>
+					<tr>
+						<td>
+						asdf
+						</td>
+					</tr>
+					<tr>
+						<td>
+						asdf
+						</td>
+					</tr>
+					<tr>
+						<td>
+						asdf
+						</td>
+					</tr>
+					<tr>
+						<td>
+						asdf
+						</td>
+					</tr>
+					<tr>
+						<td>
+						asdf
+						</td>
+					</tr>
+					<tr>
+						<td>
+						asdf
+						</td>
+					</tr>
+					<tr>
+						<td>
+						asdf
+						</td>
+					</tr>
+					</table>
 			</div>
 		</div>
 	</div>
