@@ -16,15 +16,15 @@ public class BoardDAO {
 	BoardDTO dto = null;
 	int res;
 	String sql = null;
-	
+
 	public BoardDAO() {
 		mgr = DBConnectionMgr.getInstance();
 
 	}
-	
-	public ArrayList<BoardDTO> makeList(ResultSet rs) throws Exception{
+
+	public ArrayList<BoardDTO> makeList(ResultSet rs) throws Exception {
 		ArrayList<BoardDTO> list = new ArrayList<BoardDTO>();
-		while(rs.next()) {
+		while (rs.next()) {
 			dto = new BoardDTO();
 			dto.setNum(rs.getInt("num"));
 			dto.setWriter(rs.getString("writer"));
@@ -63,7 +63,7 @@ public class BoardDAO {
 		}
 		return list;
 	}
-	
+
 	public ArrayList<BoardDTO> listBoard_life() {
 		ArrayList<BoardDTO> list = new ArrayList<BoardDTO>();
 		sql = "select * from board where preface = '일상' order by num desc";
@@ -88,7 +88,7 @@ public class BoardDAO {
 		}
 		return list;
 	}
-	
+
 	public ArrayList<BoardDTO> listBoard_reco() {
 		ArrayList<BoardDTO> list = new ArrayList<BoardDTO>();
 		sql = "select * from board where preface = '추천' order by num desc";
@@ -113,7 +113,7 @@ public class BoardDAO {
 		}
 		return list;
 	}
-	
+
 	public ArrayList<BoardDTO> listBoard_quest() {
 		ArrayList<BoardDTO> list = new ArrayList<BoardDTO>();
 		sql = "select * from board where preface = '질문' order by num desc";
@@ -138,10 +138,10 @@ public class BoardDAO {
 		}
 		return list;
 	}
-	
+
 	public ArrayList<BoardDTO> search(String select, String keyword) {
 		ArrayList<BoardDTO> list = new ArrayList<BoardDTO>();
-		sql = "select * from board where " + select + " like '%" + keyword + "%' order by num desc" ;
+		sql = "select * from board where " + select + " like '%" + keyword + "%' order by num desc";
 		try {
 			con = mgr.getConnection();
 			ps = con.prepareStatement(sql);
@@ -163,9 +163,9 @@ public class BoardDAO {
 		}
 		return list;
 	}
-	
+
 	public BoardDTO selectSubject(String fromSubject, int num) {
-		if(!(fromSubject == null || fromSubject.trim().equals(""))) {	// 제목을 눌러서 게시글 확인할때만 조회수 증가
+		if (!(fromSubject == null || fromSubject.trim().equals(""))) { // 제목을 눌러서 게시글 확인할때만 조회수 증가
 			readCountPlus(num);
 		}
 		sql = "select * from board where num = ?";
@@ -175,7 +175,7 @@ public class BoardDAO {
 			ps = con.prepareStatement(sql);
 			ps.setInt(1, num);
 			rs = ps.executeQuery();
-			if(rs.next()) {
+			if (rs.next()) {
 				dto.setNum(rs.getInt("num"));
 				dto.setWriter(rs.getString("writer"));
 				dto.setPreface(rs.getString("preface"));
@@ -201,7 +201,7 @@ public class BoardDAO {
 		}
 		return dto;
 	}
-	
+
 	public int readCountPlus(int num) {
 		sql = "update board set readcount = readcount + 1 where num = ? ";
 		try {
@@ -224,7 +224,7 @@ public class BoardDAO {
 		}
 		return res;
 	}
-	
+
 	public int insertBoard(BoardDTO dto) {
 		sql = "insert into board values(null,?,?,?,?,current_timestamp, 0, 0)";
 		try {
@@ -250,7 +250,7 @@ public class BoardDAO {
 		}
 		return res;
 	}
-	
+
 	public int updateBoard(BoardDTO dto) {
 		sql = "update board set preface = ?, subject = ?, content = ? where num = ?";
 		try {
@@ -276,7 +276,7 @@ public class BoardDAO {
 		}
 		return res;
 	}
-	
+
 	public int deleteBoard(int num) {
 		sql = "delete from board where num = ?";
 		try {
@@ -299,8 +299,8 @@ public class BoardDAO {
 		}
 		return res;
 	}
-	
-	public int plusGood(int num) {	// 추천수 증가
+
+	public int plusGood(int num) { // 추천수 증가
 		sql = "update board set good = good + 1 where num = ?";
 		try {
 			con = mgr.getConnection();
@@ -322,22 +322,30 @@ public class BoardDAO {
 		}
 		return res;
 	}
-	
+
 	public ArrayList<BoardPopularDTO> listPopular(String popularDate) {
 		ArrayList<BoardPopularDTO> list = new ArrayList<>();
 		BoardPopularDTO bpdto = null;
-		sql = "select num, nullif(good, 0) as good_chk from board where reg_date like ('" + popularDate + "%') order by good desc limit 3";
+		sql = "select num, nullif(good, 0) as good_chk from board where reg_date like ('" + popularDate
+				+ "%') order by good desc limit 3";
 		try {
 			con = mgr.getConnection();
 			ps = con.prepareStatement(sql);
 			rs = ps.executeQuery();
-			while(rs.next()) {
-				bpdto = new BoardPopularDTO();
-				bpdto.setNum(rs.getInt("num"));
-				bpdto.setGood_chk(rs.getInt("good_chk"));
-				list.add(bpdto);
+			for (int i = 0; i < 3; i++) {
+				if (rs.next()) {
+					bpdto = new BoardPopularDTO();
+					bpdto.setNum(rs.getInt("num"));
+					bpdto.setGood_chk(rs.getInt("good_chk"));
+					list.add(bpdto);
+				} else {
+					bpdto = new BoardPopularDTO();
+					bpdto.setNum(0);
+					bpdto.setGood_chk(0);
+					list.add(bpdto);
+				}
 			}
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
