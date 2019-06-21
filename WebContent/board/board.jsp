@@ -261,17 +261,15 @@
 								</tr>
 								<%
 								ArrayList<BoardPopularDTO> bplist = bdao.listPopular(popularDate);
-								for (int i=0 ; i < 3 ; i++ ) {
-									bpdto = bplist.get(i);
-									if(bpdto == null)
+								
 								%>
 								<tr>
 									<td>
-										등록된 글이 없습니다.
+										<%=bplist.size() %>
 									</td>
 								</tr>
 								<%
-								}
+								
 								%>
 							</table>
 						</td>
