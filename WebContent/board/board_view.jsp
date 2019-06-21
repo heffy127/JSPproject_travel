@@ -73,7 +73,8 @@
 	<jsp:useBean id="cdto" class="board.BoardCommentDTO" />
 	<jsp:useBean id="cdao" class="board.BoardCommentDAO" />
 	<%
-		int num = Integer.parseInt(request.getParameter("num"));
+		String getNum = request.getParameter("num");
+		int num = Integer.parseInt(getNum);
 		bdto = bdao.selectSubject("조회수 증가용", num); /* 첫번째 인자는 제목을 눌러서 들어왔을때만 조회수 증가용 */
 	%>
 	<script type="text/javascript">
