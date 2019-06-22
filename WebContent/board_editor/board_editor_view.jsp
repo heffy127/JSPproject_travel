@@ -1,11 +1,10 @@
-<%@page import="java.text.SimpleDateFormat"%>
-<%@page import="java.util.Calendar"%>
-<%@page import="board.BoardDTO"%>
+<%@page import="board_editor.*"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE HTML>
 <html>
+
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -66,12 +65,56 @@
 	<![endif]-->
 
 
-</head>
-<body>
-	<jsp:useBean id="bdto" class="board.BoardDTO" />
-	<jsp:useBean id="bdao" class="board.BoardDAO" />
-	<jsp:useBean id="cdao" class="board.BoardCommentDAO" />
 
+</head>
+
+<body>
+	<jsp:useBean id="bdto" class="board_editor.BoardEditorDTO" />
+	<jsp:useBean id="bdao" class="board_editor.BoardEditorDAO" />
+	<%
+		String getNum = request.getParameter("num");
+		int num = Integer.parseInt(getNum);
+		bdto = bdao.selectSubject("조회수 증가용", num); /* 첫번째 인자는 제목을 눌러서 들어왔을때만 조회수 증가용 */
+	%>
+	<script type="text/javascript">
+		var ss = '<%=(String) session.getAttribute("id")%>'
+
+		function check_session() {
+			if (ss == "null") {
+				alert("로그인이 필요한 서비스입니다.")
+				return false
+			}
+			if (f_comment.content.value.trim() == "") {
+				alert("내용을 입력해주세요.")
+				f_comment.content.focus()
+				return false
+			}
+			document.f_comment.submit()
+		}
+
+	</script>
+
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(function () {
+			$("#goodButton").click(function () {
+				var current_good = parseInt($("#goodPlace").text())
+				var d = $("#f").serialize(); // ajax로 form내용 한번에 전달
+				$.ajax({
+					url : "board_good_ok.jsp?num=<%=bdto.getNum()%>",
+					data : d,
+					success : function(result){
+						var data = result.trim()
+						alert(data)
+						if(data == "작성자에게 힘이 되는 추천! 감사합니다."){
+							$("#goodPlace").text(current_good+1)
+						}
+					}
+				})
+			})
+		})
+	</script>
 	<div class="colorlib-loader"></div>
 
 	<div id="page">
@@ -124,9 +167,9 @@
 			<div class="div_board" align="center">
 				<table border="0">
 					<tr>
-						<td width="1000" height="800" rowspan="10" valign="top">
-							<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-								<a class="navbar-brand" href="board.jsp">자유게시판</a>
+						<td width="1250">
+						<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+								<a class="navbar-brand" href="board_editor.jsp">editor's Pick</a>
 								<button class="navbar-toggler" type="button"
 									data-toggle="collapse" data-target="#navbarColor01"
 									aria-controls="navbarColor01" aria-expanded="false"
@@ -136,14 +179,10 @@
 
 								<div class="collapse navbar-collapse" id="navbarColor01">
 									<ul class="navbar-nav mr-auto">
-										<li class="nav-item"><a class="nav-link" href="board.jsp"><font
-												size="3">전체</font> <span class="sr-only">(current)</span> </a></li>
-										<li class="nav-item"><a class="nav-link"
-											href="boardLife.jsp"><font size="2">일상</font></a></li>
-										<li class="nav-item"><a class="nav-link"
-											href="boardRecommend.jsp"><font size="2">추천</font></a></li>
-										<li class="nav-item active"><a class="nav-link"
-											href="boardQuestion.jsp"><font size="2">질문</font></a></li>
+										<li class="nav-item active"><font size="3" color="white">HT 에디터가 추천하는 여행지</font></li>
+										<li class="nav-item"></li>
+										<li class="nav-item"></li>
+										<li class="nav-item"></li>
 									</ul>
 									<form class="form-inline my-2 my-lg-0" name="f_search"
 										method="get" action="board_search.jsp">
@@ -167,202 +206,89 @@
 									</form>
 								</div>
 							</nav>
-							<table class="table table-hover">
+							<div align="center">
+								<form name="f" id="f" method="get">
+									<table border="0" width="93%">
+										<!-- 글 보기 -->
+										<tr>
+											<td width="74%"><font size="6"><b><%=bdto.getSubject()%></b></font><br>
+											</td>
+											<td align="center"><font size="5" color="gray"><b><%=bdto.getWriter()%></b></font><br>
+											</td>
+										</tr>
+										<tr>
+											<td><font size="2"><b>글번호</b>&nbsp;&nbsp;&nbsp;&nbsp;</font>
+												<font size="2" color="gray"><%=bdto.getNum()%>
+													&nbsp;&nbsp;| &nbsp;&nbsp;<%=bdto.getReg_date()%></font></td>
+											<td align="center">
+												&nbsp;&nbsp;&nbsp; 조회 &nbsp; <font size="2" color="gray">
+													<b><%=bdto.getReadcount()%></b>
+											</font>
+											</td>
+										</tr>
+										<tr>
+											<td colspan="2"><br>
+												<div
+													style="background-color: #f7f4f4; font-size: 14px; margin-top: 10px;"
+													align="center">
+													<table border="0">
+														<tr>
+															<td width="850" height="200" valign="top"><font
+																size="5"><%=bdto.getContent()%></font></td>
+														</tr>
+													</table>
+												</div></td>
+										</tr>
+										<tr>
+											<td colspan="2"><br></td>
+										</tr>
+										<tr>
+											<td  colspan="2">
+												<div align="right">
+													<script type="text/javascript">
+														var ss = '<%=(String) session.getAttribute("id")%>'
+														var writer = '<%=bdto.getWriter()%>'
 
-								<thead>
-									<tr align="center">
-										<th scope="col" width="30"><h5>글 번호</h5></th>
-										<th scope="col" width="40"><h5>말머리</h5></th>
-										<th scope="col" width="130"><h5>제목</h5></th>
-										<th scope="col" width="40"><h5>글쓴이</h5></th>
-										<th scope="col" width="10"><h5>조회수</h5></th>
-										<th scope="col" width="10"><h5>추천수</h5></th>
-										<th scope="col" width="60"><h5>작성일</h5></th>
-									</tr>
-								</thead>
-								<tbody>
-										<%
-										// 페이징 구현
-										int pageSize = 15;	 // 한 페이지에 나올 게시글 수
-										String pageNum = request.getParameter("pageNum"); // 페이지 넘버 받아오기 
-										if(pageNum == null){ // 넘겨진 값이 없으면 무조건 1번 페이지
-											pageNum = "1";
-										}
-										int currentPage = Integer.parseInt(pageNum); // 현재 페이지 넘버
-										int listCnt = bdao.listCount_quest(); // DB에 있는 전체 게시글 수
-										int startRow = (currentPage - 1) * pageSize;//  페이지마다 글 시작점
-																											// limit를 쓸때 0부터 해야 가장 최근글부터 나옴
-										/*
-										1 - 1~15
-										2 - 16~30
-										3 - 30~45 ...
-										*/
-										ArrayList<BoardDTO> list = bdao.listBoard_quest(startRow, pageSize); // 내림차순 했기때문에 가장 최근글부터 출력
-										//                                                              글 시작       나타날 글 개수
-										if (list.size() == 0) {
-									%>
-									<tr class="table-warning">
-										<td colspan="7" align="center"><h4>등록된 글이 없습니다.</h4></td>
-									</tr>
-									<%
-										} else {
-											for (BoardDTO d : list) {
-												int commentCnt = cdao.CommentCnt(d.getNum());
-									%>
-									<tr class="table-light">
-										<td align="center"><h4><%=d.getNum()%></h4></td>
-										
-										<%
-										if(d.getPreface().equals("질문")){
-										%>
-										<td align="center"><span class="badge badge-dark"><font size="2"><%=d.getPreface()%></font></span></td>
-										<%
-										}
-										%>
-										
-										<%
-											if (0 < commentCnt) { // 제목옆 댓글 수 표시
-										%>
-										<td><a href="board_view.jsp?num=<%=d.getNum()%>"><h4><%=d.getSubject()%>&nbsp;<font
-														color="red">[<%=commentCnt%>]
-													</font>
-												</h4></a></td>
-										<%
-											} else {
-										%>
-										<td><a href="board_view.jsp?num=<%=d.getNum()%>"><h4><%=d.getSubject()%></h4></a></td>
-										<%
-											}
-										%>
-										<td align="center"><h4><%=d.getWriter()%></h4></td>
-										<td align="center"><h4><%=d.getReadcount()%></h4></td>
-										<%
-											if (5 <= d.getGood()) { // 추천수 5개 이상일때 빨간색
-										%>
-										<td align="center"><h4>
-												<font color="red"><%=d.getGood()%></font>
-											</h4></td>
-										<%
-											} else {
-										%>
-										<td align="center"><h4><%=d.getGood()%></h4></td>
-										<%
-											}
-										%>
-										<td align="center"><h4><%=d.getReg_date()%></h4></td>
-									</tr>
-									<%
-										}
-										}
-									%>
+														function delete_confirm() {
 
-								</tbody>
-							</table>
-							<div align="right">
-								<button type="button" class="btn btn-secondary"
-									onclick="window.location='board_write.jsp'">글쓰기</button>
-									<hr>
+															if (ss != "editor") {
+																alert("HT 에디터만 글 삭제가 가능합니다.")
+																return false;  
+															}
+
+															var cf = confirm("게시글을 정말 삭제하시겠습니까?")
+															if (cf) {
+																location.href = "board_editor_delete_ok.jsp?num=<%=bdto.getNum()%>"
+															} else {
+																return false;
+															}
+														}
+
+														function modify() {
+
+															if (ss != "editor") {
+																alert("HT 에디터만 글 수정이 가능합니다.")
+																return false;
+															}
+
+															location.href = "board_editor_modify.jsp?num=<%=bdto.getNum()%>"
+														}
+													</script>
+													<button type="button" class="btn btn-outline-warning"
+														onclick="modify()">수정하기</button>
+													<button type="button" class="btn btn-outline-danger"
+														onclick="delete_confirm()">삭제하기</button>
+													<button type="button" class="btn btn-outline-info"
+														onclick="window.location='board_editor.jsp'">목록으로</button>
+
+												</div>
+											</td>
+										</tr>
+									</table>
+								</form>
 							</div>
-								<div align="center" style="width: '100px''">
-							<% 
-							if (listCnt > 0){ // 게시판 글이 하나라도 있는경우
-								int totPage = listCnt / pageSize + (listCnt%pageSize==0 ? 0 : 1);// 총 페이지 개수가 몇개까지 나타날 수 있나
-								/* 
-								단순히 (글 개수) / (페이지에 나타날 글 개수) 를 해버리면
-								글이 31개일 경우 페이지 글 개수가 5개면 6페이지 밖에 안나옴..그렇게 되면 글 1개가 누락됨
-								그래서 1을 더할 수 있게 한것
-								*/
-								int pageBlock = 3; // (다음)버튼 이전의 페이지 수를 몇개까지 나타낼 것인지
-								int startPage = (currentPage-1) / pageBlock * pageBlock + 1;
-								/*
-								pageBlock이 3일때
-								1, 2, 3 일 경우 startPage는 1
-								4, 5, 6 일 경우 startPage는 4
-								ex) 현재 페이지가 5일경우
-								5-1 = 4  ->  4/3 = 1  ->  1*3 + 1 =  4가 시작페이지로 도출 
-								*/
-								int endPage = startPage + pageBlock - 1; // 끝나는 페이지
-								if(endPage>totPage){
-									endPage = totPage;
-								}
-								
-								if(startPage != 1){%> <!-- startPage가 1이 아닐 경우, 즉 1 2 3 이 아닐 경우에만 이전버튼 나타나도록 -->
-								<a href="boardQuestion.jsp?pageNum=<%=startPage - pageBlock %>"><font size="5">[이전]</font></a>
-								<%}
-									
-								for(int i = startPage; i<=endPage; ++i){%>
-							<a href="boardQuestion.jsp?pageNum=<%=i %>"><font size="5">[<%=i %>]</font></a>
-							<%} 
-								if(totPage > endPage) { %> <!-- 전체 나타날 페이지가 한 페이지에 나타날 최대 버튼보다 클 경우, 즉 전체 페이지 수는 5인데 endpage가 3인경우 다음 버튼 나타나도록 -->
-									<a href="boardQuestion.jsp?pageNum=<%=startPage + pageBlock %>"><font size="5">[다음]</font></a>
-								<% }
-							}%>
-							</div>
-							
+							<hr width="1250">
 						</td>
-					</tr>
-					<tr>
-						<%
-							// 인기글 공간 코드
-							Calendar now = Calendar.getInstance();
-							SimpleDateFormat title_sdf = new SimpleDateFormat("MM월 dd일");
-							SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-							String titleDate = title_sdf.format(now.getTime()).trim();
-							String popularDate = sdf.format(now.getTime()).trim();
-						%>
-						<td width="250" align="center" valign="top" height="285">
-							<table border="1" bordercolor="#d8c5c7">
-								<!-- 인기글 보여주는 테이블 -->
-							<tr bgcolor="#ffe2e6">
-									<td align="center" width="230" height="70">
-										<h2>
-											<b><%=titleDate%> 인기글<img src="../images/hot.png"></b>
-										</h2>
-									</td>
-								</tr>
-								<%
-									int[] popularNum = bdao.listPopular(popularDate);
-									for (int i = 0; i < popularNum.length; i++) {
-										if (popularNum[i] == 0) {
-								%>
-								<tr bgcolor="#efefef">
-									<td height="40" >
-										<h4>&nbsp;&nbsp;▷&nbsp;인기글이 없습니다.</h4>
-									</td>
-								</tr>
-								<%
-									}
-										else {
-											bdto = bdao.selectSubject(null, popularNum[i]);
-											String subject = bdto.getSubject();
-											if(subject.length() > 12){
-												subject = bdto.getSubject().substring(0, 12) + " ..";
-											}
-								%>
-								<tr bgcolor="#efefef">
-									<td height="40">
-										<a href="board_view.jsp?num=<%=bdto.getNum()%>"><h4> <font color="red">&nbsp;&nbsp;▶&nbsp;</font><%=subject%>
-												</h4></a>
-									</td>
-								</tr>
-								<% 
-										}
-									}
-								%>
-							</table>
-						</td>
-					</tr>
-					<tr>
-						<td align="center" height="170" valign="top"><a href='board.jsp'><img src="../images/free.jpg"></a></td>
-					</tr>
-					<tr>
-						<td align="center"  height="170" valign="top"><a href='../board_editor/board_editor.jsp'><img src="../images/editor.png"></a></td>
-					</tr>
-					<tr>
-						<td align="center" height="170" valign="top"><a href='../news/news.html'><img src="../images/news2.jpg"></a></td>
-					</tr>
-					<tr>
-						<td height="70" valign="top"></td>
 					</tr>
 				</table>
 			</div>
@@ -484,5 +410,5 @@
 	<script src="../js/main.js"></script>
 
 </body>
-</html>
 
+</html>

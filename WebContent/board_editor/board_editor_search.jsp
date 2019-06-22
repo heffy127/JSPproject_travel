@@ -1,6 +1,4 @@
-<%@page import="java.text.SimpleDateFormat"%>
-<%@page import="java.util.Calendar"%>
-<%@page import="board.BoardDTO"%>
+<%@page import="board_editor.BoardEditorDTO"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -65,12 +63,29 @@
 	<script src="js/respond.min.js"></script>
 	<![endif]-->
 
-
+<script type="text/javascript">
+	function check_session() {
+		var ss = '<%=(String) session.getAttribute("id")%>'
+		if (ss == "editor") {
+			location.href = "board_editor_write.jsp"
+		} else {
+			alert("HT 에디터만 글을 쓸 수 있습니다.")
+		}
+	}
+</script>
 </head>
 <body>
-	<jsp:useBean id="bdto" class="board.BoardDTO" />
-	<jsp:useBean id="bdao" class="board.BoardDAO" />
-	<jsp:useBean id="cdao" class="board.BoardCommentDAO" />
+	<%
+		String select = request.getParameter("select");
+		String keyword = request.getParameter("keyword");
+		String show = null;
+		if (select.equals("subject")) {
+			show = "제목";
+		}
+	%>
+	<jsp:useBean id="bdto" class="board_editor.BoardEditorDTO" />
+	<jsp:useBean id="bdao" class="board_editor.BoardEditorDAO" />
+
 
 	<div class="colorlib-loader"></div>
 
@@ -125,8 +140,8 @@
 				<table border="0">
 					<tr>
 						<td width="1000" height="800" rowspan="10" valign="top">
-							<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-								<a class="navbar-brand" href="board.jsp">자유게시판</a>
+							<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+								<a class="navbar-brand" href="board_editor.jsp">editor's Pick</a>
 								<button class="navbar-toggler" type="button"
 									data-toggle="collapse" data-target="#navbarColor01"
 									aria-controls="navbarColor01" aria-expanded="false"
@@ -136,24 +151,19 @@
 
 								<div class="collapse navbar-collapse" id="navbarColor01">
 									<ul class="navbar-nav mr-auto">
-										<li class="nav-item"><a class="nav-link" href="board.jsp"><font
-												size="3">전체</font> <span class="sr-only">(current)</span> </a></li>
-										<li class="nav-item"><a class="nav-link"
-											href="boardLife.jsp"><font size="2">일상</font></a></li>
-										<li class="nav-item"><a class="nav-link"
-											href="boardRecommend.jsp"><font size="2">추천</font></a></li>
-										<li class="nav-item active"><a class="nav-link"
-											href="boardQuestion.jsp"><font size="2">질문</font></a></li>
+										<li class="nav-item active"><font size="3" color="white">HT 에디터가 추천하는 여행지</font></li>
+										<li class="nav-item"></li>
+										<li class="nav-item"></li>
+										<li class="nav-item"></li>
 									</ul>
 									<form class="form-inline my-2 my-lg-0" name="f_search"
-										method="get" action="board_search.jsp">
+										method="get" action="board_editor_search.jsp">
 										<table>
 											<tr>
 												<td width="20">
 													<div class="form-group">
 														<select class="custom-select" name="select">
 															<option selected="" value="subject">제목</option>
-															<option value="writer">글쓴이</option>
 														</select>
 													</div>
 												</td>
@@ -171,34 +181,31 @@
 
 								<thead>
 									<tr align="center">
-										<th scope="col" width="30"><h5>글 번호</h5></th>
-										<th scope="col" width="40"><h5>말머리</h5></th>
+									<th scope="col" width="30"><h5>글 번호</h5></th>
 										<th scope="col" width="130"><h5>제목</h5></th>
 										<th scope="col" width="40"><h5>글쓴이</h5></th>
 										<th scope="col" width="10"><h5>조회수</h5></th>
-										<th scope="col" width="10"><h5>추천수</h5></th>
-										<th scope="col" width="60"><h5>작성일</h5></th>
+										<th scope="col" width="40"><h5>작성일</h5></th>
 									</tr>
 								</thead>
 								<tbody>
-										<%
+									<%
 										// 페이징 구현
-										int pageSize = 15;	 // 한 페이지에 나올 게시글 수
+										int pageSize = 15; // 한 페이지에 나올 게시글 수
 										String pageNum = request.getParameter("pageNum"); // 페이지 넘버 받아오기 
-										if(pageNum == null){ // 넘겨진 값이 없으면 무조건 1번 페이지
+										if (pageNum == null) { // 넘겨진 값이 없으면 무조건 1번 페이지
 											pageNum = "1";
 										}
 										int currentPage = Integer.parseInt(pageNum); // 현재 페이지 넘버
-										int listCnt = bdao.listCount_quest(); // DB에 있는 전체 게시글 수
+										int listCnt = bdao.searchCount(select, keyword); // DB에 있는 전체 게시글 수
 										int startRow = (currentPage - 1) * pageSize;//  페이지마다 글 시작점
-																											// limit를 쓸때 0부터 해야 가장 최근글부터 나옴
-										/*
-										1 - 1~15
-										2 - 16~30
-										3 - 30~45 ...
-										*/
-										ArrayList<BoardDTO> list = bdao.listBoard_quest(startRow, pageSize); // 내림차순 했기때문에 가장 최근글부터 출력
-										//                                                              글 시작       나타날 글 개수
+																					// limit를 쓸때 0부터 해야 가장 최근글부터 나옴
+																					/*
+																					1 - 1~15
+																					2 - 16~30
+																					3 - 30~45 ...
+																					*/
+										ArrayList<BoardEditorDTO> list = bdao.listBoard(startRow, pageSize); // 내림차순 했기때문에 가장 최근글부터 출력
 										if (list.size() == 0) {
 									%>
 									<tr class="table-warning">
@@ -206,49 +213,21 @@
 									</tr>
 									<%
 										} else {
-											for (BoardDTO d : list) {
-												int commentCnt = cdao.CommentCnt(d.getNum());
+									%>
+									<tr class="table-warning">
+										<td colspan="7" align="center"><font size="3"
+											color="#2076cc">'<%=keyword%>'(이)가 포함된 <%=show%>(을)를
+												검색한 결과입니다.
+										</font></td>
+									</tr>
+									<%
+										for (BoardEditorDTO d : list) {
 									%>
 									<tr class="table-light">
 										<td align="center"><h4><%=d.getNum()%></h4></td>
-										
-										<%
-										if(d.getPreface().equals("질문")){
-										%>
-										<td align="center"><span class="badge badge-dark"><font size="2"><%=d.getPreface()%></font></span></td>
-										<%
-										}
-										%>
-										
-										<%
-											if (0 < commentCnt) { // 제목옆 댓글 수 표시
-										%>
-										<td><a href="board_view.jsp?num=<%=d.getNum()%>"><h4><%=d.getSubject()%>&nbsp;<font
-														color="red">[<%=commentCnt%>]
-													</font>
-												</h4></a></td>
-										<%
-											} else {
-										%>
 										<td><a href="board_view.jsp?num=<%=d.getNum()%>"><h4><%=d.getSubject()%></h4></a></td>
-										<%
-											}
-										%>
 										<td align="center"><h4><%=d.getWriter()%></h4></td>
 										<td align="center"><h4><%=d.getReadcount()%></h4></td>
-										<%
-											if (5 <= d.getGood()) { // 추천수 5개 이상일때 빨간색
-										%>
-										<td align="center"><h4>
-												<font color="red"><%=d.getGood()%></font>
-											</h4></td>
-										<%
-											} else {
-										%>
-										<td align="center"><h4><%=d.getGood()%></h4></td>
-										<%
-											}
-										%>
 										<td align="center"><h4><%=d.getReg_date()%></h4></td>
 									</tr>
 									<%
@@ -260,103 +239,102 @@
 							</table>
 							<div align="right">
 								<button type="button" class="btn btn-secondary"
-									onclick="window.location='board_write.jsp'">글쓰기</button>
+									onclick="check_session()">글쓰기</button>
 									<hr>
 							</div>
-								<div align="center" style="width: '100px''">
-							<% 
-							if (listCnt > 0){ // 게시판 글이 하나라도 있는경우
-								int totPage = listCnt / pageSize + (listCnt%pageSize==0 ? 0 : 1);// 총 페이지 개수가 몇개까지 나타날 수 있나
-								/* 
-								단순히 (글 개수) / (페이지에 나타날 글 개수) 를 해버리면
-								글이 31개일 경우 페이지 글 개수가 5개면 6페이지 밖에 안나옴..그렇게 되면 글 1개가 누락됨
-								그래서 1을 더할 수 있게 한것
-								*/
-								int pageBlock = 3; // (다음)버튼 이전의 페이지 수를 몇개까지 나타낼 것인지
-								int startPage = (currentPage-1) / pageBlock * pageBlock + 1;
-								/*
-								pageBlock이 3일때
-								1, 2, 3 일 경우 startPage는 1
-								4, 5, 6 일 경우 startPage는 4
-								ex) 현재 페이지가 5일경우
-								5-1 = 4  ->  4/3 = 1  ->  1*3 + 1 =  4가 시작페이지로 도출 
-								*/
-								int endPage = startPage + pageBlock - 1; // 끝나는 페이지
-								if(endPage>totPage){
-									endPage = totPage;
-								}
-								
-								if(startPage != 1){%> <!-- startPage가 1이 아닐 경우, 즉 1 2 3 이 아닐 경우에만 이전버튼 나타나도록 -->
-								<a href="boardQuestion.jsp?pageNum=<%=startPage - pageBlock %>"><font size="5">[이전]</font></a>
-								<%}
-									
-								for(int i = startPage; i<=endPage; ++i){%>
-							<a href="boardQuestion.jsp?pageNum=<%=i %>"><font size="5">[<%=i %>]</font></a>
-							<%} 
-								if(totPage > endPage) { %> <!-- 전체 나타날 페이지가 한 페이지에 나타날 최대 버튼보다 클 경우, 즉 전체 페이지 수는 5인데 endpage가 3인경우 다음 버튼 나타나도록 -->
-									<a href="boardQuestion.jsp?pageNum=<%=startPage + pageBlock %>"><font size="5">[다음]</font></a>
-								<% }
-							}%>
+							<div align="center" style="width: '100px''">
+								<%
+									if (listCnt > 0) { // 게시판 글이 하나라도 있는경우
+										int totPage = listCnt / pageSize + (listCnt % pageSize == 0 ? 0 : 1);// 총 페이지 개수가 몇개까지 나타날 수 있나
+										/* 
+										단순히 (글 개수) / (페이지에 나타날 글 개수) 를 해버리면
+										글이 31개일 경우 페이지 글 개수가 5개면 6페이지 밖에 안나옴..그렇게 되면 글 1개가 누락됨
+										그래서 1을 더할 수 있게 한것
+										*/
+										int pageBlock = 3; // (다음)버튼 이전의 페이지 수를 몇개까지 나타낼 것인지
+										int startPage = (currentPage - 1) / pageBlock * pageBlock + 1;
+										/*
+										pageBlock이 3일때
+										1, 2, 3 일 경우 startPage는 1
+										4, 5, 6 일 경우 startPage는 4
+										ex) 현재 페이지가 5일경우
+										5-1 = 4  ->  4/3 = 1  ->  1*3 + 1 =  4가 시작페이지로 도출 
+										*/
+										int endPage = startPage + pageBlock - 1; // 끝나는 페이지
+										if (endPage > totPage) {
+											endPage = totPage;
+										}
+
+										if (startPage != 1) {
+								%>
+								<!-- startPage가 1이 아닐 경우, 즉 1 2 3 이 아닐 경우에만 이전버튼 나타나도록 -->
+								<a href="board_search.jsp?select=<%=select %>&keyword=<%=keyword %>&pageNum=<%=startPage - pageBlock%>"><font
+									size="5">[이전]</font></a>
+								<%
+									}
+
+										for (int i = startPage; i <= endPage; ++i) {
+								%>
+								<a href="board_search.jsp?select=<%=select %>&keyword=<%=keyword %>&pageNum=<%=i%>"><font size="5">[<%=i%>]
+								</font></a>
+								<%
+									}
+										if (totPage > endPage) {
+								%>
+								<!-- 전체 나타날 페이지가 한 페이지에 나타날 최대 버튼보다 클 경우, 즉 전체 페이지 수는 5인데 endpage가 3인경우 다음 버튼 나타나도록 -->
+								<a href="board_search.jsp?select=<%=select %>&keyword=<%=keyword %>&pageNum=<%=startPage + pageBlock%>"><font
+									size="5">[다음]</font></a>
+								<%
+									}
+									}
+								%>
 							</div>
-							
 						</td>
 					</tr>
 					<tr>
-						<%
-							// 인기글 공간 코드
-							Calendar now = Calendar.getInstance();
-							SimpleDateFormat title_sdf = new SimpleDateFormat("MM월 dd일");
-							SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-							String titleDate = title_sdf.format(now.getTime()).trim();
-							String popularDate = sdf.format(now.getTime()).trim();
-						%>
 						<td width="250" align="center" valign="top" height="285">
-							<table border="1" bordercolor="#d8c5c7">
+							<table border="1" bordercolor="#ecc0f7">
 								<!-- 인기글 보여주는 테이블 -->
-							<tr bgcolor="#ffe2e6">
+								<tr bgcolor="#ffe2e6">
 									<td align="center" width="230" height="70">
 										<h2>
-											<b><%=titleDate%> 인기글<img src="../images/hot.png"></b>
+											<b>HT 유튜브 영상<img src="../images/youtube.png"></b>
 										</h2>
 									</td>
 								</tr>
-								<%
-									int[] popularNum = bdao.listPopular(popularDate);
-									for (int i = 0; i < popularNum.length; i++) {
-										if (popularNum[i] == 0) {
-								%>
 								<tr bgcolor="#efefef">
 									<td height="40" >
-										<h4>&nbsp;&nbsp;▷&nbsp;인기글이 없습니다.</h4>
+										<h4><a href="https://youtu.be/11Z9Isjrssc">&nbsp;&nbsp;<font color="red">▷</font>&nbsp;항일운동 역사투어 (충청)</a></h4>
 									</td>
 								</tr>
-								<%
-									}
-										else {
-											bdto = bdao.selectSubject(null, popularNum[i]);
-											String subject = bdto.getSubject();
-											if(subject.length() > 12){
-												subject = bdto.getSubject().substring(0, 12) + " ..";
-											}
-								%>
 								<tr bgcolor="#efefef">
-									<td height="40">
-										<a href="board_view.jsp?num=<%=bdto.getNum()%>"><h4> <font color="red">&nbsp;&nbsp;▶&nbsp;</font><%=subject%>
-												</h4></a>
+									<td height="40" >
+											<h4><a href="https://youtu.be/M84NxKC15Gc">&nbsp;&nbsp;<font color="red">▷</font>&nbsp;인제 스피디움 서킷주행</a></h4>
 									</td>
 								</tr>
-								<% 
-										}
-									}
-								%>
+								<tr bgcolor="#efefef">
+									<td height="40" >
+										<h4><a href="https://youtu.be/qpf_wblS1Ng">&nbsp;&nbsp;<font color="red">▷</font>&nbsp;동해 묵호동 논골담길</a></h4>
+									</td>
+								</tr>
+								<tr bgcolor="#efefef">
+									<td height="40" >
+											<h4><a href="https://youtu.be/WGzlYP4z2T8">&nbsp;&nbsp;<font color="red">▷</font>&nbsp;남도 바닷길 권역 여행</a></h4>
+									</td>
+								</tr>
+								<tr bgcolor="#efefef">
+									<td height="40" >
+											<h4><a href="https://youtu.be/jy8JN96myXM">&nbsp;&nbsp;<font color="red">▷</font>&nbsp;커피!! 강릉 전설 여행</a></h4>
+									</td>
+								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
-						<td align="center" height="170" valign="top"><a href='board.jsp'><img src="../images/free.jpg"></a></td>
+						<td align="center" height="170" valign="top"><a href='../board/board.jsp'><img src="../images/free.jpg"></a></td>
 					</tr>
 					<tr>
-						<td align="center"  height="170" valign="top"><a href='../board_editor/board_editor.jsp'><img src="../images/editor.png"></a></td>
+						<td align="center"  height="170" valign="top"><a href='board_editor.jsp'><img src="../images/editor.png"></a></td>
 					</tr>
 					<tr>
 						<td align="center" height="170" valign="top"><a href='../news/news.html'><img src="../images/news2.jpg"></a></td>

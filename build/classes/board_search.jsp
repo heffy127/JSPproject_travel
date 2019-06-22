@@ -68,6 +68,16 @@
 
 </head>
 <body>
+	<%
+		String select = request.getParameter("select");
+		String keyword = request.getParameter("keyword");
+		String show = null;
+		if (select.equals("subject")) {
+			show = "제목";
+		} else {
+			show = "글쓴이";
+		}
+	%>
 	<jsp:useBean id="bdto" class="board.BoardDTO" />
 	<jsp:useBean id="bdao" class="board.BoardDAO" />
 	<jsp:useBean id="cdao" class="board.BoardCommentDAO" />
@@ -136,13 +146,14 @@
 
 								<div class="collapse navbar-collapse" id="navbarColor01">
 									<ul class="navbar-nav mr-auto">
-										<li class="nav-item"><a class="nav-link" href="board.jsp"><font
-												size="3">전체</font> <span class="sr-only">(current)</span> </a></li>
+										<li class="nav-item active"><a class="nav-link"
+											href="board.jsp"><font size="3">전체</font> <span
+												class="sr-only">(current)</span> </a></li>
 										<li class="nav-item"><a class="nav-link"
 											href="boardLife.jsp"><font size="2">일상</font></a></li>
 										<li class="nav-item"><a class="nav-link"
 											href="boardRecommend.jsp"><font size="2">추천</font></a></li>
-										<li class="nav-item active"><a class="nav-link"
+										<li class="nav-item"><a class="nav-link"
 											href="boardQuestion.jsp"><font size="2">질문</font></a></li>
 									</ul>
 									<form class="form-inline my-2 my-lg-0" name="f_search"
@@ -181,24 +192,23 @@
 									</tr>
 								</thead>
 								<tbody>
-										<%
+									<%
 										// 페이징 구현
-										int pageSize = 15;	 // 한 페이지에 나올 게시글 수
+										int pageSize = 15; // 한 페이지에 나올 게시글 수
 										String pageNum = request.getParameter("pageNum"); // 페이지 넘버 받아오기 
-										if(pageNum == null){ // 넘겨진 값이 없으면 무조건 1번 페이지
+										if (pageNum == null) { // 넘겨진 값이 없으면 무조건 1번 페이지
 											pageNum = "1";
 										}
 										int currentPage = Integer.parseInt(pageNum); // 현재 페이지 넘버
-										int listCnt = bdao.listCount_quest(); // DB에 있는 전체 게시글 수
+										int listCnt = bdao.searchCount(select, keyword); // DB에 있는 전체 게시글 수
 										int startRow = (currentPage - 1) * pageSize;//  페이지마다 글 시작점
-																											// limit를 쓸때 0부터 해야 가장 최근글부터 나옴
-										/*
-										1 - 1~15
-										2 - 16~30
-										3 - 30~45 ...
-										*/
-										ArrayList<BoardDTO> list = bdao.listBoard_quest(startRow, pageSize); // 내림차순 했기때문에 가장 최근글부터 출력
-										//                                                              글 시작       나타날 글 개수
+																					// limit를 쓸때 0부터 해야 가장 최근글부터 나옴
+																					/*
+																					1 - 1~15
+																					2 - 16~30
+																					3 - 30~45 ...
+																					*/
+										ArrayList<BoardDTO> list = bdao.search(select, keyword, startRow, pageSize); // 내림차순 했기때문에 가장 최근글부터 출력
 										if (list.size() == 0) {
 									%>
 									<tr class="table-warning">
@@ -206,20 +216,20 @@
 									</tr>
 									<%
 										} else {
-											for (BoardDTO d : list) {
+									%>
+									<tr class="table-warning">
+										<td colspan="7" align="center"><font size="3"
+											color="#2076cc">'<%=keyword%>'(이)가 포함된 <%=show%>(을)를
+												검색한 결과입니다.
+										</font></td>
+									</tr>
+									<%
+										for (BoardDTO d : list) {
 												int commentCnt = cdao.CommentCnt(d.getNum());
 									%>
 									<tr class="table-light">
 										<td align="center"><h4><%=d.getNum()%></h4></td>
-										
-										<%
-										if(d.getPreface().equals("질문")){
-										%>
-										<td align="center"><span class="badge badge-dark"><font size="2"><%=d.getPreface()%></font></span></td>
-										<%
-										}
-										%>
-										
+										<td align="center"><h4><%=d.getPreface()%></h4></td>
 										<%
 											if (0 < commentCnt) { // 제목옆 댓글 수 표시
 										%>
@@ -237,7 +247,7 @@
 										<td align="center"><h4><%=d.getWriter()%></h4></td>
 										<td align="center"><h4><%=d.getReadcount()%></h4></td>
 										<%
-											if (5 <= d.getGood()) { // 추천수 5개 이상일때 빨간색
+											if (5 <= d.getGood()) {
 										%>
 										<td align="center"><h4>
 												<font color="red"><%=d.getGood()%></font>
@@ -263,42 +273,53 @@
 									onclick="window.location='board_write.jsp'">글쓰기</button>
 									<hr>
 							</div>
-								<div align="center" style="width: '100px''">
-							<% 
-							if (listCnt > 0){ // 게시판 글이 하나라도 있는경우
-								int totPage = listCnt / pageSize + (listCnt%pageSize==0 ? 0 : 1);// 총 페이지 개수가 몇개까지 나타날 수 있나
-								/* 
-								단순히 (글 개수) / (페이지에 나타날 글 개수) 를 해버리면
-								글이 31개일 경우 페이지 글 개수가 5개면 6페이지 밖에 안나옴..그렇게 되면 글 1개가 누락됨
-								그래서 1을 더할 수 있게 한것
-								*/
-								int pageBlock = 3; // (다음)버튼 이전의 페이지 수를 몇개까지 나타낼 것인지
-								int startPage = (currentPage-1) / pageBlock * pageBlock + 1;
-								/*
-								pageBlock이 3일때
-								1, 2, 3 일 경우 startPage는 1
-								4, 5, 6 일 경우 startPage는 4
-								ex) 현재 페이지가 5일경우
-								5-1 = 4  ->  4/3 = 1  ->  1*3 + 1 =  4가 시작페이지로 도출 
-								*/
-								int endPage = startPage + pageBlock - 1; // 끝나는 페이지
-								if(endPage>totPage){
-									endPage = totPage;
-								}
-								
-								if(startPage != 1){%> <!-- startPage가 1이 아닐 경우, 즉 1 2 3 이 아닐 경우에만 이전버튼 나타나도록 -->
-								<a href="boardQuestion.jsp?pageNum=<%=startPage - pageBlock %>"><font size="5">[이전]</font></a>
-								<%}
-									
-								for(int i = startPage; i<=endPage; ++i){%>
-							<a href="boardQuestion.jsp?pageNum=<%=i %>"><font size="5">[<%=i %>]</font></a>
-							<%} 
-								if(totPage > endPage) { %> <!-- 전체 나타날 페이지가 한 페이지에 나타날 최대 버튼보다 클 경우, 즉 전체 페이지 수는 5인데 endpage가 3인경우 다음 버튼 나타나도록 -->
-									<a href="boardQuestion.jsp?pageNum=<%=startPage + pageBlock %>"><font size="5">[다음]</font></a>
-								<% }
-							}%>
+							<div align="center" style="width: '100px''">
+								<%
+									if (listCnt > 0) { // 게시판 글이 하나라도 있는경우
+										int totPage = listCnt / pageSize + (listCnt % pageSize == 0 ? 0 : 1);// 총 페이지 개수가 몇개까지 나타날 수 있나
+										/* 
+										단순히 (글 개수) / (페이지에 나타날 글 개수) 를 해버리면
+										글이 31개일 경우 페이지 글 개수가 5개면 6페이지 밖에 안나옴..그렇게 되면 글 1개가 누락됨
+										그래서 1을 더할 수 있게 한것
+										*/
+										int pageBlock = 3; // (다음)버튼 이전의 페이지 수를 몇개까지 나타낼 것인지
+										int startPage = (currentPage - 1) / pageBlock * pageBlock + 1;
+										/*
+										pageBlock이 3일때
+										1, 2, 3 일 경우 startPage는 1
+										4, 5, 6 일 경우 startPage는 4
+										ex) 현재 페이지가 5일경우
+										5-1 = 4  ->  4/3 = 1  ->  1*3 + 1 =  4가 시작페이지로 도출 
+										*/
+										int endPage = startPage + pageBlock - 1; // 끝나는 페이지
+										if (endPage > totPage) {
+											endPage = totPage;
+										}
+
+										if (startPage != 1) {
+								%>
+								<!-- startPage가 1이 아닐 경우, 즉 1 2 3 이 아닐 경우에만 이전버튼 나타나도록 -->
+								<a href="board_search.jsp?select=<%=select %>&keyword=<%=keyword %>&pageNum=<%=startPage - pageBlock%>"><font
+									size="5">[이전]</font></a>
+								<%
+									}
+
+										for (int i = startPage; i <= endPage; ++i) {
+								%>
+								<a href="board_search.jsp?select=<%=select %>&keyword=<%=keyword %>&pageNum=<%=i%>"><font size="5">[<%=i%>]
+								</font></a>
+								<%
+									}
+										if (totPage > endPage) {
+								%>
+								<!-- 전체 나타날 페이지가 한 페이지에 나타날 최대 버튼보다 클 경우, 즉 전체 페이지 수는 5인데 endpage가 3인경우 다음 버튼 나타나도록 -->
+								<a href="board_search.jsp?select=<%=select %>&keyword=<%=keyword %>&pageNum=<%=startPage + pageBlock%>"><font
+									size="5">[다음]</font></a>
+								<%
+									}
+									}
+								%>
 							</div>
-							
 						</td>
 					</tr>
 					<tr>
@@ -310,10 +331,10 @@
 							String titleDate = title_sdf.format(now.getTime()).trim();
 							String popularDate = sdf.format(now.getTime()).trim();
 						%>
-						<td width="250" align="center" valign="top" height="285">
+						<td width="250" align="center" valign="top">
 							<table border="1" bordercolor="#d8c5c7">
 								<!-- 인기글 보여주는 테이블 -->
-							<tr bgcolor="#ffe2e6">
+								<tr bgcolor="#ffe2e6">
 									<td align="center" width="230" height="70">
 										<h2>
 											<b><%=titleDate%> 인기글<img src="../images/hot.png"></b>
@@ -326,7 +347,7 @@
 										if (popularNum[i] == 0) {
 								%>
 								<tr bgcolor="#efefef">
-									<td height="40" >
+									<td height="40">
 										<h4>&nbsp;&nbsp;▷&nbsp;인기글이 없습니다.</h4>
 									</td>
 								</tr>
@@ -356,10 +377,10 @@
 						<td align="center" height="170" valign="top"><a href='board.jsp'><img src="../images/free.jpg"></a></td>
 					</tr>
 					<tr>
-						<td align="center"  height="170" valign="top"><a href='../board_editor/board_editor.jsp'><img src="../images/editor.png"></a></td>
+						<td align="center" height="170" valign="top"><a href='../board_trip/board_trip.jsp'><img src="../images/trip.jpg"></a></td>
 					</tr>
 					<tr>
-						<td align="center" height="170" valign="top"><a href='../news/news.html'><img src="../images/news2.jpg"></a></td>
+						<td align="center"  height="170" valign="top"><a href='../board_editor/board_editor.jsp'><img src="../images/editor.png"></a></td>
 					</tr>
 					<tr>
 						<td height="70" valign="top"></td>

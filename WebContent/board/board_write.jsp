@@ -192,7 +192,10 @@
             									<script>
 														// Replace the <textarea id="editor1"> with a CKEditor
 														// instance, using default configuration.
-														CKEDITOR.replace('editor1',{height : '500px'});
+														CKEDITOR.replace('editor1',{
+															height : '500px',
+															enterMode: '2'
+															});
 												</script>
 										</td>
 									</tr>

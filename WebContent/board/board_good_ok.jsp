@@ -1,7 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
-
 <jsp:useBean id="bdao" class="board.BoardDAO" />
 <jsp:useBean id="gdto" class="board.BoardGoodDTO" />
 <jsp:useBean id="gdao" class="board.BoardGoodDAO" />

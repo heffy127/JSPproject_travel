@@ -69,7 +69,7 @@
 </head>
 <body>
 <%
-	session.setAttribute("id", "user2");
+	session.setAttribute("id", "editor");
 %>
 	<div class="colorlib-loader"></div>
 	<div id="page">
@@ -207,7 +207,7 @@
 							<div class="desc">
 								<h3>소통광장</h3>
 								<p class="price">
-									<span>지역별 여행 정보</span>
+									<span>HT 회원들의 커뮤니티</span>
 								</p>
 							</div>
 						</a>

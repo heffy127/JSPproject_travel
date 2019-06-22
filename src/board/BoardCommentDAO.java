@@ -65,7 +65,7 @@ public class BoardCommentDAO {
 	
 	public ArrayList<BoardCommentDTO> listComment(int board_num) {
 		ArrayList<BoardCommentDTO> list = new ArrayList<>();
-		sql = "select * from comment_count left outer join board_comment on (comment_count.no_comment = board_comment.comment_num) where comment_count.no_board = ?;";
+		sql = "select * from comment_count left outer join board_comment on (comment_count.no_comment = board_comment.comment_num) where comment_count.no_board = ?";
 		try {
 			con = mgr.getConnection();
 			ps = con.prepareStatement(sql);

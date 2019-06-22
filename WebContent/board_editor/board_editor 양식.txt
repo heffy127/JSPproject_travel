@@ -1,0 +1,9 @@
+board_editor
+
+create table board_editor(
+num int(10) primary key auto_increment ,
+writer varchar(20) not null,
+subject varchar(50) not null, 
+content text not null,
+reg_date varchar(20) not null, 
+readcount int(10) default 0);

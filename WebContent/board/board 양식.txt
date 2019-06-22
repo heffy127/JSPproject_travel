@@ -1,0 +1,79 @@
+board 
+- 작성한 글에 대한 테이블
+
+create table board(
+num int(10) primary key auto_increment ,
+writer varchar(20) not null,
+preface varchar(20) not null,
+subject varchar(50) not null, 
+content text not null,
+reg_date varchar(20) not null, 
+readcount int(10) default 0,
+good int(10) default 0);
+
+num 글 고유번호 (식별자)
+writer 작성자
+preface 말머리
+subject 제목
+content 글 내용
+reg_date 작성일
+readcount 조회수
+good 추천수
+
+==========================
+
+board_comment
+- 댓글에 대한 테이블
+
+create table board_comment(
+comment_num int(10) auto_increment,
+board_num int(10),
+writer varchar(20) not null,
+content text not null,
+reg_date varchar(20) not null,
+constraint pri_num_bnum primary key(comment_num),
+constraint fri_board_num FOREIGN KEY(board_num) REFERENCES board(num) on delete cascade);
+
+comment_num 댓글 고유번호 (식별자)
+board_num 댓글이 달릴 글 번호 (board의 num을 외래키로 함)
+writer 댓글 작성자
+content 댓글 내용
+reg_date 댓글 작성일
+
+on delete cascade는 게시물이 없어졌는데 해당 게시물의 댓글이 남아있는 경우 댓글 내용 없앰
+DB의 자원을 낭비하지 않게 함
+
+===================
+comment_count
+- 댓글이 달린 갯수를 위한 테이블
+- board_comment와 outer join을 통해 삭제된 댓글과 그렇지 않은 댓글 갯수 파악 가능
+
+create table comment_count(
+no_comment int(10) primary key auto_increment,
+no_board int(10) not null);
+
+no_comment 댓글 고유번호 
+no_board 댓글이 달렸던 글 번호 
+
+=================
+board_good
+- 회원당 한 글에 하나의 추천만 가능하도록 해주는 테이블
+
+create table board_good(
+user varchar(20),
+board_num int(10),
+constraint pri_user_num primary key(user, board_num),
+constraint fri_num FOREIGN KEY(board_num) REFERENCES board(num) on delete cascade);
+
+user 추천한 유저
+board_num 유저가 추천한 글번호
+
+user를 on delete cascade한 이유
+추천을 한 user가 아이디를 삭제하고 다른 사람이 해당 아이디를 만들경우
+같은 아이디를 생성한 사람이 그 글을 추천할 경우 추천수가 올라가게 하도록
+이전 user가 추천했던 기록을 없앰
+(어차피 board의 good칼럼에 해당 글의 추천수가 저장되어있어서
+board_good의 레코드를 지운다고 글의 추천수가 달라지지는 않음)
+
+추후 user는 회원 테이블의 값을
+board_no는 board 테이블의 값을 참조할것

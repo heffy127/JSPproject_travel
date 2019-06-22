@@ -39,12 +39,14 @@ public class BoardDAO {
 		return list;
 	}
 
-	public ArrayList<BoardDTO> listBoard() {
+	public ArrayList<BoardDTO> listBoard(int startRow, int pageSize) {
 		ArrayList<BoardDTO> list = new ArrayList<BoardDTO>();
-		sql = "select * from board order by num desc";
+		sql = "select * from board order by num desc limit ?, ?";
 		try {
 			con = mgr.getConnection();
 			ps = con.prepareStatement(sql);
+			ps.setInt(1, startRow);
+			ps.setInt(2, pageSize);
 			rs = ps.executeQuery();
 			list = makeList(rs);
 		} catch (Exception e) {
@@ -64,12 +66,149 @@ public class BoardDAO {
 		return list;
 	}
 
-	public ArrayList<BoardDTO> listBoard_life() {
-		ArrayList<BoardDTO> list = new ArrayList<BoardDTO>();
-		sql = "select * from board where preface = '일상' order by num desc";
+	public int listCount() {
+		int cnt = 0;
+		sql = "select count(*) from board";
 		try {
 			con = mgr.getConnection();
 			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+			if (rs.next()) {
+				cnt = rs.getInt(1);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+				if (ps != null)
+					ps.close();
+				if (con != null)
+					con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return cnt;
+	}
+	
+	public int listCount_reco() {
+		int cnt = 0;
+		sql = "select count(*) from board where preface = '추천'";
+		try {
+			con = mgr.getConnection();
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+			if (rs.next()) {
+				cnt = rs.getInt(1);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+				if (ps != null)
+					ps.close();
+				if (con != null)
+					con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return cnt;
+	}
+	
+	public int listCount_life() {
+		int cnt = 0;
+		sql = "select count(*) from board where preface = '일상'";
+		try {
+			con = mgr.getConnection();
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+			if (rs.next()) {
+				cnt = rs.getInt(1);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+				if (ps != null)
+					ps.close();
+				if (con != null)
+					con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return cnt;
+	}
+	
+	public int listCount_quest() {
+		int cnt = 0;
+		sql = "select count(*) from board where preface = '질문'";
+		try {
+			con = mgr.getConnection();
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+			if (rs.next()) {
+				cnt = rs.getInt(1);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+				if (ps != null)
+					ps.close();
+				if (con != null)
+					con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return cnt;
+	}
+	
+	public int searchCount(String select, String keyword) {
+		int cnt = 0;
+		sql = "select count(*) from board where " + select + " like '%" + keyword + "%'";
+		try {
+			con = mgr.getConnection();
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+			if (rs.next()) {
+				cnt = rs.getInt(1);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+				if (ps != null)
+					ps.close();
+				if (con != null)
+					con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return cnt;
+	}
+
+	public ArrayList<BoardDTO> listBoard_life(int startRow, int pageSize) {
+		ArrayList<BoardDTO> list = new ArrayList<BoardDTO>();
+		sql = "select * from board where preface = '일상' order by num desc limit ?, ?";
+		try {
+			con = mgr.getConnection();
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, startRow);
+			ps.setInt(2, pageSize);
 			rs = ps.executeQuery();
 			list = makeList(rs);
 		} catch (Exception e) {
@@ -89,12 +228,14 @@ public class BoardDAO {
 		return list;
 	}
 
-	public ArrayList<BoardDTO> listBoard_reco() {
+	public ArrayList<BoardDTO> listBoard_reco(int startRow, int pageSize) {
 		ArrayList<BoardDTO> list = new ArrayList<BoardDTO>();
-		sql = "select * from board where preface = '추천' order by num desc";
+		sql = "select * from board where preface = '추천' order by num desc limit ?, ?";
 		try {
 			con = mgr.getConnection();
 			ps = con.prepareStatement(sql);
+			ps.setInt(1, startRow);
+			ps.setInt(2, pageSize);
 			rs = ps.executeQuery();
 			list = makeList(rs);
 		} catch (Exception e) {
@@ -114,12 +255,14 @@ public class BoardDAO {
 		return list;
 	}
 
-	public ArrayList<BoardDTO> listBoard_quest() {
+	public ArrayList<BoardDTO> listBoard_quest(int startRow, int pageSize) {
 		ArrayList<BoardDTO> list = new ArrayList<BoardDTO>();
-		sql = "select * from board where preface = '질문' order by num desc";
+		sql = "select * from board where preface = '질문' order by num desc limit ?, ?";
 		try {
 			con = mgr.getConnection();
 			ps = con.prepareStatement(sql);
+			ps.setInt(1, startRow);
+			ps.setInt(2, pageSize);
 			rs = ps.executeQuery();
 			list = makeList(rs);
 		} catch (Exception e) {
@@ -139,12 +282,14 @@ public class BoardDAO {
 		return list;
 	}
 
-	public ArrayList<BoardDTO> search(String select, String keyword) {
+	public ArrayList<BoardDTO> search(String select, String keyword, int startRow, int pageSize) {
 		ArrayList<BoardDTO> list = new ArrayList<BoardDTO>();
-		sql = "select * from board where " + select + " like '%" + keyword + "%' order by num desc";
+		sql = "select * from board where " + select + " like '%" + keyword + "%' order by num desc limit ?, ?";
 		try {
 			con = mgr.getConnection();
 			ps = con.prepareStatement(sql);
+			ps.setInt(1, startRow);
+			ps.setInt(2, pageSize);
 			rs = ps.executeQuery();
 			list = makeList(rs);
 		} catch (Exception e) {
@@ -323,26 +468,19 @@ public class BoardDAO {
 		return res;
 	}
 
-	public ArrayList<BoardPopularDTO> listPopular(String popularDate) {
-		ArrayList<BoardPopularDTO> list = new ArrayList<>();
-		BoardPopularDTO bpdto = null;
-		sql = "select num, nullif(good, 0) as good_chk from board where reg_date like ('" + popularDate
-				+ "%') order by good desc limit 3";
+	public int[] listPopular(String popularDate) {
+		int[] popularNum = new int[5];
+		sql = "select num from board where reg_date like('" + popularDate
+				+ "%') and good > 5 order by good desc limit 5";
 		try {
 			con = mgr.getConnection();
 			ps = con.prepareStatement(sql);
 			rs = ps.executeQuery();
 			for (int i = 0; i < 3; i++) {
 				if (rs.next()) {
-					bpdto = new BoardPopularDTO();
-					bpdto.setNum(rs.getInt("num"));
-					bpdto.setGood_chk(rs.getInt("good_chk"));
-					list.add(bpdto);
+					popularNum[i] = rs.getInt("num");
 				} else {
-					bpdto = new BoardPopularDTO();
-					bpdto.setNum(0);
-					bpdto.setGood_chk(0);
-					list.add(bpdto);
+					popularNum[i] = 0;
 				}
 			}
 
@@ -360,6 +498,6 @@ public class BoardDAO {
 				e.printStackTrace();
 			}
 		}
-		return list;
+		return popularNum;
 	}
 }

@@ -1,4 +1,4 @@
-<%@page import="board.BoardDTO"%>
+<%@page import="board_editor.*"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -71,10 +71,6 @@
 
 <script type="text/javascript">
 	function check() {
-		if(f.preface.value == 0){
-			alert("말머리를 선택하세요.")
-			return false;
-		}
 		if (f.subject.value == "") {
 			alert("제목을 입력하세요")
 			f.subject.focus()
@@ -91,8 +87,8 @@
 
 </head>
 <body>
-	<jsp:useBean id="bdto" class="board.BoardDTO" />
-	<jsp:useBean id="bdao" class="board.BoardDAO" />
+	<jsp:useBean id="bdto" class="board_editor.BoardEditorDTO" />
+	<jsp:useBean id="bdao" class="board_editor.BoardEditorDAO" />
 	<%
  	String getNum = request.getParameter("num");
 	int num = Integer.parseInt(getNum);
@@ -155,13 +151,13 @@
 					</tr>
 					<tr>
 						<td width="1000">
-							<form action="board_modify_ok.jsp" name="f" method="get"
+							<form action="board_editor_modify_ok.jsp" name="f" method="get"
 								onsubmit="return check()">
 								<table border="0" width="99%" height="90%">
 									<tr height="50px">
 										<td colspan="2" align="center">
-											<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-												<a class="navbar-brand" href="board.jsp">자유게시판</a>
+											<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+												<a class="navbar-brand" href="board_editor.jsp">editor's Pick</a>
 												<button class="navbar-toggler" type="button"
 													data-toggle="collapse" data-target="#navbarColor01"
 													aria-controls="navbarColor01" aria-expanded="false"
@@ -172,15 +168,8 @@
 										</td>
 									</tr>
 									<tr>
-										<td width="115px" height="35px"><select name="preface"
-											style="width: 100px; height: 30px; font-size: 15px">
-												<option value="0" selected="selected">--말머리--</option>
-												<option value="일상">일상</option>
-												<option value="추천">추천</option>
-												<option value="질문">질문</option>
-										</select></td>
-										<td align="right"><input type="text" name="subject" size="170px"
-											placeholder="제목 입력" value="<%=bdto.getSubject()%>"></td>
+									<td align="right"><input type="text" name="subject" size="200px"
+											placeholder="제목 입력" value="<%=bdto.getSubject()%>"><br><br></td>
 									</tr>
 
 									<tr height="600">
