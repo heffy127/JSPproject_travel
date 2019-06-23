@@ -79,10 +79,48 @@
 	    newPage=window.open(url);
 	}
 
-
-
 </script>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function () { // 실시간 유튜브 목록 가져오는 코드
+	$.ajax({
+		url: 'https://www.youtube.com/feeds/videos.xml?channel_id=UCpM3JSTxMd3lC9WXYBwPRfA',
+		dataType: 'xml',
+		success: function (data) {
+			var size = $(data).find("title").length
+			var titleArr = new Array()
+			var linkArr = new Array()		
+			var i = 0
+			$.each($(data).find("entry"), function (idx, val) { // 각각의 entry값을 가져오기
+					var title = $(this).find("title").text()
+					var link = $(this).find("link").attr('href') // href 속성 값 가져오기
+					if(title.length > 16){
+						title = $(this).find("title").text().substring(0, 16) + ' ..'
+					}
+					link = 'javascript:open_page("' + $(this).find("link").attr('href') + '")'
+					titleArr[i] = title
+					console.log(titleArr[i])
+					linkArr[i] = link
+					console.log('linkArr = ' + linkArr[i])
+					i++
+					
+			})
+			
+			$("#title1").text(titleArr[0])
+			$("#link1").attr("href", linkArr[0])
+			$("#title2").text(titleArr[1])
+			$("#link2").attr("href",  linkArr[1])
+			$("#title3").text(titleArr[2])
+			$("#link3").attr("href", linkArr[2])
+			$("#title4").text(titleArr[3])
+			$("#link4").attr("href", linkArr[3])
+			$("#title5").text(titleArr[4])
+			$("#link5").attr("href", linkArr[4])
+		}
+	})
+})
+</script>
 </head>
 <body>
 	<jsp:useBean id="bdto" class="board_editor.BoardEditorDTO" />
@@ -284,31 +322,33 @@
 										</h2>
 									</td>
 								</tr>
+								
 								<tr bgcolor="#efefef">
 									<td height="40" >
-										<h4><a href="javascript:open_page('https://youtu.be/11Z9Isjrssc')">&nbsp;&nbsp;<font color="red">▷</font>&nbsp;항일운동 역사투어 (충청)</a></h4>
+										<a href="" id="link1">&nbsp;&nbsp;▷&nbsp;<font size="2"><span id="title1"></span></font></a>
 									</td>
 								</tr>
 								<tr bgcolor="#efefef">
 									<td height="40" >
-											<h4><a href="javascript:open_page('https://youtu.be/M84NxKC15Gc')">&nbsp;&nbsp;<font color="red">▷</font>&nbsp;인제 스피디움 서킷주행</a></h4>
+										<a href="" id="link2">&nbsp;&nbsp;▷&nbsp;<font size="2"><span id="title2"></span></font></a>
+									</td>
+								</tr>
+								<tr bgcolor="#efefef">
+									<td height="40">
+										<a href="" id="link3">&nbsp;&nbsp;▷&nbsp;<font size="2"><span id="title3"></span></font></a>
 									</td>
 								</tr>
 								<tr bgcolor="#efefef">
 									<td height="40" >
-										<h4><a href="javascript:open_page('https://youtu.be/qpf_wblS1Ng')">&nbsp;&nbsp;<font color="red">▷</font>&nbsp;동해 묵호동 논골담길</a></h4>
+										<a href="" id="link4">&nbsp;&nbsp;▷&nbsp;<font size="2"><span id="title4"></span></font></a>
 									</td>
 								</tr>
 								<tr bgcolor="#efefef">
-									<td height="40" >
-											<h4><a href="javascript:open_page('https://youtu.be/WGzlYP4z2T8')">&nbsp;&nbsp;<font color="red">▷</font>&nbsp;남도 바닷길 권역 여행</a></h4>
+									<td height="40">
+										<a href="" id="link5">&nbsp;&nbsp;▷&nbsp;<font size="2"><span id="title5"></span></font></a>
 									</td>
 								</tr>
-								<tr bgcolor="#efefef">
-									<td height="40" >
-											<h4><a href="javascript:open_page('https://youtu.be/jy8JN96myXM')">&nbsp;&nbsp;<font color="red">▷</font>&nbsp;커피!! 강릉 전설 여행</a></h4>
-									</td>
-								</tr>
+							
 							</table>
 						</td>
 					</tr>
@@ -445,4 +485,3 @@
 
 </body>
 </html>
-
