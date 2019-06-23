@@ -318,7 +318,7 @@ $(document).ready(function () { // 실시간 유튜브 목록 가져오는 코�
 								<tr bgcolor="#ffe2e6">
 									<td align="center" width="230" height="70">
 										<h2>
-											<b>HT 유튜브 영상<img src="../images/youtube.png"></b>
+											<b>HT 유튜브 영상<a href='javascript:open_page("https://www.youtube.com/channel/UCpM3JSTxMd3lC9WXYBwPRfA")'><img src="../images/youtube.png"></a></b>
 										</h2>
 									</td>
 								</tr>
