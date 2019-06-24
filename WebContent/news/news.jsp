@@ -113,6 +113,41 @@ $(document).ready(function () { // 실시간 여행 기사 가져오는 코
 			$("#author2").text(authorArr[1])
 			$("#description2").text(descArr[1])
 
+			$("#title3").text(titleArr[2])
+			$("#link3").attr("href", linkArr[2])
+			$("#author3").text(authorArr[2])
+			$("#description3").text(descArr[2])
+			
+			$("#title4").text(titleArr[3])
+			$("#link4").attr("href", linkArr[3])
+			$("#author4").text(authorArr[3])
+			$("#description4").text(descArr[3])
+
+			$("#title5").text(titleArr[4])
+			$("#link5").attr("href", linkArr[4])
+			$("#author5").text(authorArr[4])
+			$("#description5").text(descArr[4])
+			
+			$("#title6").text(titleArr[5])
+			$("#link6").attr("href", linkArr[5])
+			$("#author6").text(authorArr[5])
+			$("#description6").text(descArr[5])
+
+			$("#title7").text(titleArr[6])
+			$("#link7").attr("href", linkArr[6])
+			$("#author7").text(authorArr[6])
+			$("#description7").text(descArr[6])
+
+			$("#title8").text(titleArr[7])
+			$("#link8").attr("href", linkArr[7])
+			$("#author8").text(authorArr[7])
+			$("#description8").text(descArr[7])
+			
+			$("#title9").text(titleArr[8])
+			$("#link9").attr("href", linkArr[8])
+			$("#author9").text(authorArr[8])
+			$("#description9").text(descArr[8])
+
 		}
 	})
 })
@@ -137,7 +172,7 @@ $(document).ready(function () { // 실시간 여행 기사 가져오는 코
 								<li><a href="../main/main.jsp">Home</a></li>
 								<li><a href="../place/place.html">여행지</a></li>
 								<li><a href="../course/course.html">코스</a></li>
-								<li><a href="board.jsp">소통광장</a></li>
+								<li><a href="../board/board.jsp">소통광장</a></li>
 								<li class="active"><a href="../news/news.jsp">뉴스</a>
 								<li><a href="../mypage/mypage.html">MyPage</a></li>
 								<li><a href="../contact/contact.html">고객의 소리</a></li>
@@ -198,19 +233,9 @@ $(document).ready(function () { // 실시간 여행 기사 가져오는 코
 										method="get" action="board_search.jsp">
 										<table>
 											<tr>
-												<td width="20">
-													<div class="form-group">
-														<select class="custom-select" name="select">
-															<option selected="" value="subject">제목</option>
-															<option value="writer">글쓴이</option>
-														</select>
-													</div>
+												<td>
+													<font size="4">당신에게 필요한 여행 관련 소식통</font>
 												</td>
-												<td>&nbsp;&nbsp;</td>
-												<td><input class="form-control mr-sm-2" type="text"
-													placeholder="전체 검색" name="keyword">
-													<button class="btn btn-secondary my-2 my-sm-0"
-														type="submit">Search</button></td>
 											</tr>
 										</table>
 									</form>
@@ -238,49 +263,45 @@ $(document).ready(function () { // 실시간 여행 기사 가져오는 코
 											</div>
 										</div>
 									</td>
-									<td width="334px" align="center">
+									<td width="334px" height="235px" align="center">
 										<div class="card border-primary mb-3"
 											style="width: 300px; height: 220px;">
-											<div class="card-header">Header</div>
+											<div class="card-header"><span id = "author3"></span></div>
 											<div class="card-body">
-												<h4 class="card-title">Primary card title</h4>
-												<p class="card-text">Some quick example text to build on
-													the card title and make up the bulk of the card's content.</p>
+												<a href="" id="link3"><h4 class="card-title" id="title3" style="font-weight: bold;"></h4></a>
+												<p class="card-text" id="description3" style="font-size: small;"></p>
 											</div>
 										</div>
 									</td>
 								</tr>
 								<tr valign="top">
-									<td width="333px" height="235px" align="center">
+									<td width="333px" align="center">
 										<div class="card text-white bg-primary mb-3"
 											style="width: 300px; height: 220px;">
-											<div class="card-header">Header</div>
+											<div class="card-header"><span id = "author4"></span></div>
 											<div class="card-body">
-												<h4 class="card-title">Primary card title</h4>
-												<p class="card-text">Some quick example text to build on
-													the card title and make up the bulk of the card's content.</p>
+												<a href="" id="link4"><h4 class="card-title" id="title4" style="font-weight: bold; color: white;"></h4></a>
+												<p class="card-text" id="description4" style="font-size: small;"></p>
 											</div>
 										</div>
 									</td>
-									<td width="333px" align="center">
+									<td width="333px" height="235px" align="center">
 										<div class="card border-primary mb-3"
 											style="width: 300px; height: 220px;">
-											<div class="card-header">Header</div>
+											<div class="card-header"><span id = "author5"></span></div>
 											<div class="card-body">
-												<h4 class="card-title">Primary card title</h4>
-												<p class="card-text">Some quick example text to build on
-													the card title and make up the bulk of the card's content.</p>
+												<a href="" id="link5"><h4 class="card-title" id="title5" style="font-weight: bold;"></h4></a>
+												<p class="card-text" id="description5" style="font-size: small;"></p>
 											</div>
 										</div>
 									</td>
 									<td width="334px" align="center">
 										<div class="card text-white bg-primary mb-3"
 											style="width: 300px; height: 220px;">
-											<div class="card-header">Header</div>
+											<div class="card-header"><span id = "author6"></span></div>
 											<div class="card-body">
-												<h4 class="card-title">Primary card title</h4>
-												<p class="card-text">Some quick example text to build on
-													the card title and make up the bulk of the card's content.</p>
+												<a href="" id="link6"><h4 class="card-title" id="title6" style="font-weight: bold; color: white;"></h4></a>
+												<p class="card-text" id="description6" style="font-size: small;"></p>
 											</div>
 										</div>
 									</td>
@@ -289,33 +310,30 @@ $(document).ready(function () { // 실시간 여행 기사 가져오는 코
 									<td width="333px" height="235px" align="center">
 										<div class="card border-primary mb-3"
 											style="width: 300px; height: 220px;">
-											<div class="card-header">Header</div>
+											<div class="card-header"><span id = "author7"></span></div>
 											<div class="card-body">
-												<h4 class="card-title">Primary card title</h4>
-												<p class="card-text">Some quick example text to build on
-													the card title and make up the bulk of the card's content.</p>
+												<a href="" id="link7"><h4 class="card-title" id="title7" style="font-weight: bold;"></h4></a>
+												<p class="card-text" id="description7" style="font-size: small;"></p>
 											</div>
 										</div>
 									</td>
 									<td width="333px" align="center">
 										<div class="card text-white bg-primary mb-3"
 											style="width: 300px; height: 220px;">
-											<div class="card-header">Header</div>
+											<div class="card-header"><span id = "author8"></span></div>
 											<div class="card-body">
-												<h4 class="card-title">Primary card title</h4>
-												<p class="card-text">Some quick example text to build on
-													the card title and make up the bulk of the card's content.</p>
+												<a href="" id="link8"><h4 class="card-title" id="title8" style="font-weight: bold; color: white;"></h4></a>
+												<p class="card-text" id="description8" style="font-size: small;"></p>
 											</div>
 										</div>
 									</td>
-									<td width="334px" align="center">
+									<td width="334px" height="235px" align="center">
 										<div class="card border-primary mb-3"
 											style="width: 300px; height: 220px;">
-											<div class="card-header">Header</div>
+											<div class="card-header"><span id = "author9"></span></div>
 											<div class="card-body">
-												<h4 class="card-title">Primary card title</h4>
-												<p class="card-text">Some quick example text to build on
-													the card title and make up the bulk of the card's content.</p>
+												<a href="" id="link9"><h4 class="card-title" id="title9" style="font-weight: bold;"></h4></a>
+												<p class="card-text" id="description9" style="font-size: small;"></p>
 											</div>
 										</div>
 									</td>
@@ -324,7 +342,7 @@ $(document).ready(function () { // 실시간 여행 기사 가져오는 코
 
 							<div align="right">
 								<button type="button" class="btn btn-secondary"
-									onclick="check_session()">더보기</button>
+									onclick='javascript:open_page("http://www.traveltimes.co.kr/news/articleList.html?view_type=sm")'>더보기</button>
 							</div>
 						</td>
 					</tr>
