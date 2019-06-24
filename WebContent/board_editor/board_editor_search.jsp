@@ -77,28 +77,27 @@
 <script type="text/javascript">
 $(document).ready(function () { // 실시간 유튜브 목록 가져오는 코드
 	$.ajax({
-		url: 'https://www.youtube.com/feeds/videos.xml?channel_id=UCpM3JSTxMd3lC9WXYBwPRfA',
-		dataType: 'xml',
+		url: 'https://api.rss2json.com/v1/api.json?rss_url=https://www.youtube.com/feeds/videos.xml?channel_id=UCpM3JSTxMd3lC9WXYBwPRfA&api_key=vciu0xm0zzemy9hto9tncbiwdivayevqlxpehdgq&count=5',
+		dataType: 'json',
 		success: function (data) {
-			var size = $(data).find("title").length
 			var titleArr = new Array()
 			var linkArr = new Array()		
 			var i = 0
-			$.each($(data).find("entry"), function (idx, val) { // 각각의 entry값을 가져오기
-					var title = $(this).find("title").text()
-					var link = $(this).find("link").attr('href') // href 속성 값 가져오기
-					if(title.length > 16){
-						title = $(this).find("title").text().substring(0, 16) + ' ..'
-					}
-					link = 'javascript:open_page("' + $(this).find("link").attr('href') + '")'
-					titleArr[i] = title
-					console.log(titleArr[i])
-					linkArr[i] = link
-					console.log('linkArr = ' + linkArr[i])
-					i++
-					
-			})
-			
+			for(var i = 0 ; i < 5 ; i++){
+				var title = data.items[i].title
+				console.log(title)
+				if(title.length > 16){
+					title = data.items[i].title.substring(0, 16) + ' ..'
+				}
+				var link = 'javascript:open_page("' + data.items[i].link + '")'
+				titleArr[i] = title
+				linkArr[i] = link	
+			}
+			console.log(titleArr[0])
+			console.log(titleArr[1])
+			console.log(titleArr[2])
+			console.log(titleArr[3])
+			console.log(titleArr[4])
 			$("#title1").text(titleArr[0])
 			$("#link1").attr("href", linkArr[0])
 			$("#title2").text(titleArr[1])
