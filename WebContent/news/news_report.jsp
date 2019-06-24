@@ -78,10 +78,10 @@
 					function() { // 실시간 여행 기사 가져오는 코
 						$
 								.ajax({
-									url : 'https://api.rss2json.com/v1/api.json?rss_url=http://www.traveltimes.co.kr/rss/allArticle.xml&api_key=vciu0xm0zzemy9hto9tncbiwdivayevqlxpehdgq&count=30',
+									url : 'https://api.rss2json.com/v1/api.json?rss_url=http://www.traveltimes.co.kr/rss/S1N6.xml&api_key=vciu0xm0zzemy9hto9tncbiwdivayevqlxpehdgq&count=9',
 									dataType : 'json',
 									data : {
-										url : 'http://www.traveltimes.co.kr/rss/allArticle.xml', // 원래 url
+										url : 'http://www.traveltimes.co.kr/rss/S1N6.xml', // 원래 url
 										api_key : 'vciu0xm0zzemy9hto9tncbiwdivayevqlxpehdgq', // key
 										count : 30
 									},
@@ -234,21 +234,21 @@
 
 								<div class="collapse navbar-collapse" id="navbarColor01">
 									<ul class="navbar-nav mr-auto">
-										<li class="nav-item active"><a class="nav-link"
-											href="news.jsp"><font size="3">전체기사</font> <span
-												class="sr-only">(current)</span> </a></li>
+										<li class="nav-item"><a class="nav-link" href="news.jsp"><font
+												size="3">전체기사</font> <span class="sr-only">(current)</span>
+										</a></li>
 										<li class="nav-item"><a class="nav-link"
 											href="news_biz.jsp"><font size="2">여행BIZ</font></a></li>
 										<li class="nav-item"><a class="nav-link"
 											href="news_publish.jsp"><font size="2">기획·연재</font></a></li>
-										<li class="nav-item"><a class="nav-link"
+										<li class="nav-item active"><a class="nav-link"
 											href="news_report.jsp"><font size="2">통계·리포트</font></a></li>
 									</ul>
 									<form class="form-inline my-2 my-lg-0" name="f_search"
 										method="get" action="board_search.jsp">
 										<table>
 											<tr>
-												<td><font size="4"><b><%=titleDate %>&nbsp;&nbsp;&nbsp;전체기사</b></font></td>
+												<td><font size="4"><b><%=titleDate%>&nbsp;&nbsp;&nbsp;통계·리포트</b></font></td>
 											</tr>
 										</table>
 									</form>
@@ -257,7 +257,7 @@
 							<table border="1">
 								<tr valign="top">
 									<td width="333px" height="235px" align="center">
-										<div class="card border-primary mb-3"
+										<div class="card border-info mb-3"
 											style="width: 300px; height: 220px;">
 											<div class="card-header">
 												<span id="author1"></span>
@@ -271,7 +271,7 @@
 										</div>
 									</td>
 									<td width="333px" height="235px" align="center">
-										<div class="card text-white bg-primary mb-3"
+										<div class="card text-white bg-info mb-3"
 											style="width: 300px; height: 220px;">
 											<div class="card-header">
 												<span id="author2"></span>
@@ -285,7 +285,7 @@
 										</div>
 									</td>
 									<td width="334px" height="235px" align="center">
-										<div class="card border-primary mb-3"
+										<div class="card border-info mb-3"
 											style="width: 300px; height: 220px;">
 											<div class="card-header">
 												<span id="author3"></span>
@@ -301,7 +301,7 @@
 								</tr>
 								<tr valign="top">
 									<td width="333px" align="center">
-										<div class="card text-white bg-primary mb-3"
+										<div class="card text-white bg-info mb-3"
 											style="width: 300px; height: 220px;">
 											<div class="card-header">
 												<span id="author4"></span>
@@ -315,7 +315,7 @@
 										</div>
 									</td>
 									<td width="333px" height="235px" align="center">
-										<div class="card border-primary mb-3"
+										<div class="card border-info mb-3"
 											style="width: 300px; height: 220px;">
 											<div class="card-header">
 												<span id="author5"></span>
@@ -329,7 +329,7 @@
 										</div>
 									</td>
 									<td width="334px" align="center">
-										<div class="card text-white bg-primary mb-3"
+										<div class="card text-white bg-info mb-3"
 											style="width: 300px; height: 220px;">
 											<div class="card-header">
 												<span id="author6"></span>
@@ -345,7 +345,7 @@
 								</tr>
 								<tr valign="top">
 									<td width="333px" height="235px" align="center">
-										<div class="card border-primary mb-3"
+										<div class="card border-info mb-3"
 											style="width: 300px; height: 220px;">
 											<div class="card-header">
 												<span id="author7"></span>
@@ -359,7 +359,7 @@
 										</div>
 									</td>
 									<td width="333px" align="center">
-										<div class="card text-white bg-primary mb-3"
+										<div class="card text-white bg-info mb-3"
 											style="width: 300px; height: 220px;">
 											<div class="card-header">
 												<span id="author8"></span>
@@ -373,7 +373,7 @@
 										</div>
 									</td>
 									<td width="334px" height="235px" align="center">
-										<div class="card border-primary mb-3"
+										<div class="card border-info mb-3"
 											style="width: 300px; height: 220px;">
 											<div class="card-header">
 												<span id="author9"></span>
@@ -391,17 +391,14 @@
 
 							<div align="right">
 								<button type="button" class="btn btn-secondary"
-									onclick='javascript:open_page("http://www.traveltimes.co.kr/news/articleList.html?view_type=sm")'>더보기</button>
+									onclick='javascript:open_page("http://www.traveltimes.co.kr/news/articleList.html?sc_section_code=S1N6&view_type=sm")'>더보기</button>
 							</div>
 						</td>
 					</tr>
-					<tr>
-						<td width="250" align="center" height="170" valign="top"><a
-							href='board.jsp'><img src="../images/free.jpg"></s></td>
-					</tr>
+
 					<tr>
 						<td align="center" height="170" valign="top"><a
-							href='board.jsp'><img src="../images/free.jpg"></s></td>
+							href='../board/board.jsp'><img src="../images/free.jpg"></s></td>
 					</tr>
 					<tr>
 						<td align="center" height="170" valign="top"><a
@@ -410,7 +407,7 @@
 					</tr>
 					<tr>
 						<td align="center" height="170" valign="top"><a
-							href='../news/news.html'><img src="../images/news2.jpg"></a></td>
+							href='news.jsp'><img src="../images/news2.jpg"></a></td>
 					</tr>
 					<tr>
 						<td height="70" valign="top"></td>

@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -52,6 +52,8 @@
 <!-- Theme style  -->
 <link rel="stylesheet" href="../css/style.css">
 
+
+
 <!-- Modernizr JS -->
 <script src="../js/modernizr-2.6.2.min.js"></script>
 <!-- FOR IE9 below -->
@@ -65,12 +67,76 @@
 
 <script async defer crossorigin="anonymous"
 	src="https://connect.facebook.net/ko_KR/sdk.js#xfbml=1&version=v3.3"></script>
+<script type="text/javascript">
+	function open_page(url) {
+		newPage = window.open(url);
+	}
+</script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript">
+	$(document)
+			.ready(
+					function() { // 실시간 여행 기사 가져오는 코
+						$
+								.ajax({
+									url : 'https://api.rss2json.com/v1/api.json?rss_url=http://www.traveltimes.co.kr/rss/allArticle.xml&api_key=vciu0xm0zzemy9hto9tncbiwdivayevqlxpehdgq&count=30',
+									dataType : 'json',
+									data : {
+										url : 'http://www.traveltimes.co.kr/rss/allArticle.xml', // 원래 url
+										api_key : 'vciu0xm0zzemy9hto9tncbiwdivayevqlxpehdgq', // key
+										count : 5
+									},
+									success : function(data) {
+										var titleArr = new Array()
+										var linkArr = new Array()
+										var i = 0
+										for (var i = 0; i < 5; i++) {// 각각의 entry값을 가져오기
+											var title = data.items[i].title
+											if (title.length > 26) {
+												title = data.items[i].title
+														.substring(0, 26)
+														+ ' ..'
+											}
+											var link = data.items[i].link // href 속성 값 가져오기
+											link = 'javascript:open_page("'
+													+ data.items[i].link + '")'
+											titleArr[i] = title
+											linkArr[i] = link
+										}
+										console.log(titleArr[0])
+										console.log(titleArr[1])
+										console.log(titleArr[2])
+										console.log(titleArr[3])
+										console.log(titleArr[4])
+										$("#title1").text(titleArr[0])
+										$("#link1").attr("href", linkArr[0])
 
+										$("#title2").text(titleArr[1])
+										$("#link2").attr("href", linkArr[1])
+
+										$("#title3").text(titleArr[2])
+										$("#link3").attr("href", linkArr[2])
+
+										$("#title4").text(titleArr[3])
+										$("#link4").attr("href", linkArr[3])
+
+										$("#title5").text(titleArr[4])
+										$("#link5").attr("href", linkArr[4])
+									}
+								})
+					})
+</script>
+<style type="text/css">
+.line {
+	border-bottom: 1px solid orange;
+}
+</style>
 </head>
 <body>
-<%
-	session.setAttribute("id", "editor");
-%>
+	<%
+		session.setAttribute("id", "editor");
+	%>
 	<div class="colorlib-loader"></div>
 	<div id="page">
 		<nav class="colorlib-nav" role="navigation">
@@ -88,7 +154,7 @@
 								<li><a href="../place/place.html">여행지</a></li>
 								<li><a href="../course/course.html">코스</a></li>
 								<li><a href="../board/board.jsp">소통광장</a></li>
-								<li><a href="../news/news.html">뉴스</a>
+								<li><a href="../news/news.jsp">뉴스</a>
 								<li><a href="../mypage/mypage.html">MyPage</a></li>
 								<li><a href="../contact/contact.html">고객의 소리</a></li>
 							</ul>
@@ -174,7 +240,13 @@
 			</div>
 		</div>
 	</div>
-
+	<div>
+		<table>
+			<tr>
+				<td height="20"></td>
+			</tr>
+		</table>
+	</div>
 	<div class="f-tour">
 		<div class="row">
 			<div class="col-md-6 col-md-push-6">
@@ -237,64 +309,134 @@
 						</div>
 
 						<div class="col-md-13">
-							<div class="article bd0">
-								<!-- 1002 div.article 추가 -->
-								<a href="/notice/news_list.do" class="tit_atc">Today! 여행뉴스<span
-									class="btn_more">더보기</span></a>
-								<!-- 1205 a 태그로 변경, 더보기 추가 -->
-								<ul class="list_board">
-									<li><a href="javascript:" onclick="goCuration(1,"
-										https://korean.visitkorea.or.kr/notice/news_detail.do?nwsid=a633380f-68ae-4a93-bb53-38bd56587736
-										")"
-
-										title="『친환경 여행단』을 모집합니다! 로 이동"><em
-											style="color: #62acc9">환경을 생각하는 착한 여행</em>『친환경 여행단』을 모집합니다!</a></li>
-
-									<li><a href="javascript:" onclick="goCuration(1,"
-										https://korean.visitkorea.or.kr/notice/news_detail.do?nwsid=ab260a85-b291-48d4-a5e1-f257ff1f1e7a
-										")"
-
-										title="배 타고 섬 여행 할 때 필수템 『바다로』 로 이동"><em
-											style="color: #62acc9">열정! 바다로!!</em>배 타고 섬 여행 할 때 필수템 『바다로』</a></li>
-
-									<li><a href="javascript:" onclick="goCuration(1,"
-										https://korean.visitkorea.or.kr/notice/news_detail.do?nwsid=2f248a2f-41c4-496f-a251-017782db5d66
-										")"
-
-										title="" 6.9km="" 보령해저터널"="" 관통된다="" 로=""
-										이동"=""><em style="color: #62acc9">충남ㅣ세계에서 다섯번째 길이</em>"6.9km
-											보령해저터널" 관통된다</a></li>
-
-									<li><a href="javascript:" onclick="goCuration(1,"
-										https://korean.visitkorea.or.kr/notice/news_detail.do?nwsid=65cc1e22-9d10-4e39-a477-a2f1f5d57941
-										")"
-
-										title="「광주 FINA 세계수영선수권대회」 개최 로 이동"><em
-											style="color: #62acc9">광주ㅣ성큼 다가온</em>「광주 FINA 세계수영선수권대회」 개최</a></li>
-
-									<li><a href="javascript:" onclick="goCuration(1,"
-										https://korean.visitkorea.or.kr/notice/news_detail.do?nwsid=65cc1e22-9d10-4e39-a477-a2f1f5d57941
-										")"
-
-										title="「광주 FINA 세계수영선수권대회」 개최 로 이동"><em
-											style="color: #62acc9">광주ㅣ성큼 다가온</em>「광주 FINA 세계수영선수권대회」 개최</a></li>
-
-								</ul>
-							</div>
-						</div>
-						<div class="col-md-13">
-							<h3>날씨정보나 유튜브 영상?</h3>
-							<p>Far far away, behind the word mountains, far from the
-								countries Vokalia and Consonantia, there live the blind texts.
-								Separated they live in Bookmarksgrove right at the coast of the
-								Semantics, a large language ocean. A small river named Duden
-								flows by their place and supplies it with the necessary
-								regelialia.</p>
-							<br>
+							<table border="0">
+								<tr>
+									<td height="50" bgcolor="#e8e8e8"><b>Today! 여행뉴스 & 주요날씨</b>&nbsp;&nbsp;&nbsp;<a
+										href="../news/news.jsp"><font size="1" color="orange">더보기&nbsp;&nbsp;</font></a></td>
+								</tr>
+								<tr>
+									<td align="left" class="line"><a href="" id="link1"><font
+											size="4" color="Black">&nbsp;▶&nbsp;<span id="title1"></span></font></a></td>
+								</tr>
+								<tr>
+									<td align="left" class="line"><a href="" id="link2"><font
+											size="4" color="Black">&nbsp;▶&nbsp;<span id="title2"></span></font></a></td>
+								</tr>
+								<tr>
+									<td align="left" class="line"><a href="" id="link3"><font
+											size="4" color="Black">&nbsp;▶&nbsp;<span id="title3"></span></font></a></td>
+								</tr>
+								<tr>
+									<td align="left" class="line"><a href="" id="link4"><font
+											size="4" color="Black">&nbsp;▶&nbsp;<span id="title4"></span></font></a></td>
+								</tr>
+								<tr>
+									<td align="left" class="line"><a href="" id="link5"><font
+											size="4" color="Black">&nbsp;▶&nbsp;<span id="title5"></span></font></a></td>
+								</tr>
+								<tr>
+									<td height="15"></td>
+								</tr>
+								<tr>
+									<td>
+									
+										<table border="0">
+											<tr>
+												<td height="73" align="left" bgcolor="#fcfaf2"><div id="openweathermap-widget-19"></div> <script>
+													window.myWidgetParam ? window.myWidgetParam
+															: window.myWidgetParam = [];
+													window.myWidgetParam
+															.push({
+																id : 19,
+																cityid : '1835848',
+																appid : '50190dae3014a65e9e9ad3d92c69d424',
+																units : 'metric',
+																containerid : 'openweathermap-widget-19',
+															});
+													(function() {
+														var script = document
+																.createElement('script');
+														script.async = true;
+														script.charset = "utf-8";
+														script.src = "//openweathermap.org/themes/openweathermap/assets/vendor/owm/js/weather-widget-generator.js";
+														var s = document
+																.getElementsByTagName('script')[0];
+														s.parentNode
+																.insertBefore(
+																		script,
+																		s);
+													})();
+												</script></td>
+											</tr>
+											<tr>
+												<td height="73" width="500" align="center" bgcolor="#edebe3"><div id="openweathermap-widget-8"></div> <script>
+													window.myWidgetParam ? window.myWidgetParam
+															: window.myWidgetParam = [];
+													window.myWidgetParam
+															.push({
+																id : 8,
+																cityid : '1835235',
+																appid : '50190dae3014a65e9e9ad3d92c69d424',
+																units : 'metric',
+																containerid : 'openweathermap-widget-8',
+															});
+													(function() {
+														var script = document
+																.createElement('script');
+														script.async = true;
+														script.charset = "utf-8";
+														script.src = "//openweathermap.org/themes/openweathermap/assets/vendor/owm/js/weather-widget-generator.js";
+														var s = document
+																.getElementsByTagName('script')[0];
+														s.parentNode
+																.insertBefore(
+																		script,
+																		s);
+													})();
+												</script></td>
+											</tr>
+											<tr>
+												<td height="73" align="right" bgcolor="#e5e3da"><div id="openweathermap-widget-9"></div> <script>
+													window.myWidgetParam ? window.myWidgetParam
+															: window.myWidgetParam = [];
+													window.myWidgetParam
+															.push({
+																id : 9,
+																cityid : '1846266',
+																appid : '50190dae3014a65e9e9ad3d92c69d424',
+																units : 'metric',
+																containerid : 'openweathermap-widget-9',
+															});
+													(function() {
+														var script = document
+																.createElement('script');
+														script.async = true;
+														script.charset = "utf-8";
+														script.src = "//openweathermap.org/themes/openweathermap/assets/vendor/owm/js/weather-widget-generator.js";
+														var s = document
+																.getElementsByTagName('script')[0];
+														s.parentNode
+																.insertBefore(
+																		script,
+																		s);
+													})();
+												</script></td>
+											</tr>
+										</table>
+									</td>
+								</tr>
+							</table>
 						</div>
 					</div>
 				</div>
 			</div>
+		</div>
+		<div>
+			<table>
+				<tr>
+					<td height="50"></td>
+				</tr>
+			</table>
 		</div>
 	</div>
 
