@@ -75,34 +75,37 @@
 <script type="text/javascript">
 $(document).ready(function () { // 실시간 여행 기사 가져오는 코
 	$.ajax({
-		url: 'http://www.traveltimes.co.kr/rss/allArticle.xml',
-		dataType: 'xml',
+		url: 'https://api.rss2json.com/v1/api.json?rss_url=http://www.traveltimes.co.kr/rss/allArticle.xml&api_key=vciu0xm0zzemy9hto9tncbiwdivayevqlxpehdgq&count=30',
+		dataType: 'json',
+		data :{
+			url:'http://www.traveltimes.co.kr/rss/allArticle.xml', // 원래 url
+			api_key:'vciu0xm0zzemy9hto9tncbiwdivayevqlxpehdgq', // key
+			count:30
+		},
 		success: function (data) {
 			var titleArr = new Array()
 			var linkArr = new Array()
 			var authorArr = new Array()
 			var descArr = new Array()
 			var i = 0
-			$.each($(data).find("channel").find("item"), function (idx, val) { // 각각의 entry값을 가져오기
-					var title = $(this).find("title").text()
+			for(var i = 0 ; i < 9 ; i++) {// 각각의 entry값을 가져오기
+					var title = data.items[i].title
 					if(title.length > 40){
-						title = $(this).find("title").text().substring(0, 40) + ' ..'
+						title = data.items[i].title.substring(0, 40) + ' ..'
 					}
-					var link = $(this).find("link").text() // href 속성 값 가져오기
-					link = 'javascript:open_page("' + $(this).find("link").text() + '")'
-					var author = $(this).find("author").text() + " 기자"
-					var description = $(this).find("description").text()
+					var link = data.items[i].link // href 속성 값 가져오기
+					link = 'javascript:open_page("' + data.items[i].link + '")'
+					var author = data.items[i].author
+					var description = data.items[i].description
 					if(description.length > 150){
-						description = $(this).find("description").text().substring(0, 150) + ' ..'
+						description = data.items[i].description.substring(0, 150) + ' ..'
 					}
-					var pubDate = $(this).find("pubDate").text()
+					var pubDate = data.items[i].pubDate
 					titleArr[i] = title
 					linkArr[i] = link
 					authorArr[i] = author
 					descArr[i] = description
-					console.log(title.length)
-					i++
-			})
+			}
 			$("#title1").text(titleArr[0])
 			$("#link1").attr("href", linkArr[0])
 			$("#author1").text(authorArr[0])
@@ -253,7 +256,7 @@ $(document).ready(function () { // 실시간 여행 기사 가져오는 코
 											</div>
 										</div>
 									</td>
-									<td width="333px" align="center">
+									<td width="333px" height="235px" align="center">
 										<div class="card text-white bg-primary mb-3"
 											style="width: 300px; height: 220px;">
 											<div class="card-header"><span id = "author2"></span></div>
