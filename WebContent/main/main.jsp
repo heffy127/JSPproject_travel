@@ -104,11 +104,6 @@
 											titleArr[i] = title
 											linkArr[i] = link
 										}
-										console.log(titleArr[0])
-										console.log(titleArr[1])
-										console.log(titleArr[2])
-										console.log(titleArr[3])
-										console.log(titleArr[4])
 										$("#title1").text(titleArr[0])
 										$("#link1").attr("href", linkArr[0])
 
@@ -153,7 +148,13 @@
 								<li class="active"><a href="main.jsp">Home</a></li>
 								<li><a href="../place/place.html">여행지</a></li>
 								<li><a href="../course/course.html">코스</a></li>
-								<li><a href="../board/board.jsp">소통광장</a></li>
+								<li class="has-dropdown active">
+									<a href="../board/board.jsp">소통광장</a>
+									<ul class="dropdown">
+										<li><a href="../board/board.jsp">자유게시판</a></li>
+										<li><a href="../board_editor/board_editor.jsp">editor's pick</a></li>
+									</ul>
+								</li>
 								<li><a href="../news/news.jsp">뉴스</a>
 								<li><a href="../mypage/mypage.html">MyPage</a></li>
 								<li><a href="../contact/contact.html">고객의 소리</a></li>

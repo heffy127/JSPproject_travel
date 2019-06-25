@@ -7,6 +7,7 @@
 	pageEncoding="UTF-8"%>
 <!DOCTYPE HTML>
 <html>
+
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -161,9 +162,41 @@
 
 									}
 								})
+						$
+								.ajax({
+									url : 'https://api.rss2json.com/v1/api.json?rss_url=http://www.travie.com/rss/clickTop.xml&api_key=vciu0xm0zzemy9hto9tncbiwdivayevqlxpehdgq&count=1',
+									dataType : 'json',
+									data : {
+										url : 'http://www.travie.com/rss/clickTop.xml', // 원래 url
+										api_key : 'vciu0xm0zzemy9hto9tncbiwdivayevqlxpehdgq', // key
+										count : 1
+									},
+									success : function(data_hot) {
+										var title_hot = data_hot.items[0].title
+										console.log(title_hot)
+										if (title_hot.length > 40) {
+											title_hot = data_hot.items[0].title
+													.substring(0, 40)
+													+ ' ..'
+										}
+										var link_hot = data_hot.items[0].link // href 속성 값 가져오기
+										link_hot = 'javascript:open_page("'
+												+ data_hot.items[0].link + '")'
+										var description_hot = data_hot.items[0].description
+										if (description_hot.length > 168) {
+											description_hot = data_hot.items[0].description
+													.substring(0, 168)
+													+ ' ..'
+										}
+										$("#title_hot").text(title_hot)
+										$("#link_hot").attr("href", link_hot)
+										$("#description_hot").text(description_hot)
+									}
+								})
 					})
 </script>
 </head>
+
 <body>
 	<%
 		Calendar now = Calendar.getInstance();
@@ -184,14 +217,20 @@
 						</div>
 						<div class="col-xs-10 text-right menu-1">
 							<ul>
-								<li><a href="../main/main.jsp">Home</a></li>
+								<li class="active"><a href="../main.jsp">Home</a></li>
 								<li><a href="../place/place.html">여행지</a></li>
 								<li><a href="../course/course.html">코스</a></li>
-								<li><a href="../board/board.jsp">소통광장</a></li>
-								<li class="active"><a href="../news/news.jsp">뉴스</a>
+								<li class="has-dropdown active">
+									<a href="../board.jsp">소통광장</a>
+									<ul class="dropdown">
+										<li><a href="../board/board.jsp">자유게시판</a></li>
+										<li><a href="../board_editor/board_editor.jsp">editor's pick</a></li>
+									</ul>
+								</li>
+								<li><a href="news.jsp">뉴스</a>
 								<li><a href="../mypage/mypage.html">MyPage</a></li>
 								<li><a href="../contact/contact.html">고객의 소리</a></li>
-							</ul>
+							</ul>	
 						</div>
 					</div>
 				</div>
@@ -220,41 +259,45 @@
 
 		<div id="colorlib-blog">
 			<div class="div_board" align="center">
-				<table border="1">
+				<table border="0">
 					<tr>
 						<td width="1000" height="800" rowspan="10" valign="top">
 							<nav class="navbar navbar-expand-lg navbar-light bg-light">
-								<a class="navbar-brand" href="board.jsp">News</a>
+								<a class="navbar-brand" href="news.jsp">News</a>
 								<button class="navbar-toggler" type="button"
 									data-toggle="collapse" data-target="#navbarColor01"
 									aria-controls="navbarColor01" aria-expanded="false"
 									aria-label="Toggle navigation">
 									<span class="navbar-toggler-icon"></span>
 								</button>
-
 								<div class="collapse navbar-collapse" id="navbarColor01">
 									<ul class="navbar-nav mr-auto">
 										<li class="nav-item active"><a class="nav-link"
-											href="news.jsp"><font size="3">전체기사</font> <span
-												class="sr-only">(current)</span> </a></li>
+											href="news.jsp"> <font size="3">전체기사</font> <span
+												class="sr-only">(current)</span>
+										</a></li>
 										<li class="nav-item"><a class="nav-link"
-											href="news_biz.jsp"><font size="2">여행BIZ</font></a></li>
+											href="news_biz.jsp"> <font size="2">여행BIZ</font>
+										</a></li>
 										<li class="nav-item"><a class="nav-link"
-											href="news_publish.jsp"><font size="2">기획·연재</font></a></li>
+											href="news_publish.jsp"> <font size="2">기획·연재</font>
+										</a></li>
 										<li class="nav-item"><a class="nav-link"
-											href="news_report.jsp"><font size="2">통계·리포트</font></a></li>
+											href="news_report.jsp"> <font size="2">통계·리포트</font>
+										</a></li>
 									</ul>
 									<form class="form-inline my-2 my-lg-0" name="f_search"
 										method="get" action="board_search.jsp">
 										<table>
 											<tr>
-												<td><font size="4"><b><%=titleDate %>&nbsp;&nbsp;&nbsp;전체기사</b></font></td>
+												<td><font size="4"><b><%=titleDate%>&nbsp;&nbsp;&nbsp;전체기사</b></font>
+												</td>
 											</tr>
 										</table>
 									</form>
 								</div>
 							</nav>
-							<table border="1">
+							<table border="0">
 								<tr valign="top">
 									<td width="333px" height="235px" align="center">
 										<div class="card border-primary mb-3"
@@ -263,8 +306,10 @@
 												<span id="author1"></span>
 											</div>
 											<div class="card-body">
-												<a href="" id="link1"><h4 class="card-title" id="title1"
-														style="font-weight: bold;"></h4></a>
+												<a href="" id="link1">
+													<h4 class="card-title" id="title1"
+														style="font-weight: bold;"></h4>
+												</a>
 												<p class="card-text" id="description1"
 													style="font-size: small;"></p>
 											</div>
@@ -277,8 +322,10 @@
 												<span id="author2"></span>
 											</div>
 											<div class="card-body">
-												<a href="" id="link2"><h4 class="card-title" id="title2"
-														style="font-weight: bold; color: white;"></h4></a>
+												<a href="" id="link2">
+													<h4 class="card-title" id="title2"
+														style="font-weight: bold; color: white;"></h4>
+												</a>
 												<p class="card-text" id="description2"
 													style="font-size: small;"></p>
 											</div>
@@ -291,8 +338,10 @@
 												<span id="author3"></span>
 											</div>
 											<div class="card-body">
-												<a href="" id="link3"><h4 class="card-title" id="title3"
-														style="font-weight: bold;"></h4></a>
+												<a href="" id="link3">
+													<h4 class="card-title" id="title3"
+														style="font-weight: bold;"></h4>
+												</a>
 												<p class="card-text" id="description3"
 													style="font-size: small;"></p>
 											</div>
@@ -307,8 +356,10 @@
 												<span id="author4"></span>
 											</div>
 											<div class="card-body">
-												<a href="" id="link4"><h4 class="card-title" id="title4"
-														style="font-weight: bold; color: white;"></h4></a>
+												<a href="" id="link4">
+													<h4 class="card-title" id="title4"
+														style="font-weight: bold; color: white;"></h4>
+												</a>
 												<p class="card-text" id="description4"
 													style="font-size: small;"></p>
 											</div>
@@ -321,8 +372,10 @@
 												<span id="author5"></span>
 											</div>
 											<div class="card-body">
-												<a href="" id="link5"><h4 class="card-title" id="title5"
-														style="font-weight: bold;"></h4></a>
+												<a href="" id="link5">
+													<h4 class="card-title" id="title5"
+														style="font-weight: bold;"></h4>
+												</a>
 												<p class="card-text" id="description5"
 													style="font-size: small;"></p>
 											</div>
@@ -335,8 +388,10 @@
 												<span id="author6"></span>
 											</div>
 											<div class="card-body">
-												<a href="" id="link6"><h4 class="card-title" id="title6"
-														style="font-weight: bold; color: white;"></h4></a>
+												<a href="" id="link6">
+													<h4 class="card-title" id="title6"
+														style="font-weight: bold; color: white;"></h4>
+												</a>
 												<p class="card-text" id="description6"
 													style="font-size: small;"></p>
 											</div>
@@ -351,8 +406,10 @@
 												<span id="author7"></span>
 											</div>
 											<div class="card-body">
-												<a href="" id="link7"><h4 class="card-title" id="title7"
-														style="font-weight: bold;"></h4></a>
+												<a href="" id="link7">
+													<h4 class="card-title" id="title7"
+														style="font-weight: bold;"></h4>
+												</a>
 												<p class="card-text" id="description7"
 													style="font-size: small;"></p>
 											</div>
@@ -365,8 +422,10 @@
 												<span id="author8"></span>
 											</div>
 											<div class="card-body">
-												<a href="" id="link8"><h4 class="card-title" id="title8"
-														style="font-weight: bold; color: white;"></h4></a>
+												<a href="" id="link8">
+													<h4 class="card-title" id="title8"
+														style="font-weight: bold; color: white;"></h4>
+												</a>
 												<p class="card-text" id="description8"
 													style="font-size: small;"></p>
 											</div>
@@ -379,8 +438,10 @@
 												<span id="author9"></span>
 											</div>
 											<div class="card-body">
-												<a href="" id="link9"><h4 class="card-title" id="title9"
-														style="font-weight: bold;"></h4></a>
+												<a href="" id="link9">
+													<h4 class="card-title" id="title9"
+														style="font-weight: bold;"></h4>
+												</a>
 												<p class="card-text" id="description9"
 													style="font-size: small;"></p>
 											</div>
@@ -396,24 +457,30 @@
 						</td>
 					</tr>
 					<tr>
-						<td width="250" align="center" height="170" valign="top"><a
-							href='board.jsp'><img src="../images/free.jpg"></s></td>
+						<td width="250" align="center" valign="top" height="300">
+							<div class="card text-white bg-dark mb-3"
+								style="width: 230px; height: 300px;">
+								<div class="card-header" ><font size="4" color="white">◇ &nbsp;최신 인기 뉴스&nbsp; ◇</font></div>
+								<div class="card-body">
+									<a href="" id="link_hot">
+									<h4 class="card-title" id="title_hot"style="font-weight: bold; color: white;"></h4>
+									</a><p class="card-text" id="description_hot" style="font-size: small;"></p>
+								</div>
+							</div>
+						</td>
 					</tr>
 					<tr>
-						<td align="center" height="170" valign="top"><a
-							href='board.jsp'><img src="../images/free.jpg"></s></td>
+						<td align="center" height="160" valign="top"><a
+							href='../board/board.jsp'><img src="../images/free.jpg"></s></td>
 					</tr>
 					<tr>
-						<td align="center" height="170" valign="top"><a
+						<td align="center" height="160" valign="top"><a
 							href='../board_editor/board_editor.jsp'><img
 								src="../images/editor.png"></a></td>
 					</tr>
 					<tr>
-						<td align="center" height="170" valign="top"><a
-							href='../news/news.html'><img src="../images/news2.jpg"></a></td>
-					</tr>
-					<tr>
-						<td height="70" valign="top"></td>
+						<td align="center" height="160" valign="top"><a
+							href='news.jsp'><img src="../images/news2.jpg"></a></td>
 					</tr>
 				</table>
 			</div>
@@ -535,5 +602,5 @@
 	<script src="../js/main.js"></script>
 
 </body>
-</html>
 
+</html>

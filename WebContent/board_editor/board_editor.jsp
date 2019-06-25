@@ -118,6 +118,7 @@ $(document).ready(function () { // 실시간 유튜브 목록 가져오는 코�
 			$("#link5").attr("href", linkArr[4])
 		}
 	})
+	
 })
 </script>
 </head>
@@ -139,10 +140,16 @@ $(document).ready(function () { // 실시간 유튜브 목록 가져오는 코�
 						</div>
 						<div class="col-xs-10 text-right menu-1">
 							<ul>
-								<li><a href="../main/main.jsp">Home</a></li>
+								<li class="active"><a href="../main.jsp">Home</a></li>
 								<li><a href="../place/place.html">여행지</a></li>
 								<li><a href="../course/course.html">코스</a></li>
-								<li class="active"><a href="board.jsp">소통광장</a></li>
+								<li class="has-dropdown active">
+									<a href="../board.jsp">소통광장</a>
+									<ul class="dropdown">
+										<li><a href="../board/board.jsp">자유게시판</a></li>
+										<li><a href="board_editor.jsp">editor's pick</a></li>
+									</ul>
+								</li>
 								<li><a href="../news/news.jsp">뉴스</a>
 								<li><a href="../mypage/mypage.html">MyPage</a></li>
 								<li><a href="../contact/contact.html">고객의 소리</a></li>
@@ -358,7 +365,7 @@ $(document).ready(function () { // 실시간 유튜브 목록 가져오는 코�
 						<td align="center"  height="170" valign="top"><a href='board_editor.jsp'><img src="../images/editor.png"></a></td>
 					</tr>
 					<tr>
-						<td align="center" height="170" valign="top"><a href='../news/news.html'><img src="../images/news2.jpg"></a></td>
+							<td align="center" height="170" valign="top"><a href='../news/news.jsp'><img src="../images/news2.jpg"></a></td>
 					</tr>
 					<tr>
 						<td height="70" valign="top"></td>
