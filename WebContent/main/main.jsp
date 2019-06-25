@@ -3,6 +3,13 @@
 <!DOCTYPE HTML>
 <html>
 <head>
+<%
+	request.setCharacterEncoding("utf-8");
+	String id = request.getParameter("id");
+	String name = request.getParameter("name");
+	session.setAttribute("sessionId", id);
+	session.setAttribute("sessionName", name);
+%>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>즐거운 여행 HT와 함께</title>
@@ -122,6 +129,11 @@
 								})
 					})
 </script>
+<script type="text/javascript">
+	function logout() {
+		document.f_logout.submit()
+	}
+</script>
 <style type="text/css">
 .line {
 	border-bottom: 1px solid orange;
@@ -129,9 +141,6 @@
 </style>
 </head>
 <body>
-	<%
-		session.setAttribute("id", "editor");
-	%>
 	<div class="colorlib-loader"></div>
 	<div id="page">
 		<nav class="colorlib-nav" role="navigation">
@@ -140,24 +149,40 @@
 					<div class="row">
 						<div class="col-xs-2">
 							<div id="colorlib-logo">
-								<a href="main.jsp">HT</a>
+								<table>
+									<tr>
+										<td><a href="main.jsp">HT</a></td>
+										<%
+											if (session.getAttribute("sessionName") != null) {
+										%>
+										<td><font size="2" color="#f0ffed">&nbsp;&nbsp;&nbsp;&nbsp;${sessionName }님</font>&nbsp;</td>
+										<td>
+										<form action="logout_ok.jsp" name="f_logout">
+										<input type="hidden" value="<%=request.getRequestURL()%>" name="url">
+										<a href="javascript::" onclick="logout()"><font size="1" color="yellow">로그아웃</font></a>
+										</form>
+										</td>
+										<%
+											}
+										%>
+									</tr>
+								</table>
 							</div>
 						</div>
 						<div class="col-xs-10 text-right menu-1">
 							<ul>
 								<li class="active"><a href="main.jsp">Home</a></li>
-								<li><a href="../place/place.html">여행지</a></li>
-								<li><a href="../course/course.html">코스</a></li>
-								<li class="has-dropdown active">
-									<a href="../board/board.jsp">소통광장</a>
+								<li><a href="../place/place.jsp">여행지</a></li>
+								<li><a href="../course/course.jsp">코스</a></li>
+								<li class="has-dropdown"><a href="../board/board.jsp">소통광장</a>
 									<ul class="dropdown">
 										<li><a href="../board/board.jsp">자유게시판</a></li>
-										<li><a href="../board_editor/board_editor.jsp">editor's pick</a></li>
-									</ul>
-								</li>
+										<li><a href="../board_editor/board_editor.jsp">editor's
+												pick</a></li>
+									</ul></li>
 								<li><a href="../news/news.jsp">뉴스</a>
-								<li><a href="../mypage/mypage.html">MyPage</a></li>
-								<li><a href="../contact/contact.html">고객의 소리</a></li>
+								<li><a href="../mypage/mypage.jsp">MyPage</a></li>
+								<li><a href="../contact/contact.jsp">고객의 소리</a></li>
 							</ul>
 						</div>
 					</div>
@@ -253,7 +278,7 @@
 			<div class="col-md-6 col-md-push-6">
 				<div class="row">
 					<div class="col-md-6 animate-box">
-						<a href="../place/place.html" class="f-tour-img"
+						<a href="../place/place.jsp" class="f-tour-img"
 							style="background-image: url(../images/main_1.JPG);">
 							<div class="desc">
 								<h3>여행지</h3>
@@ -264,7 +289,7 @@
 						</a>
 					</div>
 					<div class="col-md-6 animate-box">
-						<a href="../course/course.html" class="f-tour-img"
+						<a href="../course/course.jsp" class="f-tour-img"
 							style="background-image: url(../images/main_2.jpg);">
 							<div class="desc">
 								<h3>코스</h3>
@@ -287,7 +312,7 @@
 					</div>
 
 					<div class="col-md-6 animate-box">
-						<a href="../mypage/mypage.html" class="f-tour-img"
+						<a href="../mypage/mypage.jsp" class="f-tour-img"
 							style="background-image: url(../images/main_4.jpg);">
 							<div class="desc">
 								<h3>마이 페이지</h3>
@@ -312,8 +337,9 @@
 						<div class="col-md-13">
 							<table border="0">
 								<tr>
-									<td height="50" bgcolor="#e8e8e8"><b>Today! 여행뉴스 & 주요날씨</b>&nbsp;&nbsp;&nbsp;<a
-										href="../news/news.jsp"><font size="1" color="orange">더보기&nbsp;&nbsp;</font></a></td>
+									<td height="50" bgcolor="#e8e8e8"><b>Today! 여행뉴스 &
+											주요날씨</b>&nbsp;&nbsp;&nbsp;<a href="../news/news.jsp"><font
+											size="1" color="orange">더보기&nbsp;&nbsp;</font></a></td>
 								</tr>
 								<tr>
 									<td align="left" class="line"><a href="" id="link1"><font
@@ -340,88 +366,91 @@
 								</tr>
 								<tr>
 									<td>
-									
+
 										<table border="0">
 											<tr>
-												<td height="73" align="left" bgcolor="#fcfaf2"><div id="openweathermap-widget-19"></div> <script>
-													window.myWidgetParam ? window.myWidgetParam
-															: window.myWidgetParam = [];
-													window.myWidgetParam
-															.push({
-																id : 19,
-																cityid : '1835848',
-																appid : '50190dae3014a65e9e9ad3d92c69d424',
-																units : 'metric',
-																containerid : 'openweathermap-widget-19',
-															});
-													(function() {
-														var script = document
-																.createElement('script');
-														script.async = true;
-														script.charset = "utf-8";
-														script.src = "//openweathermap.org/themes/openweathermap/assets/vendor/owm/js/weather-widget-generator.js";
-														var s = document
-																.getElementsByTagName('script')[0];
-														s.parentNode
-																.insertBefore(
-																		script,
-																		s);
-													})();
-												</script></td>
+												<td height="73" align="left" bgcolor="#fcfaf2"><div
+														id="openweathermap-widget-19"></div> <script>
+															window.myWidgetParam ? window.myWidgetParam
+																	: window.myWidgetParam = [];
+															window.myWidgetParam
+																	.push({
+																		id : 19,
+																		cityid : '1835848',
+																		appid : '50190dae3014a65e9e9ad3d92c69d424',
+																		units : 'metric',
+																		containerid : 'openweathermap-widget-19',
+																	});
+															(function() {
+																var script = document
+																		.createElement('script');
+																script.async = true;
+																script.charset = "utf-8";
+																script.src = "//openweathermap.org/themes/openweathermap/assets/vendor/owm/js/weather-widget-generator.js";
+																var s = document
+																		.getElementsByTagName('script')[0];
+																s.parentNode
+																		.insertBefore(
+																				script,
+																				s);
+															})();
+														</script></td>
 											</tr>
 											<tr>
-												<td height="73" width="500" align="center" bgcolor="#edebe3"><div id="openweathermap-widget-8"></div> <script>
-													window.myWidgetParam ? window.myWidgetParam
-															: window.myWidgetParam = [];
-													window.myWidgetParam
-															.push({
-																id : 8,
-																cityid : '1835235',
-																appid : '50190dae3014a65e9e9ad3d92c69d424',
-																units : 'metric',
-																containerid : 'openweathermap-widget-8',
-															});
-													(function() {
-														var script = document
-																.createElement('script');
-														script.async = true;
-														script.charset = "utf-8";
-														script.src = "//openweathermap.org/themes/openweathermap/assets/vendor/owm/js/weather-widget-generator.js";
-														var s = document
-																.getElementsByTagName('script')[0];
-														s.parentNode
-																.insertBefore(
-																		script,
-																		s);
-													})();
-												</script></td>
+												<td height="73" width="500" align="center" bgcolor="#edebe3"><div
+														id="openweathermap-widget-8"></div> <script>
+															window.myWidgetParam ? window.myWidgetParam
+																	: window.myWidgetParam = [];
+															window.myWidgetParam
+																	.push({
+																		id : 8,
+																		cityid : '1835235',
+																		appid : '50190dae3014a65e9e9ad3d92c69d424',
+																		units : 'metric',
+																		containerid : 'openweathermap-widget-8',
+																	});
+															(function() {
+																var script = document
+																		.createElement('script');
+																script.async = true;
+																script.charset = "utf-8";
+																script.src = "//openweathermap.org/themes/openweathermap/assets/vendor/owm/js/weather-widget-generator.js";
+																var s = document
+																		.getElementsByTagName('script')[0];
+																s.parentNode
+																		.insertBefore(
+																				script,
+																				s);
+															})();
+														</script></td>
 											</tr>
 											<tr>
-												<td height="73" align="right" bgcolor="#e5e3da"><div id="openweathermap-widget-9"></div> <script>
-													window.myWidgetParam ? window.myWidgetParam
-															: window.myWidgetParam = [];
-													window.myWidgetParam
-															.push({
-																id : 9,
-																cityid : '1846266',
-																appid : '50190dae3014a65e9e9ad3d92c69d424',
-																units : 'metric',
-																containerid : 'openweathermap-widget-9',
-															});
-													(function() {
-														var script = document
-																.createElement('script');
-														script.async = true;
-														script.charset = "utf-8";
-														script.src = "//openweathermap.org/themes/openweathermap/assets/vendor/owm/js/weather-widget-generator.js";
-														var s = document
-																.getElementsByTagName('script')[0];
-														s.parentNode
-																.insertBefore(
-																		script,
-																		s);
-													})();
-												</script></td>
+												<td height="73" align="right" bgcolor="#e5e3da"><div
+														id="openweathermap-widget-9"></div> <script>
+															window.myWidgetParam ? window.myWidgetParam
+																	: window.myWidgetParam = [];
+															window.myWidgetParam
+																	.push({
+																		id : 9,
+																		cityid : '1846266',
+																		appid : '50190dae3014a65e9e9ad3d92c69d424',
+																		units : 'metric',
+																		containerid : 'openweathermap-widget-9',
+																	});
+															(function() {
+																var script = document
+																		.createElement('script');
+																script.async = true;
+																script.charset = "utf-8";
+																script.src = "//openweathermap.org/themes/openweathermap/assets/vendor/owm/js/weather-widget-generator.js";
+																var s = document
+																		.getElementsByTagName('script')[0];
+																s.parentNode
+																		.insertBefore(
+																				script,
+																				s);
+															})();
+														</script></td>
 											</tr>
 										</table>
 									</td>

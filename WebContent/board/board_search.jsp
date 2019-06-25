@@ -75,6 +75,11 @@
 		}
 	}
 </script>
+<script type="text/javascript">
+	function logout() {
+		document.f_logout.submit()
+	}
+</script>
 </head>
 <body>
 	<%
@@ -100,18 +105,41 @@
 					<div class="row">
 						<div class="col-xs-2">
 							<div id="colorlib-logo">
-								<a href="../main/main.jsp">HT</a>
+								<table>
+									<tr>
+										<td><a href="../main/main.jsp">HT</a></td>
+										<%
+											if (session.getAttribute("sessionName") != null) {
+										%>
+										<td><font size="2" color="#f0ffed">&nbsp;&nbsp;&nbsp;&nbsp;${sessionName }님</font>&nbsp;</td>
+										<td>
+										<form action="../main/logout_ok.jsp" name="f_logout">
+										<input type="hidden" value="<%=request.getRequestURL()%>" name="url">
+										<a href="javascript::" onclick="logout()"><font size="1" color="yellow">로그아웃</font></a>
+										</form>
+										</td>
+										<%
+											}
+										%>
+									</tr>
+								</table>
 							</div>
 						</div>
 						<div class="col-xs-10 text-right menu-1">
 							<ul>
 								<li><a href="../main/main.jsp">Home</a></li>
-								<li><a href="../place/place.html">여행지</a></li>
-								<li><a href="../course/course.html">코스</a></li>
-								<li class="active"><a href="board.jsp">소통광장</a></li>
+								<li><a href="../place/place.jsp">여행지</a></li>
+								<li><a href="../course/course.jsp">코스</a></li>
+								<li class="has-dropdown active">
+									<a href="board.jsp">소통광장</a>
+									<ul class="dropdown">
+										<li><a href="board.jsp">자유게시판</a></li>
+										<li><a href="../board_editor/board_editor.jsp">editor's pick</a></li>
+									</ul>
+								</li>
 								<li><a href="../news/news.jsp">뉴스</a>
-								<li><a href="../mypage/mypage.html">MyPage</a></li>
-								<li><a href="../contact/contact.html">고객의 소리</a></li>
+								<li><a href="../mypage/mypage.jsp">MyPage</a></li>
+								<li><a href="../contact/contact.jsp">고객의 소리</a></li>
 							</ul>
 						</div>
 					</div>
@@ -405,7 +433,7 @@
 						<td align="center"  height="170" valign="top"><a href='../board_editor/board_editor.jsp'><img src="../images/editor.png"></a></td>
 					</tr>
 					<tr>
-						<td align="center" height="170" valign="top"><a href='../news/news.html'><img src="../images/news2.jpg"></a></td>
+						<td align="center" height="170" valign="top"><a href='../news/news.jsp'><img src="../images/news2.jpg"></a></td>
 					</tr>
 					<tr>
 						<td height="70" valign="top"></td>

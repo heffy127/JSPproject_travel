@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -55,7 +57,37 @@
 <!--[if lt IE 9]>
 	<script src="js/respond.min.js"></script>
 	<![endif]-->
-
+</script>
+<script type="text/javascript">
+	function check() {
+		if(f.name.value.trim()==""){
+			alert("성함을 입력해주세요.")
+			f.name.focus()
+			return
+		}
+		if(f.email.value.trim()==""){
+			alert("이메일 주소를 입력해주세요.")
+			f.email.focus()
+			return
+		}
+		if(f.subject.value.trim()==""){
+			alert("제목을 입력해주세요.")
+			f.subject.focus()
+			return
+		}
+		if(f.message.value.trim()==""){
+			alert("내용을 입력해주세요.")
+			f.message.focus()
+			return
+		}
+		document.f.submit()
+	}
+</script>
+<script type="text/javascript">
+	function logout() {
+		document.f_logout.submit()
+	}
+</script>
 </head>
 <body>
 
@@ -68,25 +100,43 @@
 					<div class="row">
 						<div class="col-xs-2">
 							<div id="colorlib-logo">
-								<a href="../main/main.jsp">HT</a>
+								<table>
+									<tr>
+										<td><a href="../main/main.jsp">HT</a></td>
+										<%
+											if (session.getAttribute("sessionName") != null) {
+										%>
+										<td><font size="2" color="#f0ffed">&nbsp;&nbsp;&nbsp;&nbsp;${sessionName }님</font>&nbsp;</td>
+										<td>
+										<form action="../main/logout_ok.jsp" name="f_logout">
+										<input type="hidden" value="<%=request.getRequestURL()%>" name="url">
+										<a href="javascript::" onclick="logout()"><font size="1" color="yellow">로그아웃</font></a>
+										</form>
+										</td>
+										<%
+											}
+										%>
+									</tr>
+								</table>
 							</div>
 						</div>
 						<div class="col-xs-10 text-right menu-1">
-						<ul>
-								<li class="active"><a href="../main.jsp">Home</a></li>
-								<li><a href="../place/place.html">여행지</a></li>
-								<li><a href="course.html">코스</a></li>
-								<li class="has-dropdown active">
-									<a href="../board.jsp">소통광장</a>
+							<ul>
+								<li><a href="../main/main.jsp">Home</a></li>
+								<li><a href="../place/place.jsp">여행지</a></li>
+								<li><a href="../course/course.jsp">코스</a></li>
+								<li class="has-dropdown">
+									<a href="../board/board.jsp">소통광장</a>
 									<ul class="dropdown">
 										<li><a href="../board/board.jsp">자유게시판</a></li>
 										<li><a href="../board_editor/board_editor.jsp">editor's pick</a></li>
 									</ul>
 								</li>
 								<li><a href="../news/news.jsp">뉴스</a>
-								<li><a href="../mypage/mypage.html">MyPage</a></li>
-								<li><a href="../contact/contact.html">고객의 소리</a></li>
-							</ul>						</div>
+								<li><a href="../mypage/mypage.jsp">MyPage</a></li>
+								<li  class="active"><a href="contact.jsp">고객의 소리</a></li>
+							</ul>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -94,14 +144,15 @@
 		<aside id="colorlib-hero">
 			<div class="flexslider">
 				<ul class="slides">
-					<li style="background-image: url(../images/main_2.jpg);">
+					<li style="background-image: url(../images/contact.jpg);">
 						<div class="overlay"></div>
 						<div class="container-fluid">
 							<div class="row">
-								<div class="col-md-6 col-sm-12 col-md-offset-3 slider-text">
+								<div
+									class="col-md-6 col-md-offset-3 col-sm-12 col-xs-12 slider-text">
 									<div class="slider-text-inner text-center">
-										<h2>당신을 위한 여행 코스</h2>
-										<h1>여행 코스</h1>
+										<h2>HT에게 하고싶은 말</h2>
+										<h1>고객의 소리</h1>
 									</div>
 								</div>
 							</div>
@@ -111,101 +162,84 @@
 			</div>
 		</aside>
 
-		<div id="colorlib-services">
+		<div id="colorlib-contact">
 			<div class="container">
 				<div class="row">
-					<div class="col-md-3 animate-box text-center">
-						<div class="services">
-							<span class="icon"> <i class="flaticon-around"></i>
-							</span>
-							<h3>Amazing Travel</h3>
-							<p>Separated they live in Bookmarksgrove right at the coast
-								of the Semantics, a large language ocean. A small river named
-								Duden flows by their place and supplies</p>
-						</div>
-					</div>
-					<div class="col-md-3 animate-box text-center">
-						<div class="services">
-							<span class="icon"> <i class="flaticon-boat"></i>
-							</span>
-							<h3>Our Cruises</h3>
-							<p>Separated they live in Bookmarksgrove right at the coast
-								of the Semantics, a large language ocean. A small river named
-								Duden flows by their place and supplies</p>
-						</div>
-					</div>
-					<div class="col-md-3 animate-box text-center">
-						<div class="services">
-							<span class="icon"> <i class="flaticon-car"></i>
-							</span>
-							<h3>Book Your Trip</h3>
-							<p>Separated they live in Bookmarksgrove right at the coast
-								of the Semantics, a large language ocean. A small river named
-								Duden flows by their place and supplies</p>
-						</div>
-					</div>
-					<div class="col-md-3 animate-box text-center">
-						<div class="services">
-							<span class="icon"> <i class="flaticon-postcard"></i>
-							</span>
-							<h3>Nice Support</h3>
-							<p>Separated they live in Bookmarksgrove right at the coast
-								of the Semantics, a large language ocean. A small river named
-								Duden flows by their place and supplies</p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+					<div class="col-md-10 col-md-offset-1 animate-box">
+						<h3>HT에게 하고 싶은 말</h3>
+						
+						<form action="contact_ok.jsp" method="post" name="f">
+							<div class="row form-group">
+								<div class="col-md-6 padding-bottom">
+									<label for="fname">성함</label> <input type="text" id="fname"
+										class="form-control" placeholder="Your name" name="name">
+								</div>
+								<div class="col-md-6">
+									<label for="lname">분류</label> 
+									<select id="lname" class="form-control" name="category">
+										<option value="건의사항">건의사항</option>
+										<option value="불편사항">불편사항</option>
+										<option value="불량회원 신고">불량회원 신고</option>
+										<option value="광고문의">광고문의</option>
+										<option value="기타">기타</option>
+									</select>
+								</div>
+							</div>
 
-		<div id="colorlib-testimony" class="colorlib-light-grey">
-			<div class="container">
-				<div class="row">
-					<div
-						class="col-md-6 col-md-offset-3 text-center colorlib-heading animate-box">
-						<h2>Our Satisfied Guests says</h2>
-						<p>We love to tell our successful far far away, behind the
-							word mountains, far from the countries Vokalia and Consonantia,
-							there live the blind texts.</p>
+							<div class="row form-group">
+								<div class="col-md-12">
+									<label for="email">이메일</label> <input type="text" id="email"
+										class="form-control" placeholder="Your email address" name="email">
+								</div>
+							</div>
+
+							<div class="row form-group">
+								<div class="col-md-12">
+									<label for="subject">제목</label> <input type="text" id="subject"
+										class="form-control"
+										placeholder="Your subject of this message" name="subject">
+								</div>
+							</div>
+
+							<div class="row form-group">
+								<div class="col-md-12">
+									<label for="message">내용</label>
+									<textarea name="message" id="message" cols="30" rows="10"
+										class="form-control" placeholder="Say something about us" name="message"></textarea>
+								</div>
+							</div>
+							<div class="form-group text-center">
+								<input type="button" value="Send Message" onclick="javascript:check()"
+									class="btn btn-primary">
+							</div>
+
+						</form>
 					</div>
-				</div>
-				<div class="row">
-					<div class="col-md-8 col-md-offset-2 animate-box">
-						<div class="owl-carousel2">
-							<div class="item">
-								<div class="testimony text-center">
-									<span class="img-user"
-										style="background-image: url(images/person1.jpg);"></span> <span
-										class="user">Alysha Myers</span> <small>Miami Florida,
-										USA</small>
-									<blockquote>
-										<p>" A small river named Duden flows by their place and
-											supplies it with the necessary regelialia.</p>
-									</blockquote>
-								</div>
+					<div class="col-md-10 col-md-offset-1 animate-box">
+						<h3>Contact Information</h3>
+						<div class="row contact-info-wrap">
+							<div class="col-md-3">
+								<p>
+									<span><i class="icon-location"></i></span> 198 West 21th
+									Street, <br> Suite 721 New York NY 10016
+								</p>
 							</div>
-							<div class="item">
-								<div class="testimony text-center">
-									<span class="img-user"
-										style="background-image: url(images/person2.jpg);"></span> <span
-										class="user">James Fisher</span> <small>New York, USA</small>
-									<blockquote>
-										<p>One day however a small line of blind text by the name
-											of Lorem Ipsum decided to leave for the far World of Grammar.</p>
-									</blockquote>
-								</div>
+							<div class="col-md-3">
+								<p>
+									<span><i class="icon-phone3"></i></span> <a
+										href="tel://1234567920">+ 1235 2355 98</a>
+								</p>
 							</div>
-							<div class="item">
-								<div class="testimony text-center">
-									<span class="img-user"
-										style="background-image: url(images/person3.jpg);"></span> <span
-										class="user">Jacob Webb</span> <small>Athens, Greece</small>
-									<blockquote>
-										<p>Alphabet Village and the subline of her own road, the
-											Line Lane. Pityful a rethoric question ran over her cheek,
-											then she continued her way.</p>
-									</blockquote>
-								</div>
+							<div class="col-md-3">
+								<p>
+									<span><i class="icon-paperplane"></i></span> <a
+										href="mailto:info@yoursite.com">info@yoursite.com</a>
+								</p>
+							</div>
+							<div class="col-md-3">
+								<p>
+									<span><i class="icon-globe"></i></span> <a href="#">yoursite.com</a>
+								</p>
 							</div>
 						</div>
 					</div>
@@ -213,6 +247,7 @@
 			</div>
 		</div>
 
+		<div id="map" class="colorlib-map"></div>
 
 		<div id="colorlib-subscribe"
 			style="background-image: url(images/img_bg_2.jpg);"
@@ -352,6 +387,10 @@
 	<script src="../js/bootstrap-datepicker.js"></script>
 	<!-- Stellar Parallax -->
 	<script src="../js/jquery.stellar.min.js"></script>
+	<!-- Google Map -->
+	<script
+		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCefOgb1ZWqYtj7raVSmN4PL2WkTrc-KyA&sensor=false"></script>
+	<script src="../js/google_map.js"></script>
 
 	<!-- Main -->
 	<script src="../js/main.js"></script>
