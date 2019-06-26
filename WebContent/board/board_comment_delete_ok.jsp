@@ -11,7 +11,7 @@
 	<jsp:useBean id="cdao" class="board.BoardCommentDAO" />
 	<jsp:setProperty property="*" name="cdto" />
 	<%
-		String id = (String) session.getAttribute("id");
+		String id = (String) session.getAttribute("sessionId");
 		String writer = cdto.getWriter();	
 	
 		String alert = null, url = null;
