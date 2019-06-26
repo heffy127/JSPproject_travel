@@ -7,7 +7,7 @@
 	String getNum = request.getParameter("num");
 	int num = Integer.parseInt(getNum);
 
-	String user = (String) session.getAttribute("id");
+	String user = (String) session.getAttribute("sessionId");
 	String message = null;
 	if (user == null) {
 		out.write("로그인이 필요한 서비스입니다.");
