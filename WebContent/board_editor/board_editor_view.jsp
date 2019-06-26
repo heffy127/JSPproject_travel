@@ -81,7 +81,7 @@
 		bdto = bdao.selectSubject("조회수 증가용", num); /* 첫번째 인자는 제목을 눌러서 들어왔을때만 조회수 증가용 */
 	%>
 	<script type="text/javascript">
-		var ss = '<%=(String) session.getAttribute("id")%>'
+		var ss = '<%=(String) session.getAttribute("sessionId")%>'
 
 		function check_session() {
 			if (ss == "null") {
@@ -272,7 +272,7 @@
 											<td  colspan="2">
 												<div align="right">
 													<script type="text/javascript">
-														var ss = '<%=(String) session.getAttribute("id")%>'
+														var ss = '<%=(String) session.getAttribute("sessionId")%>'
 														var writer = '<%=bdto.getWriter()%>'
 
 														function delete_confirm() {
