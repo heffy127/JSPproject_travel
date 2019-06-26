@@ -12,7 +12,7 @@
 	<jsp:useBean id="bdao" class="board_editor.BoardEditorDAO" />
 	<%
 		if (bdto.getWriter().trim() == "") {	// 작성자가 없는 경우 게시판으로 되돌아가기
-			response.sendRedirect("board.jsp");
+			response.sendRedirect("board_editor.jsp");
 		}
 		int res = bdao.insertBoard(bdto);
 		String alert = null;
