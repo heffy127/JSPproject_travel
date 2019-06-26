@@ -219,7 +219,7 @@
 									<tr>
 										<td colspan="2" align="right">
 										<br>
-										<input type="hidden" value="me" name="writer"> <!-- 세션 생기기전에 임시 글쓴이 -->
+										<input type="hidden" name="writer" value=<%=(String)session.getAttribute("sessionId")%>>
 										<input type="hidden" value="<%=bdto.getNum() %>" name="num"> <!-- 글 번호 num값 넘겨주기 -->
 										<button type="submit" class="btn btn-primary btn-lg"><font size="4">글 수정하기</font></button>
 										</td>
