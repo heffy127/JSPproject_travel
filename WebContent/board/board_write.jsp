@@ -229,7 +229,7 @@
 									<tr>
 										<td colspan="2" align="right">
 										<br>
-										<input type="hidden" name="writer" value=<%=(String)session.getAttribute("id")%>>
+										<input type="hidden" name="writer" value=<%=(String)session.getAttribute("sessionId")%>>
 										<button type="submit" class="btn btn-primary btn-lg"><font size="4">글 등록하기</font></button>
 										</td>
 									</tr>
