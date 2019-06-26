@@ -71,11 +71,11 @@
 
 <script type="text/javascript">
 	function check() {
-		var ss = '<%=(String)session.getAttribute("id")%>'
+		var ss = '<%=(String)session.getAttribute("sessionId")%>'
 		
 		if(ss =="null"){
 			alert("잘못된 접근입니다.")
-			location.href = "board.jsp"
+			location.href = "board_editor.jsp"
 			return false;
 		}	
 		if (f.subject.value == "") {
@@ -218,7 +218,7 @@
 									<tr>
 										<td colspan="2" align="right">
 										<br>
-										<input type="hidden" name="writer" value=<%=(String)session.getAttribute("id")%>>
+										<input type="hidden" name="writer" value=<%=(String)session.getAttribute("sessionId")%>>
 										<button type="submit" class="btn btn-primary btn-lg"><font size="4">글 등록하기</font></button>
 										</td>
 									</tr>
