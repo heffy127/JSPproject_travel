@@ -65,7 +65,7 @@
 
 <script type="text/javascript">
 	function check_session() {
-		var ss = '<%=(String) session.getAttribute("id")%>'
+		var ss = '<%=(String) session.getAttribute("sessionId")%>'
 		if (ss == "editor") {
 			location.href = "board_editor_write.jsp"
 		} else {
