@@ -1,0 +1,160 @@
+<!-- <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"> -->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport"
+	content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<title>경주월드|Hi! Trip!</title>
+<meta property="og:type" content="website">
+<meta property="og:title" id="ogtitle" content="경주월드">
+<meta property="og:description" content="경주월드" />
+
+<link rel="stylesheet" type="text/css"
+	href="../resources/css/swiper.css">
+<link rel="stylesheet" type="text/css"
+	href="../resources/css/common.css">
+<link rel="stylesheet" type="text/css"
+	href="../resources/css/content.css">
+<link rel="stylesheet" type="text/css"
+	href="../resources/css/MapApi.css">
+</head>
+
+<body>
+
+	<!-- contents -->
+	<div id="contents">
+		<div style="display: none;" id="contentimage">
+			<img src="../resources/pictures/kyungbuk/경주월드1.jpeg" class="ico" alt="">
+		</div>
+		<div class="tit_cont">
+			<h2>에버랜드</h2>
+			<div class="area_address">
+				<span class="address">경상북도 경주시 보문로 ㅣ 테마파크</span>
+			</div>
+		</div>
+
+		<div class="wrap_contView clfix"
+			<style="float: right&gt; 
+			&lt;div class="area_imgView_wrap">
+			<div class="area_imgView">
+				<ul>
+					<li><img src="../resources/pictures/kyungbuk/경주월드1.jpeg"></li>
+					<li><img src="../resources/pictures/kyungbuk/경주월드.jpg"></li>
+				</ul>
+			</div>
+
+			<!-- 텍스트 영역 -->
+			<div class="area_txtView_wrap">
+				<div class="area_txtView top" style="padding-bottom: 55px;">
+					<div class="inr_wrap" style="overflow: scroll; height: 410px;">
+						<div class="inr">
+							<p>
+								경주월드는 경상북도 경주시 보문로 544에 있는 테마파크이다. <br>
+								대한민국에서는 2번째로 개장한 이래 지역 최초로 개장한 놀이공원이다. 1985년 5월 도투락월드로 개장하였으며, 1991년 10월부터 경주월드로 변경되었다.
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="area_txtView bottom" style="padding-bottom: 54px;">
+					<div class="inr_wrap" style="overflow: hidden; height: 260px;">
+						<div class="inr">
+							<ul>
+								<li><strong>주소</strong> <span>경상북도 경주시 보문로 544</span></li>
+								<li><strong>문의 및 안내</strong> <span><strong>경주월드
+											이용문의</strong>ㅣ"054-745-7711"</span></li>
+								<li><strong>영업시간</strong> <span>매일 오전 10:00 ~ 오후 6:00<br>주말 오전 10:00 ~ 오후 20:30</span></li>
+								<li><strong>[입장권]</strong> <span>대인 23,000원 / 청소년 17,000원 / 소인 15,000원</span></li>
+								<li><strong>[자유이용권]</strong> <span>대인 44,000원 / 청소년 38,000원</span></li>
+								<li><strong>놀이시설</strong> <span>파에톤, Draken, Dragon Race</span></li>
+							</ul>
+						</div>
+					</div>
+					<button type="button" class="btn_more" title="세부정보 더보기"
+						style="display: block;">
+						세부정보 <span>닫기</span>
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="map" style="margin-left: 850px; width: 700px; height: 350px"></div>
+	<!-- 지도를 표시할 div 입니다 -->
+	<div id="roadview" style="margin-bottom: 100px; margin-left: 850px; width: 700px; height: 350px"></div>
+	<!-- 로드뷰를 표시할 div 입니다 -->
+
+	<script type="text/javascript"
+		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f4e6bb0ad8276cfa8923618249a86481"></script>
+	<script>
+		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+		mapCenter = new daum.maps.LatLng(35.835488, 129.283806), // 지도의 중심좌표
+		mapOption = {
+			center : mapCenter, // 지도의 중심좌표
+			level : 4
+		// 지도의 확대 레벨
+		};
+
+		var map = new daum.maps.Map(mapContainer, mapOption);
+
+		// 커스텀 오버레이에 표시할 내용입니다
+		// HTML 문자열 또는 Dom Element 입니다
+		var content = '<div class="overlay_info">';
+		content += '    <a href="https://place.map.kakao.com/10175334" target="_blank"><strong>경주월드</strong></a>';
+		content += '    <div class="desc">';
+		content += '        <img src="../resources/pictures/kyungbuk/경주월드1.jpeg" alt="">';
+		content += '        <span class="address">경북 경주시 보문로 544</span>';
+		content += '    </div>';
+		content += '</div>';
+
+		// 커스텀 오버레이가 표시될 위치입니다 
+		var position = new daum.maps.LatLng(35.835488, 129.283806);
+
+		// 커스텀 오버레이를 생성합니다
+		var mapCustomOverlay = new daum.maps.CustomOverlay({
+			position : position,
+			content : content,
+			xAnchor : 0.5, // 커스텀 오버레이의 x축 위치입니다. 1에 가까울수록 왼쪽에 위치합니다. 기본값은 0.5 입니다
+			yAnchor : 1.1
+		// 커스텀 오버레이의 y축 위치입니다. 1에 가까울수록 위쪽에 위치합니다. 기본값은 0.5 입니다
+		});
+
+		// 커스텀 오버레이를 지도에 표시합니다
+		mapCustomOverlay.setMap(map);
+
+		var rvContainer = document.getElementById('roadview'); //로드뷰를 표시할 div
+		var rv = new daum.maps.Roadview(rvContainer); //로드뷰 객체
+		var rvClient = new daum.maps.RoadviewClient(); //좌표로부터 로드뷰 파노ID를 가져올 로드뷰 helper객체
+
+		//지도의 중심좌표와 가까운 로드뷰의 panoId를 추출하여 로드뷰를 띄운다.
+		rvClient.getNearestPanoId(mapCenter, 50, function(panoId) {
+			rv.setPanoId(panoId, mapCenter); //panoId와 중심좌표를 통해 로드뷰 실행
+		});
+
+		daum.maps.event.addListener(rv, 'init', function() {
+
+			// 커스텀 오버레이를 생성합니다
+			var rvCustomOverlay = new daum.maps.CustomOverlay({
+				position : position,
+				content : content,
+				xAnchor : 0.5, // 커스텀 오버레이의 x축 위치입니다. 1에 가까울수록 왼쪽에 위치합니다. 기본값은 0.5 입니다
+				yAnchor : 0.5
+			// 커스텀 오버레이의 y축 위치입니다. 1에 가까울수록 위쪽에 위치합니다. 기본값은 0.5 입니다
+			});
+
+			//rvCustomOverlay.setAltitude(2); //커스텀 오버레이의 고도값을 설정합니다.(로드뷰 화면 중앙이 0입니다)
+			rvCustomOverlay.setMap(rv);
+
+			var projection = rv.getProjection(); // viewpoint(화면좌표)값을 추출할 수 있는 projection 객체를 가져옵니다.
+
+			// 커스텀오버레이의 position과 altitude값을 통해 viewpoint값(화면좌표)를 추출합니다.
+			var viewpoint = projection.viewpointFromCoords(rvCustomOverlay
+					.getPosition(), rvCustomOverlay.getAltitude());
+
+			rv.setViewpoint(viewpoint); //커스텀 오버레이를 로드뷰의 가운데에 오도록 로드뷰의 시점을 변화 시킵니다.
+		});
+	</script>
+
+</body>
+</html>

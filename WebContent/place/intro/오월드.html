@@ -1,0 +1,161 @@
+<!-- <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"> -->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport"
+	content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<title>오월드|Hi! Trip!</title>
+<meta property="og:type" content="website">
+<meta property="og:title" id="ogtitle" content="오월드">
+<meta property="og:description" content="오월드" />
+
+<link rel="stylesheet" type="text/css"
+	href="../resources/css/swiper.css">
+<link rel="stylesheet" type="text/css"
+	href="../resources/css/common.css">
+<link rel="stylesheet" type="text/css"
+	href="../resources/css/content.css">
+<link rel="stylesheet" type="text/css"
+	href="../resources/css/MapApi.css">
+</head>
+
+<body>
+
+	<!-- contents -->
+	<div id="contents">
+		<div style="display: none;" id="contentimage">
+			<img src="../resources/pictures/daejeon/오월드.jpg" class="ico" alt="">
+		</div>
+		<div class="tit_cont">
+			<h2>오월드</h2>
+			<div class="area_address">
+				<span class="address">대전광역시 중구 ㅣ 테마파크</span>
+			</div>
+		</div>
+
+		<div class="wrap_contView clfix"
+			<style="float: right&gt; 
+			&lt;div class="area_imgView_wrap">
+			<div class="area_imgView">
+				<ul>
+					<li><img src="../resources/pictures/daejeon/오월드.jpg"></li>
+					<li><img src="../resources/pictures/daejeon/오월드1.png"></li>
+				</ul>
+			</div>
+
+			<!-- 텍스트 영역 -->
+			<div class="area_txtView_wrap">
+				<div class="area_txtView top" style="padding-bottom: 55px;">
+					<div class="inr_wrap" style="overflow: scroll; height: 410px;">
+						<div class="inr">
+							<p>
+								대전남부순환고속도로의 안영 나들목 부근에 있다. 2002년 5월 5일 개장한 대전동물원과 2009년 5월 1일 개장한 플라워랜드를 통합한 종합공원으로 총 68만 2,830㎡ 규모이다. 동물원은 58만 3,057㎡의 부지에 동물사, 놀이시설, 조각공원, 사파리 등의 시설을 갖추고 있으며, 식물원은 9만 9,773㎡에 9개소의 테마 정원과 1개소의 온실을 갖추고 있다.
+								주요 공간으로는 아메리카검정곰·사자, 벵갈호랑이, 코끼리, 기린, 얼룩말, 타조 등 130종 600여 수의 동물을 전시하고 있는 동물 전시공간, 후룸라이드·자이언트드롭·수퍼바이킹 등 놀이기구 17개 기종이 설치되어 있는 놀이시설 공간, 슬로프 폭 36.5mｘ115.7m 규모의 사계절 썰매장, 아프리카사파리, 마운틴사파리, 조각공원, 5.5km에 이르는 산림욕장, 잔디광장, 다목적광장, 팔각정, 사계절정원, 무궁화원, 장미원, 미로원, 허브원, 레인보우스테이지, 야외공연장 등이 있다. 
+								전기자동차, 유모차 대여소, 수유 및 기저귀교환실, 미아보호소, 애완동물보호소, 물품보관소, 휠체어대여소, 의무실, 장애인전용주차장 등의 편의시설도 설치되어 있다. 대전광역시 중구 사정공원로 70(사정동 142)에 있다.
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="area_txtView bottom" style="padding-bottom: 54px;">
+					<div class="inr_wrap" style="overflow: hidden; height: 260px;">
+						<div class="inr">
+							<ul>
+								<li><strong>주소</strong> <span>대전광역시 중구 사정공원로 70</span></li>
+								<li><strong>문의 및 안내</strong> <span>042-580-4820</span></li>
+								<li><strong>개원일</strong> <span>2002년 5월</span></li>
+								<li><strong>영업시간</strong> <span>오전 9:30 ~ 오후 6:00</span></li>
+								<li><strong>[개인입장권]</strong> <span>성인 12,000원 / 청소년 7,500원 / 어린이 5,000원</span></li>
+								<li><strong>[자유입장권]</strong> <span>성인 29,000원 / 청소년 23,000원 / 어린이 20,000원</span></li>
+								<li><strong>[단체입장권]</strong> <span>성인 9,000원 / 청소년 6,000원 / 어린이 4,000원</span></li>
+							</ul>
+						</div>
+					</div>
+					<button type="button" class="btn_more" title="세부정보 더보기"
+						style="display: block;">
+						세부정보 <span>닫기</span>
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="map" style="margin-left: 850px; width: 700px; height: 350px"></div>
+	<!-- 지도를 표시할 div 입니다 -->
+	<div id="roadview" style="margin-bottom: 100px; margin-left: 850px; width: 700px; height: 350px"></div>
+	<!-- 로드뷰를 표시할 div 입니다 -->
+
+	<script type="text/javascript"
+		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f4e6bb0ad8276cfa8923618249a86481"></script>
+	<script>
+		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+		mapCenter = new daum.maps.LatLng(36.28923773560964, 127.39811978781964  ), // 지도의 중심좌표
+		mapOption = {
+			center : mapCenter, // 지도의 중심좌표
+			level : 4
+		// 지도의 확대 레벨
+		};
+
+		var map = new daum.maps.Map(mapContainer, mapOption);
+
+		// 커스텀 오버레이에 표시할 내용입니다
+		// HTML 문자열 또는 Dom Element 입니다
+		var content = '<div class="overlay_info">';
+		content += '    <a href="https://place.map.kakao.com/11505186" target="_blank"><strong>오월드</strong></a>';
+		content += '    <div class="desc">';
+		content += '        <img src="../resources/pictures/daejeon/오월드1.png" alt="">';
+		content += '        <span class="address">대전 중구 사정공원로 70</span>';
+		content += '    </div>';
+		content += '</div>';
+
+		// 커스텀 오버레이가 표시될 위치입니다 
+		var position = new daum.maps.LatLng(36.28923773560964, 127.39811978781964 );
+
+		// 커스텀 오버레이를 생성합니다
+		var mapCustomOverlay = new daum.maps.CustomOverlay({
+			position : position,
+			content : content,
+			xAnchor : 0.5, // 커스텀 오버레이의 x축 위치입니다. 1에 가까울수록 왼쪽에 위치합니다. 기본값은 0.5 입니다
+			yAnchor : 1.1
+		// 커스텀 오버레이의 y축 위치입니다. 1에 가까울수록 위쪽에 위치합니다. 기본값은 0.5 입니다
+		});
+
+		// 커스텀 오버레이를 지도에 표시합니다
+		mapCustomOverlay.setMap(map);
+
+		var rvContainer = document.getElementById('roadview'); //로드뷰를 표시할 div
+		var rv = new daum.maps.Roadview(rvContainer); //로드뷰 객체
+		var rvClient = new daum.maps.RoadviewClient(); //좌표로부터 로드뷰 파노ID를 가져올 로드뷰 helper객체
+
+		//지도의 중심좌표와 가까운 로드뷰의 panoId를 추출하여 로드뷰를 띄운다.
+		rvClient.getNearestPanoId(mapCenter, 50, function(panoId) {
+			rv.setPanoId(panoId, mapCenter); //panoId와 중심좌표를 통해 로드뷰 실행
+		});
+
+		daum.maps.event.addListener(rv, 'init', function() {
+
+			// 커스텀 오버레이를 생성합니다
+			var rvCustomOverlay = new daum.maps.CustomOverlay({
+				position : position,
+				content : content,
+				xAnchor : 0.5, // 커스텀 오버레이의 x축 위치입니다. 1에 가까울수록 왼쪽에 위치합니다. 기본값은 0.5 입니다
+				yAnchor : 0.5
+			// 커스텀 오버레이의 y축 위치입니다. 1에 가까울수록 위쪽에 위치합니다. 기본값은 0.5 입니다
+			});
+
+			//rvCustomOverlay.setAltitude(2); //커스텀 오버레이의 고도값을 설정합니다.(로드뷰 화면 중앙이 0입니다)
+			rvCustomOverlay.setMap(rv);
+
+			var projection = rv.getProjection(); // viewpoint(화면좌표)값을 추출할 수 있는 projection 객체를 가져옵니다.
+
+			// 커스텀오버레이의 position과 altitude값을 통해 viewpoint값(화면좌표)를 추출합니다.
+			var viewpoint = projection.viewpointFromCoords(rvCustomOverlay
+					.getPosition(), rvCustomOverlay.getAltitude());
+
+			rv.setViewpoint(viewpoint); //커스텀 오버레이를 로드뷰의 가운데에 오도록 로드뷰의 시점을 변화 시킵니다.
+		});
+	</script>
+
+</body>
+</html>

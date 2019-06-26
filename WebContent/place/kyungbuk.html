@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport"
+	content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<title>Hi! Trip</title>
+<link rel="shortcut icon" type="image/x-icon"
+	href="resources/images/favicon.ico">
+<link rel="stylesheet" type="text/css" href="resources/css/swiper.css">
+<link rel="stylesheet" type="text/css" href="resources/css/common.css" />
+<link rel="stylesheet" type="text/css" href="resources/css/content.css" />
+</head>
+
+<body>
+	<div id="skipToContent">
+		<a href="#contents">본문 바로가기</a> <a href="#btnMenu">메뉴 바로가기</a>
+	</div>
+
+	<header class="header"></header>
+
+	<!-- contents -->
+	<div id="contents">
+
+		<div class="tit_cont">
+			<div class="area_tag">
+				<h2>경북</h2>
+			</div>
+			<h2 class="tag"></h2>
+			<a href="javascript:" class="btn_represch">새로고침</a>
+		</div>
+
+		<div class="wrap_contView clfix">
+
+			<!-- 썸네일 리스트 -->
+			<div class="box_leftType1">
+				<div class="total_check">
+					<strong>총<span></span>건
+					</strong>
+					<div class="btn_txt">
+						<button type="button" class="on" id="1">최신순</button>
+						<button type="button" id="2">거리순</button>
+						<button type="button" id="3">인기순</button>
+					</div>
+					<button type="button" class="btn_mPop">상세조회</button>
+				</div>
+				<ul class="list_thumType flnon">
+					<li class="bdr_nor">
+						<div class="photo">
+							<a href="javascript:"> <img
+								src="resources/pictures/kyungbuk/경주월드1.jpeg" alt="경주월드">
+							</a>
+						</div>
+						<div class="area_txt">
+							<div class="tit">
+								<a href="javascript:">경주월드</a>
+							</div>
+							<p>경북 경주시</p>
+							<p>054-745-7711</p>
+						</div>
+					</li>
+
+					<li class="bdr_nor">
+						<div class="photo">
+							<a href="javascript:"> <img
+								src="resources/pictures/kyungbuk/동궁과월지.jpg" alt="동궁과월지">
+							</a>
+						</div>
+						<div class="area_txt">
+							<div class="tit">
+								<a href="javascript:">동궁과월지</a>
+							</div>
+							<p>경북 경주시</p>
+							<p>054-750-8655</p>
+						</div>
+					</li>
+
+					<li class="bdr_nor">
+						<div class="photo">
+							<a href="javascript:"> <img
+								src="resources/pictures/kyungbuk/부석사.jpg" alt="부석사">
+							</a>
+						</div>
+						<div class="area_txt">
+							<div class="tit">
+								<a href="javascript:">부석사</a>
+							</div>
+							<p>경북 영주시</p>
+							<p>054-633-3464</p>
+						</div>
+					</li>
+
+					<li class="bdr_nor">
+						<div class="photo">
+							<a href="javascript:"> <img
+								src="resources/pictures/kyungbuk/불국사.jpg" alt="불국사">
+							</a>
+						</div>
+						<div class="area_txt">
+							<div class="tit">
+								<a href="javascript:">불국사</a>
+							</div>
+							<p>경북 경주시</p>
+							<p>054-746-9913</p>
+						</div>
+					</li>
+
+					<li class="bdr_nor">
+						<div class="photo">
+							<a href="javascript:"> <img
+								src="resources/pictures/kyungbuk/영주소수서원.jpg" alt="영주소수서원">
+							</a>
+						</div>
+						<div class="area_txt">
+							<div class="tit">
+								<a href="javascript:">영주소수서원</a>
+							</div>
+							<p>경북 영주시</p>
+							<p>054-639-5852</p>
+						</div>
+					</li>
+
+					<li class="bdr_nor">
+						<div class="photo">
+							<a href="javascript:"> <img
+								src="resources/pictures/kyungbuk/운문사.jpg" alt="운문사">
+							</a>
+						</div>
+						<div class="area_txt">
+							<div class="tit">
+								<a href="javascript:">운문사</a>
+							</div>
+							<p>경북 청도군</p>
+							<p>054-372-8880</p>
+						</div>
+					</li>
+
+					<li class="bdr_nor">
+						<div class="photo">
+							<a href="javascript:"> <img
+								src="resources/pictures/kyungbuk/호미곶.jpg" alt="호미곶">
+							</a>
+						</div>
+						<div class="area_txt">
+							<div class="tit">
+								<a href="javascript:">호미곶</a>
+							</div>
+							<p>경북 포항시</p>
+							<p>054-270-5855</p>
+						</div>
+					</li>
+
+					<li class="bdr_nor">
+						<div class="photo">
+							<a href="javascript:"> <img
+								src="resources/pictures/kyungbuk/하회마을.jpg" alt="하회마을">
+							</a>
+						</div>
+						<div class="area_txt">
+							<div class="tit">
+								<a href="javascript:">하회마을</a>
+							</div>
+							<p>경북 안동시</p>
+							<p>054-853-0109</p>
+						</div>
+					</li>
+				</ul>
+				</div>
+
+
+			<div class="box_rightType1">
+				<div class="tit_mPop">
+					<h2>태그선택</h2>
+					<button class="btn_close">닫기</button>
+				</div>
+
+				<!-- 태그 리스트 -->
+				<div class="area_tagList">
+					<ul class="tag_list js_multi" id="monthlist">
+						<li id="01"><button type="button" class="btn">
+								<span>#봄</span>
+							</button></li>
+						<li id="02"><button type="button" class="btn">
+								<span>#여름</span>
+							</button></li>
+						<li id="03"><button type="button" class="btn">
+								<span>#가을</span>
+							</button></li>
+						<li id="04"><button type="button" class="btn">
+								<span>#겨울</span>
+							</button></li>
+					</ul>
+
+					<ul class="tag_list area_list js_one" id="arealist">
+						<li id="1"><button type="button" class="btn"><a href="seoul.html">
+								<span>#서울</span>
+							</button></a></li>
+						<li id="2"><button type="button" class="btn"><a href="incheon.html">
+								<span>#인천</span>
+							</button></a></li>
+						<li id="3"><button type="button" class="btn"><a href="daejeon.html">
+								<span>#대전</span>
+							</button></a></li>
+						<li id="4"><button type="button" class="btn"><a href="daegu.html">
+								<span>#대구</span>
+							</button></a></li>
+						<li id="5"><button type="button" class="btn"><a href="Gwangju.html">
+								<span>#광주</span>
+							</button></a></li>
+						<li id="6"><button type="button" class="btn"><a href="busan.html">
+								<span>#부산</span>
+							</button></a></li>
+						<li id="7"><button type="button" class="btn"><a href="ulsan.html">
+								<span>#울산</span>
+							</button></a></li>
+						<li id="8"><button type="button" class="btn"><a href="sejong.html">
+								<span>#세종</span>
+							</button></a></li>
+						<li id="31"><button type="button" class="btn"><a href="gyeong-gi.html">
+								<span>#경기</span>
+							</button></a></li>
+						<li id="32"><button type="button" class="btn"><a href="gangwon.html">
+								<span>#강원</span>
+							</button></a></li>
+						<li id="33"><button type="button" class="btn"><a href="chungbuk.html">
+								<span>#충북</span>
+							</button></a></li>
+						<li id="34"><button type="button" class="btn"><a href="chungnam.html">
+								<span>#충남</span>
+							</button></a></li>
+						<li id="35"><button type="button" class="btn"><a href="kyungbuk.html">
+								<span>#경북</span>
+							</button></a></li>
+						<li id="36"><button type="button" class="btn"><a href="kyungnam.html">
+								<span>#경남</span>
+							</button></a></li>
+						<li id="37"><button type="button" class="btn"><a href="jeonbuk.html">
+								<span>#전북</span>
+							</button></a></li>
+						<li id="38"><button type="button" class="btn"><a href="jeonnam.html">
+								<span>#전남</span>
+							</button></a></li>
+						<li id="39"><button type="button" class="btn"><a href="jeju.html">
+								<span>#제주</span>
+							</button></a></li>
+					</ul>
+					<ul class="tag_list area_view_list js_multi" id="sigungulist">
+					</ul>
+					<ul class="tag_list cnt_list js_multi" id="taglist">
+					</ul>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>

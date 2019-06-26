@@ -1,0 +1,165 @@
+<!-- <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"> -->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport"
+	content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<title>국립민속박물관 | Hi! Trip!</title>
+<meta property="og:type" content="website">
+<meta property="og:title" id="ogtitle" content="국립민속박물관">
+<meta property="og:description" content="국립민속박물관" />
+
+<link rel="stylesheet" type="text/css"
+	href="../resources/css/swiper.css">
+<link rel="stylesheet" type="text/css"
+	href="../resources/css/common.css">
+<link rel="stylesheet" type="text/css"
+	href="../resources/css/content.css">
+<link rel="stylesheet" type="text/css"
+	href="../resources/css/MapApi.css">
+</head>
+
+<body>
+
+	<!-- contents -->
+	<div id="contents">
+		<div style="display: none;" id="contentimage">
+			<img src="../resources/pictures/seoul/국립민속박물관.jpg" class="ico" alt="">
+		</div>
+		<div class="tit_cont">
+			<h2>서울 국립민속박물관</h2>
+			<div class="area_address">
+				<span class="address">서울 종로구 ㅣ 박물관</span>
+			</div>
+		</div>
+
+		<div class="wrap_contView clfix"
+			<style="float: right&gt; 
+			&lt;div class="area_imgView_wrap">
+			<div class="area_imgView">
+				<ul>
+					<li><img src="../resources/pictures/seoul/국립민속박물관.jpg"></li>
+					<li><img src="../resources/pictures/seoul/국립민속박물관1.jpeg"></li>
+				</ul>
+			</div>
+
+			<!-- 텍스트 영역 -->
+			<div class="area_txtView_wrap">
+				<div class="area_txtView top" style="padding-bottom: 55px;">
+					<div class="inr_wrap" style="overflow: scroll; height: 410px;">
+						<div class="inr">
+							<p>
+								연건평 3781.8㎡. 소장유물(所藏遺物) 7,089점(1990.3.31. 현재). 조직은 전시과·관리과로 되어 있다. 연혁을 보면, 8·15광복과 함께 송석하(宋錫夏)의 노력으로 개관되었던 남산민족박물관이 1950년 국립박물관으로 흡수된 후, 16년 만인 1966년 10월 4일 문화재관리국(文化財管理局)에서 경복궁 수정전(修政殿:303.6㎡)에 1600여 점의 민속자료를 수집하여 임시 기구로 민속박물관의 개관을 보았다.
+								1975년 4월 11일 경복궁 내 전 현대미술관 건물을 수리하여 문화재관리국 산하의 국립민속박물관으로 발족 개관하였으며, 1979년 4월 13일 국립박물관 소속으로 직제가 개정되었다. 1982년 옛 중앙박물관 건물로 이전하고, 1992년 시설공사를 벌여 지하 1층, 지상 3층에 옥탑층을 갖춘 건물로 단장하였다. 
+								지하 1층에는 수장고(水蔣庫), 지상 1층에는 중앙 홀과 3개의 상설전시장 및 강당, 2층에는 행정실, 3층에는 열람실을 마련하였다. 1995년 12월 말 현재 1만 6000여 점이 유물이 역사실·생활1실·생활2실에 나누어 전시되고 있다
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="area_txtView bottom" style="padding-bottom: 54px;">
+					<div class="inr_wrap" style="overflow: hidden; height: 260px;">
+						<div class="inr">
+							<ul>
+								<li><strong>구분</strong> <span>박물관</span></li>
+								<li><strong>문의 및 안내</strong> <span><strong>국립민속박물관
+									이용문의</strong>ㅣ"02-3704-3114"</span></li>
+								<li><strong>관람료</strong> <span>무료</span></li>
+								<li><strong>주소</strong> <span>서울 종로구 삼청로 37</span></li>
+								<li><strong>휴일</strong> <span>1.1 / 설,추석 당일</span></li>
+								<li><strong>[이용시간]</strong> <span>3~10월(09시~18시) 11~2월(09시~17시)<br>
+											※매월 마지막 주 수,금,토요일(09시~21시)</span></li>
+								<li><strong>찾아가는길</strong> <span>안국역 2번출구 도보16분<br>경복궁역
+										6번출구 도보19분
+								</span></li>
+							</ul>
+						</div>
+					</div>
+					<button type="button" class="btn_more" title="세부정보 더보기"
+						style="display: block;">
+						세부정보 <span>닫기</span>
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="map" style="margin-left: 850px; width: 700px; height: 350px"></div>
+	<!-- 지도를 표시할 div 입니다 -->
+	<div id="roadview" style="margin-bottom: 100px; margin-left: 850px; width: 700px; height: 350px"></div>
+	<!-- 로드뷰를 표시할 div 입니다 -->
+
+	<script type="text/javascript"
+		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f4e6bb0ad8276cfa8923618249a86481"></script>
+	<script>
+		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+		mapCenter = new daum.maps.LatLng(37.582034, 126.979200), // 지도의 중심좌표
+		mapOption = {
+			center : mapCenter, // 지도의 중심좌표
+			level : 4
+		// 지도의 확대 레벨
+		};
+
+		var map = new daum.maps.Map(mapContainer, mapOption);
+
+		// 커스텀 오버레이에 표시할 내용입니다
+		// HTML 문자열 또는 Dom Element 입니다
+		var content = '<div class="overlay_info">';
+		content += '    <a href="https://place.map.kakao.com/8191467" target="_blank"><strong>국립민속박물관</strong></a>';
+		content += '    <div class="desc">';
+		content += '        <img src="../resources/pictures/seoul/국립민속박물관1.jpeg" alt="">';
+		content += '        <span class="address">서울 종로구 삼청로 37</span>';
+		content += '    </div>';
+		content += '</div>';
+
+		// 커스텀 오버레이가 표시될 위치입니다 
+		var position = new daum.maps.LatLng(37.582034, 126.979200);
+
+		// 커스텀 오버레이를 생성합니다
+		var mapCustomOverlay = new daum.maps.CustomOverlay({
+			position : position,
+			content : content,
+			xAnchor : 0.5, // 커스텀 오버레이의 x축 위치입니다. 1에 가까울수록 왼쪽에 위치합니다. 기본값은 0.5 입니다
+			yAnchor : 1.1
+		// 커스텀 오버레이의 y축 위치입니다. 1에 가까울수록 위쪽에 위치합니다. 기본값은 0.5 입니다
+		});
+
+		// 커스텀 오버레이를 지도에 표시합니다
+		mapCustomOverlay.setMap(map);
+
+		var rvContainer = document.getElementById('roadview'); //로드뷰를 표시할 div
+		var rv = new daum.maps.Roadview(rvContainer); //로드뷰 객체
+		var rvClient = new daum.maps.RoadviewClient(); //좌표로부터 로드뷰 파노ID를 가져올 로드뷰 helper객체
+
+		//지도의 중심좌표와 가까운 로드뷰의 panoId를 추출하여 로드뷰를 띄운다.
+		rvClient.getNearestPanoId(mapCenter, 50, function(panoId) {
+			rv.setPanoId(panoId, mapCenter); //panoId와 중심좌표를 통해 로드뷰 실행
+		});
+
+		daum.maps.event.addListener(rv, 'init', function() {
+
+			// 커스텀 오버레이를 생성합니다
+			var rvCustomOverlay = new daum.maps.CustomOverlay({
+				position : position,
+				content : content,
+				xAnchor : 0.5, // 커스텀 오버레이의 x축 위치입니다. 1에 가까울수록 왼쪽에 위치합니다. 기본값은 0.5 입니다
+				yAnchor : 0.5
+			// 커스텀 오버레이의 y축 위치입니다. 1에 가까울수록 위쪽에 위치합니다. 기본값은 0.5 입니다
+			});
+
+			//rvCustomOverlay.setAltitude(2); //커스텀 오버레이의 고도값을 설정합니다.(로드뷰 화면 중앙이 0입니다)
+			rvCustomOverlay.setMap(rv);
+
+			var projection = rv.getProjection(); // viewpoint(화면좌표)값을 추출할 수 있는 projection 객체를 가져옵니다.
+
+			// 커스텀오버레이의 position과 altitude값을 통해 viewpoint값(화면좌표)를 추출합니다.
+			var viewpoint = projection.viewpointFromCoords(rvCustomOverlay
+					.getPosition(), rvCustomOverlay.getAltitude());
+
+			rv.setViewpoint(viewpoint); //커스텀 오버레이를 로드뷰의 가운데에 오도록 로드뷰의 시점을 변화 시킵니다.
+		});
+	</script>
+
+</body>
+</html>

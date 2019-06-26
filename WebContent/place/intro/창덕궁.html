@@ -1,0 +1,164 @@
+<!-- <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"> -->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport"
+	content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<title>창덕궁|Hi! Trip!</title>
+<meta property="og:type" content="website">
+<meta property="og:title" id="ogtitle" content="창덕궁">
+<meta property="og:description" content="창덕궁" />
+
+<link rel="stylesheet" type="text/css"
+	href="../resources/css/swiper.css">
+<link rel="stylesheet" type="text/css"
+	href="../resources/css/common.css">
+<link rel="stylesheet" type="text/css"
+	href="../resources/css/content.css">
+<link rel="stylesheet" type="text/css"
+	href="../resources/css/MapApi.css">
+</head>
+
+<body>
+
+	<!-- contents -->
+	<div id="contents">
+		<div style="display: none;" id="contentimage">
+			<img src="../resources/pictures/seoul/창덕궁1.jpg" class="ico" alt="">
+		</div>
+		<div class="tit_cont">
+			<h2>창덕궁</h2>
+			<div class="area_address">
+				<span class="address">서울 종로구 ㅣ 조선시대의 궁전</span>
+			</div>
+		</div>
+
+		<div class="wrap_contView clfix"
+			<style="float: right&gt; 
+			&lt;div class="area_imgView_wrap">
+			<div class="area_imgView">
+				<ul>
+					<li><img src="../resources/pictures/seoul/창덕궁.jpg"></li>
+					<li><img src="../resources/pictures/seoul/창덕궁1.jpg"></li>
+				</ul>
+			</div>
+
+			<!-- 텍스트 영역 -->
+			<div class="area_txtView_wrap">
+				<div class="area_txtView top" style="padding-bottom: 55px;">
+					<div class="inr_wrap" style="overflow: scroll; height: 410px;">
+						<div class="inr">
+							<p>
+								창덕궁은 조선 왕조의 공식 궁궐인 경복궁에 이어 두 번째로 모습을 드러낸 궁궐이에요. 창덕궁은 이궁으로 지어졌어요. 이궁이란 나라에 전쟁이나 큰 재난이 일어나 공식 궁궐을 사용하지 못할 때를 대비하여 지은 궁궐을 말해요.
+								조선의 왕들 중에는 경복궁보다 창덕궁을 더 좋아한 왕이 많았어요. 많은 왕들이 머물며 나라를 다스리면서 창덕궁은 자연스럽게 조선 왕조의 중심지가 되었습니다.
+								평탄한 곳에 질서 정연하게 건물이 들어선 경복궁과는 달리 창덕궁은 자연과 조화를 이룬 궁궐로 유명합니다. 다른 궁궐들이 왕의 권위를 상징하기 위해 인위적으로 지어졌다면 창덕궁은 자연 지형에 맞게 배치되어 자연스럽고 아름다운 모습을 자랑하지요.
+								창덕궁은 조선 왕조의 독특한 궁궐 건축과 정원 문화를 대표하는 궁궐이에요. 처음 지어진 건축물들은 전쟁과 화재로 사라졌지만 이후 세워진 건축물들은 조선 시대 궁궐 건축의 변천사를 잘 보여 주고 있어요. 그리고 숲과 나무, 연못, 정자, 화단 등이 환상적인 조화를 이루고 있는 후원은 창덕궁의 진정한 아름다움을 느낄 수 있는 곳입니다.
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="area_txtView bottom" style="padding-bottom: 54px;">
+					<div class="inr_wrap" style="overflow: hidden; height: 260px;">
+						<div class="inr">
+							<ul>
+								<li><strong>구분</strong> <span>유네스코 세계유산</span></li>
+								<li><strong>등재연도</strong> <span>1997년</span></li>
+								<li><strong>시대</strong> <span>조선</span></li>
+								<li><strong>문의 및 안내</strong> <span><strong>창덕궁
+											이용문의</strong>ㅣ"02-3668-2300"</span></li>
+								<li><strong>주소</strong> <span>서울 종로구 율곡로 99</span></li>
+								<li><strong>휴무일</strong> <span>월요일</span></li>
+								<li><strong>[여는시간]</strong> <span>2~5월/9~10월 : 09시~18시<br>6월~8월 : 09시~18시30분<br>11월~1월 : 09시~16시30분
+								</span></li>
+							</ul>
+						</div>
+					</div>
+					<button type="button" class="btn_more" title="세부정보 더보기"
+						style="display: block;">
+						세부정보 <span>닫기</span>
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="map" style="margin-left: 850px; width: 700px; height: 350px"></div>
+	<!-- 지도를 표시할 div 입니다 -->
+	<div id="roadview" style="margin-bottom: 100px; margin-left: 850px; width: 700px; height: 350px"></div>
+	<!-- 로드뷰를 표시할 div 입니다 -->
+
+	<script type="text/javascript"
+		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f4e6bb0ad8276cfa8923618249a86481"></script>
+	<script>
+		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+		mapCenter = new daum.maps.LatLng(37.58179586616999, 126.9916618454918 ), // 지도의 중심좌표
+		mapOption = {
+			center : mapCenter, // 지도의 중심좌표
+			level : 4
+		// 지도의 확대 레벨
+		};
+
+		var map = new daum.maps.Map(mapContainer, mapOption);
+
+		// 커스텀 오버레이에 표시할 내용입니다
+		// HTML 문자열 또는 Dom Element 입니다
+		var content = '<div class="overlay_info">';
+		content += '    <a href="https://place.map.kakao.com/10771162" target="_blank"><strong>창덕궁</strong></a>';
+		content += '    <div class="desc">';
+		content += '        <img src="../resources/pictures/seoul/창덕궁1.jpg" alt="">';
+		content += '        <span class="address">서울 종로구 율곡로 99</span>';
+		content += '    </div>';
+		content += '</div>';
+
+		// 커스텀 오버레이가 표시될 위치입니다 
+		var position = new daum.maps.LatLng(37.58179586616999, 126.9916618454918 );
+
+		// 커스텀 오버레이를 생성합니다
+		var mapCustomOverlay = new daum.maps.CustomOverlay({
+			position : position,
+			content : content,
+			xAnchor : 0.5, // 커스텀 오버레이의 x축 위치입니다. 1에 가까울수록 왼쪽에 위치합니다. 기본값은 0.5 입니다
+			yAnchor : 1.1
+		// 커스텀 오버레이의 y축 위치입니다. 1에 가까울수록 위쪽에 위치합니다. 기본값은 0.5 입니다
+		});
+
+		// 커스텀 오버레이를 지도에 표시합니다
+		mapCustomOverlay.setMap(map);
+
+		var rvContainer = document.getElementById('roadview'); //로드뷰를 표시할 div
+		var rv = new daum.maps.Roadview(rvContainer); //로드뷰 객체
+		var rvClient = new daum.maps.RoadviewClient(); //좌표로부터 로드뷰 파노ID를 가져올 로드뷰 helper객체
+
+		//지도의 중심좌표와 가까운 로드뷰의 panoId를 추출하여 로드뷰를 띄운다.
+		rvClient.getNearestPanoId(mapCenter, 50, function(panoId) {
+			rv.setPanoId(panoId, mapCenter); //panoId와 중심좌표를 통해 로드뷰 실행
+		});
+
+		daum.maps.event.addListener(rv, 'init', function() {
+
+			// 커스텀 오버레이를 생성합니다
+			var rvCustomOverlay = new daum.maps.CustomOverlay({
+				position : position,
+				content : content,
+				xAnchor : 0.5, // 커스텀 오버레이의 x축 위치입니다. 1에 가까울수록 왼쪽에 위치합니다. 기본값은 0.5 입니다
+				yAnchor : 0.5
+			// 커스텀 오버레이의 y축 위치입니다. 1에 가까울수록 위쪽에 위치합니다. 기본값은 0.5 입니다
+			});
+
+			//rvCustomOverlay.setAltitude(2); //커스텀 오버레이의 고도값을 설정합니다.(로드뷰 화면 중앙이 0입니다)
+			rvCustomOverlay.setMap(rv);
+
+			var projection = rv.getProjection(); // viewpoint(화면좌표)값을 추출할 수 있는 projection 객체를 가져옵니다.
+
+			// 커스텀오버레이의 position과 altitude값을 통해 viewpoint값(화면좌표)를 추출합니다.
+			var viewpoint = projection.viewpointFromCoords(rvCustomOverlay
+					.getPosition(), rvCustomOverlay.getAltitude());
+
+			rv.setViewpoint(viewpoint); //커스텀 오버레이를 로드뷰의 가운데에 오도록 로드뷰의 시점을 변화 시킵니다.
+		});
+	</script>
+
+</body>
+</html>

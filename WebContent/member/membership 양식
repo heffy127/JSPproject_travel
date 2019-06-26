@@ -1,0 +1,33 @@
+create table membership(
+
+name varchar(50),
+
+ssn varchar(50),
+
+ssn2 varchar(50),
+
+id varchar(50) primary key,
+
+pw varchar(50),
+
+pwhint varchar(50),
+
+pwan varchar(50),
+
+mail varchar(50),
+
+mail2 varchar(50),
+
+address varchar(50),
+
+address2 varchar(50),
+
+postcode varchar(50),
+
+address3 varchar(50),
+
+tel varchar(50),
+
+tel2 varchar(50),
+
+tel3 varchar(50));

@@ -1,0 +1,161 @@
+<!-- <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"> -->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport"
+	content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<title>에버랜드|Hi! Trip!</title>
+<meta property="og:type" content="website">
+<meta property="og:title" id="ogtitle" content="에버랜드">
+<meta property="og:description" content="에버랜드" />
+
+<link rel="stylesheet" type="text/css"
+	href="../resources/css/swiper.css">
+<link rel="stylesheet" type="text/css"
+	href="../resources/css/common.css">
+<link rel="stylesheet" type="text/css"
+	href="../resources/css/content.css">
+<link rel="stylesheet" type="text/css"
+	href="../resources/css/MapApi.css">
+</head>
+
+<body>
+
+	<!-- contents -->
+	<div id="contents">
+		<div style="display: none;" id="contentimage">
+			<img src="../resources/pictures/gyeong-gi/에버랜드.jpg" class="ico" alt="">
+		</div>
+		<div class="tit_cont">
+			<h2>에버랜드</h2>
+			<div class="area_address">
+				<span class="address">경기도 용인시 ㅣ 놀이공원</span>
+			</div>
+		</div>
+
+		<div class="wrap_contView clfix"
+			<style="float: right&gt; 
+			&lt;div class="area_imgView_wrap">
+			<div class="area_imgView">
+				<ul>
+					<li><img src="../resources/pictures/gyeong-gi/에버랜드.jpg"></li>
+					<li><img src="../resources/pictures/gyeong-gi/에버랜드1.jpg"></li>
+				</ul>
+			</div>
+
+			<!-- 텍스트 영역 -->
+			<div class="area_txtView_wrap">
+				<div class="area_txtView top" style="padding-bottom: 55px;">
+					<div class="inr_wrap" style="overflow: scroll; height: 410px;">
+						<div class="inr">
+							<p>
+								리조트 면적 148만 8,000㎡(45만 평)이며 놀이공원 면적은 약 30만평 규모이다. 서울 남쪽 35km, 영동고속도로 분기점에서 7km 지점에 있으며, 1976년 4월 국내 최초의 가족공원인 용인자연농원으로 문을 열었다. 1977년 경기도 국민관광지(선정번호 15)로 선정되었고, 그 후 1996년 3월 에버랜드로 개칭하였다.
+								세계 각지의 주요도시를 테마로 한 ‘글로벌 페어’를 비롯해 각종 놀이시설과 공간의 특성에 따라 ‘아메리칸 어드벤처’ ‘매직랜드’ ‘유러피언 어드벤처’ ‘주토피아’ 등 5개의 테마 지역으로 분류되어 있다. 튤립, 장미 등 계절 별로 전시되는 꽃 정원과 국내 최장의 눈썰매장인 ‘스노우버스터,’ 이솝우화를 주제로 한 테마존 ‘이솝빌리지’ 등을 갖추고 있으며, 특히 초식동물과 맹수가 공존하는 세계 유일의 복합 사파리 ‘사파리 월드’가 유명하다.
+								대규모 워터 파크 ‘캐리비안 베이’와 모터 파크 ‘스피드 웨이’ 자연 속 숙박시설 ‘홈브리지’ 종합 스포츠 잔디구장 ‘액티바 파크’와 함께 에버랜드 리조트를 구성하고 있으며, 호암 미술관·삼성 교통 박물관 등의 문화·체육시설도 갖추고 있다.
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="area_txtView bottom" style="padding-bottom: 54px;">
+					<div class="inr_wrap" style="overflow: hidden; height: 260px;">
+						<div class="inr">
+							<ul>
+								<li><strong>주소</strong> <span>경기도 용인시 처인구 포곡읍 에버랜드로 199</span></li>
+								<li><strong>문의 및 안내</strong> <span>031-320-5000</span></li>
+								<li><strong>개장일</strong> <span>1976년 4월 17일</span></li>
+								<li><strong>영업시간</strong> <span>오전 10:00 ~ 오후 9:00</span></li>
+								<li><strong>[주간권]</strong> <span>대인 56,000원 / 청소년 47,000원 / 어린이 44,000원</span></li>
+								<li><strong>[야간권(16시~)]</strong> <span>성인 46,000원 / 청소년 40,000원 / 어린이 37,000원</span></li>
+								<li><strong>[2일권]</strong> <span>성인 87,000원 / 청소년 73,000원 / 어린이 69,000원</span></li>
+							</ul>
+						</div>
+					</div>
+					<button type="button" class="btn_more" title="세부정보 더보기"
+						style="display: block;">
+						세부정보 <span>닫기</span>
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="map" style="margin-left: 850px; width: 700px; height: 350px"></div>
+	<!-- 지도를 표시할 div 입니다 -->
+	<div id="roadview" style="margin-bottom: 100px; margin-left: 850px; width: 700px; height: 350px"></div>
+	<!-- 로드뷰를 표시할 div 입니다 -->
+
+	<script type="text/javascript"
+		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f4e6bb0ad8276cfa8923618249a86481"></script>
+	<script>
+		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+		mapCenter = new daum.maps.LatLng(37.29402184325681, 127.2006872534275 ), // 지도의 중심좌표
+		mapOption = {
+			center : mapCenter, // 지도의 중심좌표
+			level : 4
+		// 지도의 확대 레벨
+		};
+
+		var map = new daum.maps.Map(mapContainer, mapOption);
+
+		// 커스텀 오버레이에 표시할 내용입니다
+		// HTML 문자열 또는 Dom Element 입니다
+		var content = '<div class="overlay_info">';
+		content += '    <a href="https://place.map.kakao.com/784414359" target="_blank"><strong>에버랜드</strong></a>';
+		content += '    <div class="desc">';
+		content += '        <img src="../resources/pictures/gyeong-gi/에버랜드1.jpg" alt="">';
+		content += '        <span class="address">경기도 용인시 처인구 포곡읍 에버랜드로 199</span>';
+		content += '    </div>';
+		content += '</div>';
+
+		// 커스텀 오버레이가 표시될 위치입니다 
+		var position = new daum.maps.LatLng(37.29402184325681, 127.2006872534275 );
+
+		// 커스텀 오버레이를 생성합니다
+		var mapCustomOverlay = new daum.maps.CustomOverlay({
+			position : position,
+			content : content,
+			xAnchor : 0.5, // 커스텀 오버레이의 x축 위치입니다. 1에 가까울수록 왼쪽에 위치합니다. 기본값은 0.5 입니다
+			yAnchor : 1.1
+		// 커스텀 오버레이의 y축 위치입니다. 1에 가까울수록 위쪽에 위치합니다. 기본값은 0.5 입니다
+		});
+
+		// 커스텀 오버레이를 지도에 표시합니다
+		mapCustomOverlay.setMap(map);
+
+		var rvContainer = document.getElementById('roadview'); //로드뷰를 표시할 div
+		var rv = new daum.maps.Roadview(rvContainer); //로드뷰 객체
+		var rvClient = new daum.maps.RoadviewClient(); //좌표로부터 로드뷰 파노ID를 가져올 로드뷰 helper객체
+
+		//지도의 중심좌표와 가까운 로드뷰의 panoId를 추출하여 로드뷰를 띄운다.
+		rvClient.getNearestPanoId(mapCenter, 50, function(panoId) {
+			rv.setPanoId(panoId, mapCenter); //panoId와 중심좌표를 통해 로드뷰 실행
+		});
+
+		daum.maps.event.addListener(rv, 'init', function() {
+
+			// 커스텀 오버레이를 생성합니다
+			var rvCustomOverlay = new daum.maps.CustomOverlay({
+				position : position,
+				content : content,
+				xAnchor : 0.5, // 커스텀 오버레이의 x축 위치입니다. 1에 가까울수록 왼쪽에 위치합니다. 기본값은 0.5 입니다
+				yAnchor : 0.5
+			// 커스텀 오버레이의 y축 위치입니다. 1에 가까울수록 위쪽에 위치합니다. 기본값은 0.5 입니다
+			});
+
+			//rvCustomOverlay.setAltitude(2); //커스텀 오버레이의 고도값을 설정합니다.(로드뷰 화면 중앙이 0입니다)
+			rvCustomOverlay.setMap(rv);
+
+			var projection = rv.getProjection(); // viewpoint(화면좌표)값을 추출할 수 있는 projection 객체를 가져옵니다.
+
+			// 커스텀오버레이의 position과 altitude값을 통해 viewpoint값(화면좌표)를 추출합니다.
+			var viewpoint = projection.viewpointFromCoords(rvCustomOverlay
+					.getPosition(), rvCustomOverlay.getAltitude());
+
+			rv.setViewpoint(viewpoint); //커스텀 오버레이를 로드뷰의 가운데에 오도록 로드뷰의 시점을 변화 시킵니다.
+		});
+	</script>
+
+</body>
+</html>

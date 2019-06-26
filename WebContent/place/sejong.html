@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport"
+	content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<title>Hi! Trip</title>
+<link rel="shortcut icon" type="image/x-icon"
+	href="resources/images/favicon.ico">
+<link rel="stylesheet" type="text/css" href="resources/css/swiper.css">
+<link rel="stylesheet" type="text/css" href="resources/css/common.css" />
+<link rel="stylesheet" type="text/css" href="resources/css/content.css" />
+</head>
+
+<body>
+	<div id="skipToContent">
+		<a href="#contents">본문 바로가기</a> <a href="#btnMenu">메뉴 바로가기</a>
+	</div>
+
+	<header class="header"></header>
+
+	<!-- contents -->
+	<div id="contents">
+
+		<div class="tit_cont">
+			<div class="area_tag">
+				<h2>세종</h2>
+			</div>
+			<h2 class="tag"></h2>
+			<a href="javascript:" class="btn_represch">새로고침</a>
+		</div>
+
+		<div class="wrap_contView clfix">
+
+			<!-- 썸네일 리스트 -->
+			<div class="box_leftType1">
+				<div class="total_check">
+					<strong>총<span></span>건
+					</strong>
+					<div class="btn_txt">
+						<button type="button" class="on" id="1">최신순</button>
+						<button type="button" id="2">거리순</button>
+						<button type="button" id="3">인기순</button>
+					</div>
+					<button type="button" class="btn_mPop">상세조회</button>
+				</div>
+				<ul class="list_thumType flnon">
+					<li class="bdr_nor">
+						<div class="photo">
+							<a href="javascript:"> <img
+								src="resources/pictures/sejong/베어트리파크.jpg" alt="베어트리파크">
+							</a>
+						</div>
+						<div class="area_txt">
+							<div class="tit">
+								<a href="javascript:">베어트리파크</a>
+							</div>
+							<p>세종 전동면</p>
+							<p>044-866-7766</p>
+						</div>
+					</li>
+
+					<li class="bdr_nor">
+						<div class="photo">
+							<a href="javascript:"> <img
+								src="resources/pictures/sejong/교과서박물관.jpg" alt="교과서박물관">
+							</a>
+						</div>
+						<div class="area_txt">
+							<div class="tit">
+								<a href="javascript:">미래엔교과서박물관</a>
+							</div>
+							<p>세종 청연로</p>
+							<p>044-861-3141</p>
+						</div>
+					</li>
+
+					<li class="bdr_nor">
+						<div class="photo">
+							<a href="javascript:"> <img
+								src="resources/pictures/sejong/금강자연휴양림.jpg" alt="금강자연휴양림">
+							</a>
+						</div>
+						<div class="area_txt">
+							<div class="tit">
+								<a href="javascript:">금강자연휴양림</a>
+							</div>
+							<p>세종 금남면</p>
+							<p>041-635-7400</p>
+						</div>
+					</li>
+
+					<li class="bdr_nor">
+						<div class="photo">
+							<a href="javascript:"> <img
+								src="resources/pictures/sejong/밀마루전망대.jpg" alt="밀마루전망대">
+							</a>
+						</div>
+						<div class="area_txt">
+							<div class="tit">
+								<a href="javascript:">밀마루전망대</a>
+							</div>
+							<p>세종 어진동</p>
+							<p>044-862-8845</p>
+						</div>
+					</li>
+
+					<li class="bdr_nor">
+						<div class="photo">
+							<a href="javascript:"> <img
+								src="resources/pictures/sejong/호수공원.jpg" alt="호수공원">
+							</a>
+						</div>
+						<div class="area_txt">
+							<div class="tit">
+								<a href="javascript:">세종호수공원</a>
+							</div>
+							<p>세종 연기면</p>
+							<p>062-607-8000</p>
+						</div>
+					</li>
+				</ul>
+				</div>
+
+
+			<div class="box_rightType1">
+				<div class="tit_mPop">
+					<h2>태그선택</h2>
+					<button class="btn_close">닫기</button>
+				</div>
+
+				<!-- 태그 리스트 -->
+				<div class="area_tagList">
+					<ul class="tag_list js_multi" id="monthlist">
+						<li id="01"><button type="button" class="btn">
+								<span>#봄</span>
+							</button></li>
+						<li id="02"><button type="button" class="btn">
+								<span>#여름</span>
+							</button></li>
+						<li id="03"><button type="button" class="btn">
+								<span>#가을</span>
+							</button></li>
+						<li id="04"><button type="button" class="btn">
+								<span>#겨울</span>
+							</button></li>
+					</ul>
+
+					<ul class="tag_list area_list js_one" id="arealist">
+						<li id="1"><button type="button" class="btn"><a href="seoul.html">
+								<span>#서울</span>
+							</button></a></li>
+						<li id="2"><button type="button" class="btn"><a href="incheon.html">
+								<span>#인천</span>
+							</button></a></li>
+						<li id="3"><button type="button" class="btn"><a href="daejeon.html">
+								<span>#대전</span>
+							</button></a></li>
+						<li id="4"><button type="button" class="btn"><a href="daegu.html">
+								<span>#대구</span>
+							</button></a></li>
+						<li id="5"><button type="button" class="btn"><a href="Gwangju.html">
+								<span>#광주</span>
+							</button></a></li>
+						<li id="6"><button type="button" class="btn"><a href="busan.html">
+								<span>#부산</span>
+							</button></a></li>
+						<li id="7"><button type="button" class="btn"><a href="ulsan.html">
+								<span>#울산</span>
+							</button></a></li>
+						<li id="8"><button type="button" class="btn"><a href="sejong.html">
+								<span>#세종</span>
+							</button></a></li>
+						<li id="31"><button type="button" class="btn"><a href="gyeong-gi.html">
+								<span>#경기</span>
+							</button></a></li>
+						<li id="32"><button type="button" class="btn"><a href="gangwon.html">
+								<span>#강원</span>
+							</button></a></li>
+						<li id="33"><button type="button" class="btn"><a href="chungbuk.html">
+								<span>#충북</span>
+							</button></a></li>
+						<li id="34"><button type="button" class="btn"><a href="chungnam.html">
+								<span>#충남</span>
+							</button></a></li>
+						<li id="35"><button type="button" class="btn"><a href="kyungbuk.html">
+								<span>#경북</span>
+							</button></a></li>
+						<li id="36"><button type="button" class="btn"><a href="kyungnam.html">
+								<span>#경남</span>
+							</button></a></li>
+						<li id="37"><button type="button" class="btn"><a href="jeonbuk.html">
+								<span>#전북</span>
+							</button></a></li>
+						<li id="38"><button type="button" class="btn"><a href="jeonnam.html">
+								<span>#전남</span>
+							</button></a></li>
+						<li id="39"><button type="button" class="btn"><a href="jeju.html">
+								<span>#제주</span>
+							</button></a></li>
+					</ul>
+					<ul class="tag_list area_view_list js_multi" id="sigungulist">
+					</ul>
+					<ul class="tag_list cnt_list js_multi" id="taglist">
+					</ul>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>

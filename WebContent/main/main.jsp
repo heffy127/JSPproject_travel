@@ -74,11 +74,7 @@
 
 <script async defer crossorigin="anonymous"
 	src="https://connect.facebook.net/ko_KR/sdk.js#xfbml=1&version=v3.3"></script>
-<script type="text/javascript">
-	function open_page(url) {
-		newPage = window.open(url);
-	}
-</script>
+
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script type="text/javascript">
@@ -133,6 +129,14 @@
 	function logout() {
 		document.f_logout.submit()
 	}
+	
+	function open_page(url) {
+		newPage = window.open(url);
+	}
+	
+	function open_place(){
+		window.open('../place/main.html', '당신을 위한 여행지', 'height=600,width=1100,left=500,top=0')
+	}
 </script>
 <style type="text/css">
 .line {
@@ -172,13 +176,12 @@
 						<div class="col-xs-10 text-right menu-1">
 							<ul>
 								<li class="active"><a href="main.jsp">Home</a></li>
-								<li><a href="../place/place.jsp">여행지</a></li>
+								<li><a href="javascript:open_place()">여행지</a></li>
 								<li><a href="../course/course.jsp">코스</a></li>
 								<li class="has-dropdown"><a href="../board/board.jsp">소통광장</a>
 									<ul class="dropdown">
 										<li><a href="../board/board.jsp">자유게시판</a></li>
-										<li><a href="../board_editor/board_editor.jsp">editor's
-												pick</a></li>
+										<li><a href="../board_editor/board_editor.jsp">editor's pick</a></li>
 									</ul></li>
 								<li><a href="../news/news.jsp">뉴스</a>
 								<li><a href="../mypage/mypage.jsp">MyPage</a></li>
@@ -278,7 +281,7 @@
 			<div class="col-md-6 col-md-push-6">
 				<div class="row">
 					<div class="col-md-6 animate-box">
-						<a href="../place/place.jsp" class="f-tour-img"
+						<a href="javascript:open_place()" class="f-tour-img" 
 							style="background-image: url(../images/main_1.JPG);">
 							<div class="desc">
 								<h3>여행지</h3>
@@ -337,8 +340,7 @@
 						<div class="col-md-13">
 							<table border="0">
 								<tr>
-									<td height="50" bgcolor="#e8e8e8"><b>Today! 여행뉴스 &
-											주요날씨</b>&nbsp;&nbsp;&nbsp;<a href="../news/news.jsp"><font
+									<td height="50" bgcolor="#e8e8e8"><b>Today! 여행뉴스 & 주요날씨</b>&nbsp;&nbsp;&nbsp;<a href="../news/news.jsp"><font
 											size="1" color="orange">더보기&nbsp;&nbsp;</font></a></td>
 								</tr>
 								<tr>
