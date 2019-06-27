@@ -249,7 +249,11 @@
 									</ul>
 								</li>
 								<li class="active"><a href="news.jsp">뉴스</a>
+								<%if(session.getAttribute("sessionId") == null){ %>
+								<li><a href="../member/loginPage.jsp">Login</a></li>
+								<% } else { %>
 								<li><a href="../mypage/mypage.jsp">MyPage</a></li>
+								<%}; %>
 								<li><a href="../contact/contact.jsp">고객의 소리</a></li>
 							</ul>	
 						</div>
