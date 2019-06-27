@@ -173,7 +173,11 @@ $(document).ready(function () { // 실시간 유튜브 목록 가져오는 코�
 									</ul>
 								</li>
 								<li><a href="../news/news.jsp">뉴스</a>
+								<%if(session.getAttribute("sessionId") == null){ %>
+								<li><a href="../member/loginPage.jsp">Login</a></li>
+								<% } else { %>
 								<li><a href="../mypage/mypage.jsp">MyPage</a></li>
+								<%}; %>
 								<li><a href="../contact/contact.jsp">고객의 소리</a></li>
 							</ul>
 						</div>
