@@ -71,7 +71,7 @@
 
 <script type="text/javascript">
 	function check() {
-		var ss = '<%=(String)session.getAttribute("id")%>'
+		var ss = '<%=(String)session.getAttribute("sessionId")%>'
 		
 		if(ss =="null"){
 			alert("잘못된 접근입니다.")
