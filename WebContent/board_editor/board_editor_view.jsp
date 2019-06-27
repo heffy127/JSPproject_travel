@@ -146,9 +146,10 @@
 										%>
 									</tr>
 								</table>
+							</div>
 						</div>
 						<div class="col-xs-10 text-right menu-1">
-													<ul>
+							<ul>
 								<li><a href="../main/main.jsp">Home</a></li>
 								<li><a href="../place/place.jsp">여행지</a></li>
 								<li><a href="../course/course.jsp">코스</a></li>
@@ -166,7 +167,7 @@
 						</div>
 					</div>
 				</div>
-			</div>
+			</div>	
 		</nav>
 		<aside id="colorlib-hero">
 			<div class="flexslider">
