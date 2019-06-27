@@ -135,7 +135,7 @@
 	}
 	
 	function open_place(){
-		window.open('../place/main.html', '당신을 위한 여행지', 'height=600,width=1100,left=500,top=0')
+		window.open('../place/main.html', '당신을 위한 여행지', 'height=800,width=1100,left=400,top=50')
 	}
 </script>
 <style type="text/css">
@@ -176,7 +176,7 @@
 						<div class="col-xs-10 text-right menu-1">
 							<ul>
 								<li class="active"><a href="main.jsp">Home</a></li>
-								<li><a href="javascript:open_place()">여행지</a></li>
+								<li><a href="../place/place.jsp">여행지</a></li>
 								<li><a href="../course/course.jsp">코스</a></li>
 								<li class="has-dropdown"><a href="../board/board.jsp">소통광장</a>
 									<ul class="dropdown">
@@ -281,7 +281,7 @@
 			<div class="col-md-6 col-md-push-6">
 				<div class="row">
 					<div class="col-md-6 animate-box">
-						<a href="javascript:open_place()" class="f-tour-img" 
+						<a href="../place/place.jsp" class="f-tour-img" 
 							style="background-image: url(../images/main_1.JPG);">
 							<div class="desc">
 								<h3>여행지</h3>
