@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -83,10 +83,11 @@
 										%>
 										<td><font size="2" color="#f0ffed">&nbsp;&nbsp;&nbsp;&nbsp;${sessionName }님</font>&nbsp;</td>
 										<td>
-										<form action="../main/logout_ok.jsp" name="f_logout">
-										<input type="hidden" value="<%=request.getRequestURL()%>" name="url">
-										<a href="javascript::" onclick="logout()"><font size="1" color="yellow">로그아웃</font></a>
-										</form>
+											<form action="../main/logout_ok.jsp" name="f_logout">
+												<input type="hidden" value="<%=request.getRequestURL()%>"
+													name="url"> <a href="javascript::"
+													onclick="logout()"><font size="1" color="yellow">로그아웃</font></a>
+											</form>
 										</td>
 										<%
 											}
@@ -96,21 +97,20 @@
 							</div>
 						</div>
 						<div class="col-xs-10 text-right menu-1">
-													<ul>
+							<ul>
 								<li><a href="../main/main.jsp">Home</a></li>
 								<li class="active"><a href="../place/place.jsp">여행지</a></li>
 								<li><a href="../course/course.jsp">코스</a></li>
-								<li class="has-dropdown">
-									<a href="../board/board.jsp">소통광장</a>
+								<li class="has-dropdown"><a href="../board/board.jsp">소통광장</a>
 									<ul class="dropdown">
 										<li><a href="../board/board.jsp">자유게시판</a></li>
-										<li><a href="../board_editor/board_editor.jsp">editor's pick</a></li>
-									</ul>
-								</li>
+										<li><a href="../board_editor/board_editor.jsp">editor's
+												pick</a></li>
+									</ul></li>
 								<li><a href="../news/news.jsp">뉴스</a>
 								<li><a href="../mypage/mypage.jsp">MyPage</a></li>
 								<li><a href="../contact/contact.jsp">고객의 소리</a></li>
-							</ul>	
+							</ul>
 						</div>
 					</div>
 				</div>
@@ -137,11 +137,18 @@
 			</div>
 		</aside>
 
-		<div class="colorlib-wrap">
-
+		<div>
+			<table>
+				<tr>
+					<td height="300">
+					 
+					</td>
+				</tr>
+			</table>
+			<div align="center">
+			<iframe src="main.html" width="1500" height="1400" frameborder="0"></iframe>
+			</div>
 		</div>
-
-
 		<div id="colorlib-subscribe"
 			style="background-image: url(../images/img_bg_2.jpg);"
 			data-stellar-background-ratio="0.5">
@@ -283,6 +290,5 @@
 
 	<!-- Main -->
 	<script src="../js/main.js"></script>
-
 </body>
 </html>
