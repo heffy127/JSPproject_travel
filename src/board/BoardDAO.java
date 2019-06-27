@@ -471,12 +471,12 @@ public class BoardDAO {
 	public int[] listPopular(String popularDate) {
 		int[] popularNum = new int[5];
 		sql = "select num from board where reg_date like('" + popularDate
-				+ "%') and good > 5 order by good desc limit 5";
+				+ "%') and good > 4 order by good desc limit 5";
 		try {
 			con = mgr.getConnection();
 			ps = con.prepareStatement(sql);
 			rs = ps.executeQuery();
-			for (int i = 0; i < 3; i++) {
+			for (int i = 0; i < 5; i++) {
 				if (rs.next()) {
 					popularNum[i] = rs.getInt("num");
 				} else {
