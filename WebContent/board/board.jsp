@@ -67,7 +67,7 @@
 	<![endif]-->
 <script type="text/javascript">
 	function check_session() {
-		var ss = '<%=(String) session.getAttribute("id")%>'
+		var ss = '<%=(String) session.getAttribute("sessionId")%>'
 		if (ss != "null") {
 			location.href = "board_write.jsp"
 		} else {
