@@ -138,7 +138,11 @@
 									</ul>
 								</li>
 								<li><a href="../news/news.jsp">뉴스</a>
+								<%if(session.getAttribute("sessionId") == null){ %>
+								<li><a href="../member/loginPage.jsp">Login</a></li>
+								<% } else { %>
 								<li><a href="../mypage/mypage.jsp">MyPage</a></li>
+								<%}; %>
 								<li><a href="../contact/contact.jsp">고객의 소리</a></li>
 							</ul>
 						</div>
@@ -223,8 +227,8 @@
 										<th scope="col" width="40"><h5>말머리</h5></th>
 										<th scope="col" width="130"><h5>제목</h5></th>
 										<th scope="col" width="40"><h5>글쓴이</h5></th>
-										<th scope="col" width="10"><h5>조회수</h5></th>
-										<th scope="col" width="10"><h5>추천수</h5></th>
+										<th scope="col" width="10"><h5>조회</h5></th>
+										<th scope="col" width="10"><h5>추천</h5></th>
 										<th scope="col" width="60"><h5>작성일</h5></th>
 									</tr>
 								</thead>
