@@ -164,10 +164,10 @@
 								})
 						$
 								.ajax({
-									url : 'https://api.rss2json.com/v1/api.json?rss_url=http://www.travie.com/rss/clickTop.xml&api_key=vciu0xm0zzemy9hto9tncbiwdivayevqlxpehdgq&count=1',
+									url : 'https://api.rss2json.com/v1/api.json?rss_url=http://www.traveltimes.co.kr/rss/clickTop.xml&api_key=vciu0xm0zzemy9hto9tncbiwdivayevqlxpehdgq&count=1',
 									dataType : 'json',
 									data : {
-										url : 'http://www.travie.com/rss/clickTop.xml', // 원래 url
+										url : 'http://www.traveltimes.co.kr/rss/clickTop.xml', // 원래 url
 										api_key : 'vciu0xm0zzemy9hto9tncbiwdivayevqlxpehdgq', // key
 										count : 1
 									},
