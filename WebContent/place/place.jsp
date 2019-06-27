@@ -137,44 +137,20 @@
 			</div>
 		</aside>
 
-		<div>
+
+
+		</div>
 			<table>
 				<tr>
-					<td height="300">
+					<td height="50">
 					 
 					</td>
 				</tr>
 			</table>
+		
 			<div align="center">
 			<iframe src="main.html" width="1500" height="1400" frameborder="0"></iframe>
 			</div>
-		</div>
-		<div id="colorlib-subscribe"
-			style="background-image: url(../images/img_bg_2.jpg);"
-			data-stellar-background-ratio="0.5">
-			<div class="overlay"></div>
-			<div class="container">
-				<div class="row">
-					<div
-						class="col-md-6 col-md-offset-3 text-center colorlib-heading animate-box">
-						<h2>Sign Up for a Newsletter</h2>
-						<p>Sign up for our mailing list to get latest updates and
-							offers.</p>
-						<form class="form-inline qbstp-header-subscribe">
-							<div class="row">
-								<div class="col-md-12 col-md-offset-0">
-									<div class="form-group">
-										<input type="text" class="form-control" id="email"
-											placeholder="Enter your email">
-										<button type="submit" class="btn btn-primary">Subscribe</button>
-									</div>
-								</div>
-							</div>
-						</form>
-					</div>
-				</div>
-			</div>
-		</div>
 
 		<footer id="colorlib-footer" role="contentinfo">
 			<div class="container">
@@ -262,7 +238,6 @@
 				</div>
 			</div>
 		</footer>
-	</div>
 
 	<div class="gototop js-top">
 		<a href="#" class="js-gotop"><i class="icon-arrow-up2"></i></a>
