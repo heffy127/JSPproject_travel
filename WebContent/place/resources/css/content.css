@@ -102,7 +102,7 @@
 .wrap_contView .area_txtView1 p:first-child{padding-top: 0;}
 
 
-/* 추천,여행지,축제 상세 연관컨텐츠 여행지 */
+/* 여행지 상세 연관컨텐츠 여행지 */
 .box_thumRecom{width: 300px; margin-bottom: 13px;}
 .box_thumRecom ul{margin-top: 15px;}
 .box_thumRecom ul li{float: right; width: 48.5%;}
@@ -133,7 +133,7 @@
 .tit_reply span{color: #0a97cd; padding-left: 5px;}
 .tit_reply.min_tit{display:block;font-size: 16px;}
 
-/** 상세 페이지 댓글 **/
+/** 상세 페이지 **/
 .wrap_reply{position: relative; min-height: 280px;}
 .wrap_reply .list_reply{width: 60%;}
 .wrap_reply .list_reply > ul > li{position: relative; width: 100%; padding: 20px 10px; border-bottom: 1px solid #e6e6e6; box-sizing: border-box;}
@@ -205,7 +205,7 @@
 .list_thumType > li .area_txt .ar_tag > span{display:inline-block;margin:0 10px 10px 0;padding:2px 10px;background: #13294b;color:#fff;border-radius: 11px;}
 .list_thumType > li .btn_view{overflow: hidden; position: absolute; top: 24px; right: 0;z-index:90;width: 14px; height: 16px; background:url(../images/sub/btn_dot2.png) 0 0 no-repeat; text-indent: -9999px;}
 .list_thumType h4{font-size: 18px; color: #000;}
-/*이미지/동영상 리스트*/
+/*이미지 리스트*/
 .list_thumType2{width: 100%;}
 .list_thumType2 > li{float: left; width: 140px; padding: 20px 0; margin-left: 12px;}
 .list_thumType2 > li:first-child{margin-left: 0;}
@@ -282,15 +282,6 @@
 .area_tagList .tag_list.area_view_list{display:none;;border-top:1px solid #e6e6e6 !important;}
 .area_tagList .cnt_list li:first-child button{font-weight:300;color:#666}
 .area_tagList .cnt_list li:first-child button span{font-weight:300;}
-
-/* 우측 태그 상단 유관부서관련 */
-.area_tagList .type02{padding: 12px 0 6px;}                      
-.area_tagList .type02 li{width:50%;padding:0 0 0 0;margin:0 0 5px 0;}
-.area_tagList .type02 li button{width:100%;overflow: hidden;display: inline-block;text-overflow: ellipsis;white-space: nowrap;text-align:left;}
-.area_tagList .tag_list.type02 li:first-child button span{color: #666;font-weight: 400;}
-.area_tagList .tag_list.type02 li.on button span{color:#666;font-weight:800;color:#0a97cd}
-.area_tagList .tag_list.type02 li:hover button.active:after{display:none;}
-.area_tagList .tag_list.type02 li:hover button.btn_all_active:after{display:none;}
 
 /* 우측 태그 상단 메뉴 타입 A */
 .area_tagList .tag_menu.typeA{margin-top:0;border-top:1px solid #e6e6e6;}

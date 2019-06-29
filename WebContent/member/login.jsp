@@ -1,5 +1,5 @@
 <%@page import="java.util.ArrayList"%>
-<%@page import="member.membershipDTO"%> 
+<%@page import="member.membershipDTO"%>
 <%@page import="member.membershipDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -21,6 +21,7 @@
 			message = "로그인에 성공하셨습니다.";
 			out.write(message);
 			session.setAttribute("sessionId", id);
+			session.setAttribute("sessionName", name);
 			if(getIdBox == null){ //아이디 저장 체크 안한것.
 				session.setAttribute("remember", "");
 			}else{

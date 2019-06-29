@@ -1,7 +1,7 @@
 <%@page import="member.membershipDTO"%>
 <%@page import="member.membershipDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -64,136 +64,101 @@
 		document.f_logout.submit()
 	}
 </script>
-
 </head>
 <body>
 	<jsp:useBean id="dto" class="member.membershipDTO"></jsp:useBean>
-	<jsp:setProperty property="*" name="dto"/>
-	
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-	<script type="text/javascript">
+	<jsp:setProperty property="*" name="dto" />
 
-	<%
-		
-		String sessionId = (String)session.getAttribute("sessionId");
-		
-		membershipDAO dao = new membershipDAO();
-	
-		dto = dao.ShowInfo(sessionId);
-		
-		String name = dto.getName();
-		String ssn = dto.getSsn();
-		String ssn2 = dto.getSsn2();
-		String id = dto.getId();
-		String pw = dto.getPw();
-		String pwhint = dto.getPwhint();
-		String pwan = dto.getPwan();
-		String mail = dto.getMail();
-		String mail2 = dto.getMail2();
-		String address = dto.getAddress();
-		String address2 = dto.getAddress2();
-		String address3 = dto.getAddress3();
-		String postcode = dto.getPostcode();
-		String tel = dto.getTel();
-		String tel2 = dto.getTel2();
-		String tel3 = dto.getTel3();
-		
-		%>
-	
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script type="text/javascript">
+	<%String sessionId = (String) session.getAttribute("sessionId");
+
+			membershipDAO dao = new membershipDAO();
+
+			dto = dao.ShowInfo(sessionId);
+
+			String name = dto.getName();
+			String ssn = dto.getSsn();
+			String ssn2 = dto.getSsn2();
+			String id = dto.getId();
+			String pw = dto.getPw();
+			String pwhint = dto.getPwhint();
+			String pwan = dto.getPwan();
+			String mail = dto.getMail();
+			String mail2 = dto.getMail2();
+			String address = dto.getAddress();
+			String address2 = dto.getAddress2();
+			String address3 = dto.getAddress3();
+			String postcode = dto.getPostcode();
+			String tel = dto.getTel();
+			String tel2 = dto.getTel2();
+			String tel3 = dto.getTel3();%>
 	
 	$(function () { //DB에서 불러온 정보를 텍스트 필드에 값 넣기
-			var name = "<%= name %>"
-			var ssn = "<%= ssn %>"
-			var ssn2 = "<%= ssn2 %>"
-			var id = "<%= id %>"
-			var pw = "<%= pw %>"
-			var pwhint = "<%= pwhint %>"
-			var pwan = "<%= pwan %>"
-			var mail = "<%= mail %>"
-			var mail2 = "<%= mail2 %>"
-			var address = "<%= address %>"
-			var address2 = "<%= address2 %>"
-			var address3 = "<%= address3 %>"
+			var name = "<%=name%>"
+			var ssn = "<%=ssn%>"
+			var ssn2 = "<%=ssn2%>"
+			var id = "<%=id%>"
+			var pw = "<%=pw%>"
+			var pwhint = "<%=pwhint%>"
+			var pwan = "<%=pwan%>"
+			var mail = "<%=mail%>"
+			var mail2 = "<%=mail2%>"
+			var address = "<%=address%>"
+			var address2 = "<%=address2%>"
+			var address3 = "<%=address3%>"
 			if(address3 == "null"){
 				address3 = "";
 			}
-			var postcode = "<%= postcode %>"
-			var tel = "<%= tel %>"
-			var tel2 = "<%= tel2 %>"
-			var tel3 = "<%= tel3 %>"
-			
+			var postcode = "<%=postcode%>"
+			var tel = "<%=tel%>"
+			var tel2 = "<%=tel2%>"
+			var tel3 = "<%=tel3%>"
+
 			$('#name').val(name);
-			$("#name").attr("readonly", true);
-			
+
 			$('#ssn').val(ssn);
-			$("#ssn").attr("readonly", true);
-			
+
 			$('#ssn2').val(ssn2);
-			$("#ssn2").attr("readonly", true);
-			
+
 			$('#id').val(id);
-			$("#id").attr("readonly", true);
-			
+
 			$('#pw').val(pw);
-			$("#pw").attr("readonly", true);
-			
+
 			$('#pwhint').val(pwhint);
-			$("#pwhint").attr("readonly", true);
-			
+
 			$('#pwan').val(pwan);
-			$("#pwan").attr("readonly", true);
-			
+
 			$('#mail').val(mail);
-			$("#mail").attr("readonly", true);
-			
+
 			$('#mail2').val(mail2);
-			$("#mail2").attr("readonly", true);
-			
+
 			$('#address').val(address);
-			$("#address").attr("readonly", true);
-			
+
 			$('#address2').val(address2);
-			$("#address2").attr("readonly", true);
-			
+
 			$('#address3').val(address3);
-			$("#address3").attr("readonly", true);
-			
+
 			$('#postcode').val(postcode);
-			$("#postcode").attr("readonly", true);
-			
+
 			$('#tel').val(tel);
-			$("#tel").attr("readonly", true);
-			
+
 			$('#tel2').val(tel2);
-			$("#tel2").attr("readonly", true);
-			
+
 			$('#tel3').val(tel3);
-			$("#tel3").attr("readonly", true);
-			
-	});
-	
-	$(function UpdateCheck() {
-			$("#Update").click(function () {
-				location.href="mypageModify.jsp";
-				
-			});
-	});
-	
-	$(function DelCheck() {
-			$("#Delete").click(function () {
-				var message = confirm("삭제하시겠습니까?");
-				if(message == true){
-					document.f.submit();
-				}else{
-					return false;
-				}
-			});
 		});
 	
+	
 	</script>
+
+	${sessionId } 
+	${dto} 
+	alert("<%=dto.toString()%>")
+
 	<div class="colorlib-loader"></div>
-	<input type="hidden" id="dflksdj" value="<%= sessionId %>">
-	<input type="hidden" id="asdf" value="<%= id %>">
+	<input type="hidden" id="dflksdj" value="<%=sessionId%>">
+	<input type="hidden" id="asdf" value="<%=id%>">
 	<div id="page">
 		<nav class="colorlib-nav" role="navigation">
 			<div class="top-menu">
@@ -209,12 +174,11 @@
 										%>
 										<td><font size="2" color="#f0ffed">&nbsp;&nbsp;&nbsp;&nbsp;${sessionName }님</font>&nbsp;</td>
 										<td>
-										<form action="../main/logout_ok.jsp" name="f_logout">
-										<input type="hidden" value="<%=request.getRequestURL()%>" name="url">
-										<input type="hidden" value="'mypage'" name="fromMypage">
-										<a href="javascript::" onclick="logout()"><font size="1" color="yellow">로그아웃</font></a>
-										
-										</form>
+											<form action="../main/logout_ok.jsp" name="f_logout">
+												<input type="hidden" value="<%=request.getRequestURL()%>"
+													name="url"> <a href="javascript::"
+													onclick="logout()"><font size="1" color="yellow">로그아웃</font></a>
+											</form>
 										</td>
 										<%
 											}
@@ -228,17 +192,16 @@
 								<li><a href="../main/main.jsp">Home</a></li>
 								<li><a href="../place/place.jsp">여행지</a></li>
 								<li><a href="../course/course.jsp">코스</a></li>
-								<li class="has-dropdown">
-									<a href="../board/board.jsp">소통광장</a>
+								<li class="has-dropdown"><a href="../board/board.jsp">소통광장</a>
 									<ul class="dropdown">
 										<li><a href="../board/board.jsp">자유게시판</a></li>
-										<li><a href="../board_editor/board_editor.jsp">editor's pick</a></li>
-									</ul>
-								</li>
+										<li><a href="../board_editor/board_editor.jsp">editor's
+												pick</a></li>
+									</ul></li>
 								<li><a href="../news/news.jsp">뉴스</a>
 								<li class="active"><a href="mypage.jsp">MyPage</a></li>
 								<li><a href="../contact/contact.jsp">고객의 소리</a></li>
-							</ul>	
+							</ul>
 						</div>
 					</div>
 				</div>
@@ -292,124 +255,151 @@
 										<tr>
 											<td>
 												<table width="1250px" border="0"
-												style="color: #0e7f2e; backgorund-color: #F6F6F6; font-size: 15px; font-weight: bold">
+													style="color: #0e7f2e; backgorund-color: #F6F6F6; font-size: 15px; font-weight: bold">
 													<tr>
-														<td align="center"><img src="" height="30px">
-														</td>
-														<td height="40px">기본정보 </td>
-															
+														<td align="center"><img src="" height="30px"></td>
+														<td height="40px">기본정보</td>
+														<td><div id="sub_Title" align="right">서브 타이틀
+																입력값</div></td>
 													</tr>
 												</table>
 											</td>
 										</tr>
 										<tr>
 											<td>
-												<form name="f" action="DeleteInfo.jsp">
-												<table width="1250px" height="1px" align="center"
-												style="border: dotted 5px none; margin-top: 1px">
-													<tr>
-														<table width="1250px" height="20px" border="0"
-														style=" color : black; font-size: 15px;">
-															<tr>
-																<td>&nbsp;&nbsp; <img src="" height="30px">
-																</td>
-																<td bgcolor="#e2ffea" style="color : #0e7f2e ; font-weight: bold;" height="40px">&nbsp;이름</td>
-																<td><input type="text" name="name" id="name"></td> <!-- 이름 텍스트 필드 -->
-																<td>&nbsp;&nbsp;
-																</td>
-															</tr>
-															<tr>
-																<td >&nbsp;&nbsp; <img src="" height="30px">
-																</td>
-																<td bgcolor="#e2ffea" style="color : #0e7f2e ; font-weight: bold;" height="40px">&nbsp;주민등록번호</td>
-																<td><input type="text" name="ssn" id = "ssn" width="70px"> - <!-- 주민등록번호 첫번째 텍스트 필드 -->
-																<input type="text" name="ssn2" id="ssn2" width="70px"></td> <!-- 주민등록번호 두번째 텍스트 필드 -->
-															</tr>
-															<tr>
-																<td >&nbsp;&nbsp; <img src="" height="30px">
-																</td>
-																<td bgcolor="#e2ffea" style="color : #0e7f2e ; font-weight: bold;" height="40px">&nbsp;아이디</td>
-																<td><input type="text" name="id" id="id"></td> <!-- 아이디 텍스트 필드 -->
-																<td>&nbsp;&nbsp; <img src="" height="30px">
-																</td>
-															</tr>
-															<tr>
-																<td>&nbsp;&nbsp; <img src="" height="30px">
-																</td>
-																<td bgcolor="#e2ffea" style="color : #0e7f2e ; font-weight: bold;" height="40px">&nbsp;비밀번호</td>
-																<td><input type="text" name="pw" id="pw"></td> <!-- 비밀번호 텍스트 필드 -->
-																<td>&nbsp;&nbsp; <img src="" height="30px">
-																</td>
-															</tr>
-															<tr>
-																<td>&nbsp;&nbsp; <img src="" height="30px">
-																</td>
-																<td bgcolor="#e2ffea" style="color : #0e7f2e ; font-weight: bold;" height="40px">&nbsp;비밀번호 힌트 질문</td>
-																<td><input type="text" name="pwhint" id="pwhint"></td> <!-- 비밀번호 힌트 질문 텍스트 필드 -->
-																<td>&nbsp;&nbsp; <img src="" height="30px">
-																</td>
-															</tr>
-															<tr>
-																<td>&nbsp;&nbsp; <img src="" height="30px">
-																</td>
-																<td bgcolor="#e2ffea" style="color : #0e7f2e ; font-weight: bold;" height="40px">&nbsp;비밀번호 힌트 답변</td>
-																<td><input type="text" name="pwan" id="pwan"></td> <!-- 비밀번호 힌트 답변 텍스트 필드 -->
-																<td>&nbsp;&nbsp; <img src="" height="30px">
-																</td>
-															</tr>
-															<tr>
-																<td>&nbsp;&nbsp; <img src="" height="30px">
-																</td>
-																<td bgcolor="#e2ffea" style="color : #0e7f2e ; font-weight: bold;" height="40px">&nbsp;이메일</td>
-																<td><input type="text" name="mail" id="mail"> @  <!-- 이메일 텍스트 필드 -->
-																<input type="text" name="mail2" id="mail2"></td> <!-- 이메일 디테일 텍스트 필드 -->
-																<td>&nbsp;&nbsp; <img src="" height="30px">
-																</td>
-															</tr>
-															<tr>
-																<td>&nbsp;&nbsp; <img src="" height="30px">
-																</td>
-																<td bgcolor="#e2ffea" style="color : #0e7f2e ; font-weight: bold;" height="80px">&nbsp;주소</td>  
-																<td><input type="text" name="address" id="address"> - <!-- 주소 텍스트 필드 -->
-																<input type="text" name="address2" id="address2">	<!-- 상세주소 텍스트 필드 -->
-																<input type="text" name="address3" id="address3">	<!-- 참고항목 텍스트 필드 -->
-																<input type="text" name="postcode" id="postcode"></td>	<!-- 우편번호 텍스트 필드 -->
-																<td>&nbsp;&nbsp; <img src="" height="30px">
-																</td>
-															</tr>
-															<tr>
-																<td>&nbsp;&nbsp; <img src="" height="30px">
-																</td>
-																<td bgcolor="#e2ffea" style="color : #0e7f2e ; font-weight: bold;" height="40px">&nbsp;핸드폰 번호</td>
-																<td><input type="text" name="tel" id="tel"> - 	<!-- 핸드폰 텍스트 필드 -->
-																<input type="text" name="tel2" id="tel2"> - 	<!-- 핸드폰 가운데자리 텍스트 필드 -->
-																<input type="text" name="tel3" id="tel3"></td>	<!-- 핸드폰 끝자리 텍스트 필드 -->
-																<td>&nbsp;&nbsp; <img src="" height="30px">
-																</td>
-															</tr>
-														</table>
-														<table width="1250px" height="20px" border="0"
-														style=" color : black; font-size: 15px; margin-top: 3%">
-															<tr>
-																<td align="center">
-																	<input type="button" name="Update" id="Update" value="  회원정보 수정  " align="center"
-																	style="cursor: pointer; background: white; color: black; border-color: black;">
-																	<input type="button" name="Delete" id="Delete" value="  회원 탈퇴  " align="center"
-																	style="cursor: pointer; background: white; color: black; border-color: black;">
-																</td>
-															</tr>
-													</tr>
-												</table>						
-									</table>
+												<form name="f" action="UpdateInfo.jsp">
+													<table width="1250px" height="1px" align="center"
+														style="border: dotted 5px none; margin-top: 1px">
+														<tr>
+															<table width="1250px" height="20px" border="0"
+																style="color: black; font-size: 15px;">
+																<tr>
+																	<td>&nbsp;&nbsp; <img src="" height="30px">
+																	</td>
+																	<td bgcolor="#e2ffea"
+																		style="color: #0e7f2e; font-weight: bold;"
+																		height="40px">&nbsp;이름</td>
+																	<td><input type="text" name="name" id="name"></td>
+																	<!-- 이름 텍스트 필드 -->
+																	<td>&nbsp;&nbsp;</td>
+																</tr>
+																<tr>
+																	<td>&nbsp;&nbsp; <img src="" height="30px">
+																	</td>
+																	<td bgcolor="#e2ffea"
+																		style="color: #0e7f2e; font-weight: bold;"
+																		height="40px">&nbsp;주민등록번호</td>
+																	<td><input type="text" name="ssn" id="ssn"
+																		width="70px"> - <!-- 주민등록번호 첫번째 텍스트 필드 --> <input
+																		type="text" name="ssn2" id="ssn2" width="70px"></td>
+																	<!-- 주민등록번호 두번째 텍스트 필드 -->
+																</tr>
+																<tr>
+																	<td>&nbsp;&nbsp; <img src="" height="30px">
+																	</td>
+																	<td bgcolor="#e2ffea"
+																		style="color: #0e7f2e; font-weight: bold;"
+																		height="40px">&nbsp;아이디</td>
+																	<td><input type="text" name="id" id="id"></td>
+																	<!-- 아이디 텍스트 필드 -->
+																	<td>&nbsp;&nbsp; <img src="" height="30px">
+																	</td>
+																</tr>
+																<tr>
+																	<td>&nbsp;&nbsp; <img src="" height="30px">
+																	</td>
+																	<td bgcolor="#e2ffea"
+																		style="color: #0e7f2e; font-weight: bold;"
+																		height="40px">&nbsp;비밀번호</td>
+																	<td><input type="text" name="pw" id="pw"></td>
+																	<!-- 비밀번호 텍스트 필드 -->
+																	<td>&nbsp;&nbsp; <img src="" height="30px">
+																	</td>
+																</tr>
+																<tr>
+																	<td>&nbsp;&nbsp; <img src="" height="30px">
+																	</td>
+																	<td bgcolor="#e2ffea"
+																		style="color: #0e7f2e; font-weight: bold;"
+																		height="40px">&nbsp;비밀번호 힌트 질문</td>
+																	<td><input type="text" name="pwhint" id="pwhint"></td>
+																	<!-- 비밀번호 힌트 질문 텍스트 필드 -->
+																	<td>&nbsp;&nbsp; <img src="" height="30px">
+																	</td>
+																</tr>
+																<tr>
+																	<td>&nbsp;&nbsp; <img src="" height="30px">
+																	</td>
+																	<td bgcolor="#e2ffea"
+																		style="color: #0e7f2e; font-weight: bold;"
+																		height="40px">&nbsp;비밀번호 힌트 답변</td>
+																	<td><input type="text" name="pwan" id="pwan"></td>
+																	<!-- 비밀번호 힌트 답변 텍스트 필드 -->
+																	<td>&nbsp;&nbsp; <img src="" height="30px">
+																	</td>
+																</tr>
+																<tr>
+																	<td>&nbsp;&nbsp; <img src="" height="30px">
+																	</td>
+																	<td bgcolor="#e2ffea"
+																		style="color: #0e7f2e; font-weight: bold;"
+																		height="40px">&nbsp;이메일</td>
+																	<td><input type="text" name="mail" id="mail">
+																		@ <!-- 이메일 텍스트 필드 --> <input type="text" name="mail2"
+																		id="mail2"></td>
+																	<!-- 이메일 디테일 텍스트 필드 -->
+																	<td>&nbsp;&nbsp; <img src="" height="30px">
+																	</td>
+																</tr>
+																<tr>
+																	<td>&nbsp;&nbsp; <img src="" height="30px">
+																	</td>
+																	<td bgcolor="#e2ffea"
+																		style="color: #0e7f2e; font-weight: bold;"
+																		height="80px">&nbsp;주소</td>
+																	<td><input type="text" name="address" id="address">
+																		- <!-- 주소 텍스트 필드 --> <input type="text"
+																		name="address2" id="address2"> <!-- 상세주소 텍스트 필드 -->
+																		<input type="text" name="address3" id="address3">
+																		<!-- 참고항목 텍스트 필드 --> <input type="text"
+																		name="postcode" id="postcode"></td>
+																	<!-- 우편번호 텍스트 필드 -->
+																	<td>&nbsp;&nbsp; <img src="" height="30px">
+																	</td>
+																</tr>
+																<tr>
+																	<td>&nbsp;&nbsp; <img src="" height="30px">
+																	</td>
+																	<td bgcolor="#e2ffea"
+																		style="color: #0e7f2e; font-weight: bold;"
+																		height="40px">&nbsp;핸드폰 번호</td>
+																	<td><input type="text" name="tel" id="tel">
+																		- <!-- 핸드폰 텍스트 필드 --> <input type="text" name="tel2"
+																		id="tel2"> - <!-- 핸드폰 가운데자리 텍스트 필드 --> <input
+																		type="text" name="tel3" id="tel3"></td>
+																	<!-- 핸드폰 끝자리 텍스트 필드 -->
+																	<td>&nbsp;&nbsp; <img src="" height="30px">
+																	</td>
+																</tr>
+															</table>
+															<table width="1250px" height="20px" border="0"
+																style="color: black; font-size: 15px; margin-top: 3%">
+																<tr>
+																	<td align="center"><input type="submit"
+																		name="Update" id="Update" value="  회원정보 수정  "
+																		align="center"
+																		style="cursor: pointer; background: white; color: black; border-color: black;">
+																	</td>
+																</tr>
+																</tr>
+															</table>
+													</table>
+												</form>
 
-									<div class="row row-pb-sm">
-										<div class="col-md-6">
-											
-										</div>
-										<div class="col-md-6">
-										</div>
-									</div>
-
+												<div class="row row-pb-sm">
+													<div class="col-md-6"></div>
+													<div class="col-md-6"></div>
+												</div>
 								</div>
 							</div>
 						</div>
@@ -435,9 +425,9 @@
 							<div class="item">
 								<div class="testimony text-center">
 									<span class="img-user"
-										style="background-image: url(../images/person1.jpg);"></span> <span
-										class="user">Alysha Myers</span> <small>Miami Florida,
-										USA</small>
+										style="background-image: url(../images/person1.jpg);"></span>
+									<span class="user">Alysha Myers</span> <small>Miami
+										Florida, USA</small>
 									<blockquote>
 										<p>" A small river named Duden flows by their place and
 											supplies it with the necessary regelialia.</p>
@@ -447,8 +437,9 @@
 							<div class="item">
 								<div class="testimony text-center">
 									<span class="img-user"
-										style="background-image: url(../images/person2.jpg);"></span> <span
-										class="user">James Fisher</span> <small>New York, USA</small>
+										style="background-image: url(../images/person2.jpg);"></span>
+									<span class="user">James Fisher</span> <small>New York,
+										USA</small>
 									<blockquote>
 										<p>One day however a small line of blind text by the name
 											of Lorem Ipsum decided to leave for the far World of Grammar.</p>
@@ -458,8 +449,9 @@
 							<div class="item">
 								<div class="testimony text-center">
 									<span class="img-user"
-										style="background-image: url(../images/person3.jpg);"></span> <span
-										class="user">Jacob Webb</span> <small>Athens, Greece</small>
+										style="background-image: url(../images/person3.jpg);"></span>
+									<span class="user">Jacob Webb</span> <small>Athens,
+										Greece</small>
 									<blockquote>
 										<p>Alphabet Village and the subline of her own road, the
 											Line Lane. Pityful a rethoric question ran over her cheek,

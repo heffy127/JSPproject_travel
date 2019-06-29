@@ -8,8 +8,13 @@
 </head>
 <body>
 	<%
-	session.invalidate();
+	String mp = request.getParameter("fromMypage");
 	String url = request.getParameter("url");
+	if(mp != null){
+		url = "../main/main.jsp";
+	}
+	session.removeAttribute("sessionId");
+	session.removeAttribute("sessionName");
 	%>
 </body>
 <script type="text/javascript">

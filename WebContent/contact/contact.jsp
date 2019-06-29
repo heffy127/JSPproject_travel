@@ -224,8 +224,7 @@
 						<div class="row contact-info-wrap">
 							<div class="col-md-3">
 								<p>
-									<span><i class="icon-location"></i></span> 198 West 21th
-									Street, <br> Suite 721 New York NY 10016
+									<span><i class="icon-location"><font size="2">서울특별시 동작구 노량진 45-3, <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;아이비빌딩 3층</font></i></span> 
 								</p>
 							</div>
 							<div class="col-md-3">

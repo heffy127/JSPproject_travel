@@ -1,5 +1,4 @@
 @charset "utf-8";
-/* 1219 font-face 수정*/
 /* NotoSans KR */
 @font-face {
 	font-family: 'NotoSansKR' !important;
@@ -58,7 +57,6 @@
 	font-weight: 800 !important;
 	src:url(font/NotoSansJP-Bold.woff2) format('woff2') !important;
 }
-/* // 1219 font-face 수정*/
 
 /* for print */
 @media print {

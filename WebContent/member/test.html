@@ -19,8 +19,8 @@
 	$(function() { //메일 select값 text필드에 가져오기
 		$('select[name=mailaddress]').change(function() {
 			if ($(this).val() == "1") {
-				$('mail2').val("");
-				$("mail2").attr("readonly", false);
+				$('#mail2').val("");
+				$("#mail2").attr("readonly", false);
 			} else {
 				$('#mail2').val($(this).val());
 				$("#mail2").attr("readonly", true);

@@ -56,8 +56,8 @@ public class membershipDTO {
 	public String getPwhint() {
 		return pwhint;
 	}
-	public void setPwhString(String pwhString) {
-		this.pwhint = pwhString;
+	public void setPwhint(String pwhint) {
+		this.pwhint = pwhint;
 	}
 	public String getPwan() {
 		return pwan;

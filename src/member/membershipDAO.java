@@ -1,12 +1,9 @@
 package member;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
-
-import sun.security.jca.GetInstance;
 
 public class membershipDAO {
 	Connection con;
@@ -283,5 +280,142 @@ public class membershipDAO {
 			mgr.freeConnection(con);
 		}
 		return list;
+	}
+	
+	public membershipDTO ShowInfo(String sessionId) {
+		
+		membershipDTO dto = null;
+		
+		mgr = DBConnectionMgr.getInstance();
+		
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			String url= "jdbc:mysql://localhost:3306/site";
+			String user = "root";
+			String password = "1234";
+			con = mgr.getConnection();
+			
+			String sql = "select * from membership where id=?";
+			
+			PreparedStatement ps = con.prepareStatement(sql);
+			
+			ps.setString(1, sessionId);
+			
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				dto = new membershipDTO();
+				String name = rs.getString(1);
+				String ssn = rs.getString(2);
+				String ssn2 = rs.getString(3);
+				String id = rs.getString(4);
+				String pw = rs.getString(5);
+				String pwhint = rs.getString(6);
+				String pwan = rs.getString(7);
+				String mail = rs.getString(8);
+				String mail2 = rs.getString(9);
+				String address = rs.getString(10);
+				String address2 = rs.getString(11);
+				String address3 = rs.getString("address3");
+				String postcode = rs.getString("postcode");
+				String tel = rs.getString(14);
+				String tel2 = rs.getString(15);
+				String tel3 = rs.getString(16);
+				
+				dto.setName(name);
+				dto.setSsn(ssn);
+				dto.setSsn2(ssn2);
+				dto.setId(id);
+				dto.setPw(pw);
+				dto.setPwhint(pwhint);
+				dto.setPwan(pwan);
+				dto.setMail(mail);
+				dto.setMail2(mail2);
+				dto.setAddress(address);
+				dto.setAddress2(address2);
+				dto.setAddress3(address3);
+				dto.setPostcode(postcode);
+				dto.setTel(tel);
+				dto.setTel2(tel2);
+				dto.setTel3(tel3);
+				
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			mgr.freeConnection(con);
+		}
+		/*
+		 * boolean check = (inputId.equals(id)); System.out.println(inputId);
+		 * System.out.println(inputPw); System.out.println(id); System.out.println(pw);
+		 * System.out.println(check); System.out.println(list.size());
+		 */
+		return dto;
+	}
+	
+	public void UpdateInfo(membershipDTO dto) {
+		
+		mgr = DBConnectionMgr.getInstance();
+		
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			String url= "jdbc:mysql://localhost:3306/site";
+			String user = "root";
+			String password = "1234";
+			con = mgr.getConnection();
+			
+			String sql = "update membership set name=?, pw=?, pwhint=?, pwan=?, mail=?, mail2=?, "
+					+ "address=?, address2=?, address3=?, postcode=?, tel=?, tel2=?, tel3=? where id=?";
+			
+			PreparedStatement ps = con.prepareStatement(sql);
+			
+			ps.setString(1, dto.getName());
+			ps.setString(2, dto.getPw());
+			ps.setString(3, dto.getPwhint());
+			ps.setString(4, dto.getPwan());
+			ps.setString(5, dto.getMail());
+			ps.setString(6, dto.getMail2());
+			ps.setString(7, dto.getAddress());
+			ps.setString(8, dto.getAddress2());
+			ps.setString(9, dto.getAddress3());
+			ps.setString(10, dto.getPostcode());
+			ps.setString(11, dto.getTel());
+			ps.setString(12, dto.getTel2());
+			ps.setString(13, dto.getTel3());
+			ps.setString(14, dto.getId());
+			
+			ps.executeUpdate();	
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			mgr.freeConnection(con);
+		}
+	}
+	
+	public void DeleteInfo(String sessinoId) {
+		
+		mgr = DBConnectionMgr.getInstance();
+		
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			String url= "jdbc:mysql://localhost:3306/site";
+			String user = "root";
+			String password = "1234";
+			con = mgr.getConnection();
+			
+			String sql = "delete from membership where id=?";
+			
+			PreparedStatement ps = con.prepareStatement(sql);
+			
+			ps.setString(1, sessinoId);
+			
+			ps.executeUpdate();	
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			mgr.freeConnection(con);
+		}
 	}
 }

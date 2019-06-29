@@ -1,5 +1,5 @@
 <%@page import="member.membershipDTO"%>
-<%@page import="member.membershipDAO"%> 
+<%@page import="member.membershipDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 			<%

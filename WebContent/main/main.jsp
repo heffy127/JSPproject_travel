@@ -4,11 +4,13 @@
 <html>
 <head>
 <%
+if(session.getAttribute("sessionId") == null){
 	request.setCharacterEncoding("utf-8");
 	String id = request.getParameter("id");
 	String name = request.getParameter("name");
 	session.setAttribute("sessionId", id);
 	session.setAttribute("sessionName", name);
+}
 %>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -78,11 +80,8 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script type="text/javascript">
-	$(document)
-			.ready(
-					function() { // 실시간 여행 기사 가져오는 코
-						$
-								.ajax({
+	$(document).ready(function() { // 실시간 여행 기사 가져오는 코
+						$.ajax({
 									url : 'https://api.rss2json.com/v1/api.json?rss_url=http://www.traveltimes.co.kr/rss/allArticle.xml&api_key=vciu0xm0zzemy9hto9tncbiwdivayevqlxpehdgq&count=30',
 									dataType : 'json',
 									data : {
@@ -133,10 +132,6 @@
 	function open_page(url) {
 		newPage = window.open(url);
 	}
-	
-	function open_place(){
-		window.open('../place/main.html', '당신을 위한 여행지', 'height=800,width=1100,left=400,top=50')
-	}
 </script>
 <style type="text/css">
 .line {
@@ -184,7 +179,11 @@
 										<li><a href="../board_editor/board_editor.jsp">editor's pick</a></li>
 									</ul></li>
 								<li><a href="../news/news.jsp">뉴스</a>
+								<%if(session.getAttribute("sessionId") == null){ %>
+								<li><a href="../member/loginPage.jsp">Login</a></li>
+								<% } else { %>
 								<li><a href="../mypage/mypage.jsp">MyPage</a></li>
+								<%}; %>
 								<li><a href="../contact/contact.jsp">고객의 소리</a></li>
 							</ul>
 						</div>

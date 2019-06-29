@@ -32,26 +32,26 @@
 				data : d,
 				success : function (result) {
 					var data = result.trim();
-					if(data == "아이디 혹은 비밀번호가 맞지않습니다."){
+					
+					if(data != "로그인에 성공하셨습니다."){
+						alert("로그인에 성공하셨습니다.");
 						alert("아이디 혹은 비밀번호가 맞지않습니다.");
 						return false;
-					}
-					if(data == "로그인에 성공하셨습니다."){
-						alert("로그인에 성공하셨습니다.");
 					}
 				} 
 			});
 		});
 		
 		var ss = "<%=(String)session.getAttribute("rememberId")%>" //세션값 가져오기
-		var ss1 = "<%=(String)session.getAttribute("sessionId")%>" //세션값 가져오기
-		alert(ss);
-		alert(ss1);
+		var ss1 = "<%=(String)session.getAttribute("sessionId")%>" //아이디 저장 없이 세션값 가져오기
+		var ss2 = "<%=(String)session.getAttribute("sessionName")%>" //아이디 저장 없이 이름값 가져오기
+		
 		if(ss != "null"){
-			alert("세션있다");
 			$("#loginid").val(ss);
-		}else{
-			alert("세션없다");
+		}
+		
+		if(ss1 != "null"){ //아이디 저장없이도 세션값 받아서 메인페이지로 이동.
+			location.href="../main/main.jsp";
 		}
 	});
 </script>
