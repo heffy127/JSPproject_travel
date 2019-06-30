@@ -55,7 +55,7 @@ public class ContactService {
 				new InternetAddress("heffy127@gmail.com"));
 		mimeMessage.setSubject(category + " : " + subject);
 		mimeMessage.setText( "Category : " + category + "\nSubject : " + subject + "\nFrom : " + name + "<" + email + ">" +"\nCc : \n" + message +
-				"\n\n\n * 본 메일은 HT 고객의 소리를 통해서 온 고객님의 소중한 의견입니다. *");
+				"\n\n\n * 본 메일은 HT 고객의 소리를 통해서 온 의견입니다. *");
 		Transport.send(mimeMessage);	// gmail서버로 넘어감
 	}
 }

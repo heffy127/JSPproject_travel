@@ -33,7 +33,7 @@
 	%>
 <script type="text/javascript">
 	alert("고객님의 소중한 의견이 전달되었습니다.")
-	location.href="contact.html"
+	location.href="contact.jsp"
 </script>
 
 </body>

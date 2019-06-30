@@ -108,6 +108,41 @@
 			var id = "<%= id %>"
 			var pw = "<%= pw %>"
 			var pwhint = "<%= pwhint %>"
+
+			switch (pwhint) {
+				case '1':
+					pwhint = '졸업한 초등학교 이름은?'
+					break;
+				case '2':
+					pwhint ='제일 친한 친구 이름은??'
+					break;
+				case '3':
+					pwhint ='아버지 성함은?'
+					break;
+				case '4':
+					pwhint ='어머니 성함은?'
+					break;
+				case '5':
+					pwhint ='어릴적 내 별명은?'
+					break;
+				case '6':
+					pwhint ='가장 아끼는 물건은?'
+					break;
+				case '7':
+					pwhint ='좋아하는 동물은?'
+					break;
+				case '8':
+					pwhint ='좋아하는 색깔은?'
+					break;
+				case '9':
+					pwhint ='좋아하는 음식은?'
+					break;
+			
+				default:
+				pwhint ='미선택'
+					break;
+			}
+
 			var pwan = "<%= pwan %>"
 			var mail = "<%= mail %>"
 			var mail2 = "<%= mail2 %>"

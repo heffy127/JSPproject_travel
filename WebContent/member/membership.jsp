@@ -13,9 +13,16 @@
 		
 		<%
 			membershipDAO dao = new membershipDAO();
-			dao.insert(dto); 
+			int res = dao.insert(dto);
+			String alert = "";
+			if(res > 0){
+				alert = "회원가입이 완료되었습니다.";
+			} else {
+				alert = "회원가입이 처리되지 못했습니다.";
+			}
 		%>
 		<script type="text/javascript">
+		alert('<%=alert%>')
 		location.href = "loginPage.jsp"
 		</script>
 		</body>

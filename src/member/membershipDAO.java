@@ -10,8 +10,8 @@ public class membershipDAO {
 	
 	DBConnectionMgr mgr;
 
-	public void insert(membershipDTO dto) {
-		
+	public int insert(membershipDTO dto) {
+		int res = 0;
 		mgr = DBConnectionMgr.getInstance();
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
@@ -40,13 +40,14 @@ public class membershipDAO {
 			ps.setString(15, dto.getTel2());
 			ps.setString(16, dto.getTel3());
 			
-			ps.executeUpdate();
+			res = ps.executeUpdate();
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
 			mgr.freeConnection(con);
 		}
+		return res;
 	}
 	public String select(String inputId) {
 		

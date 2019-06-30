@@ -102,6 +102,41 @@
 			var id = "<%=id%>"
 			var pw = "<%=pw%>"
 			var pwhint = "<%=pwhint%>"
+			
+				switch (pwhint) {
+				case '1':
+					pwhint = '졸업한 초등학교 이름은?'
+					break;
+				case '2':
+					pwhint ='제일 친한 친구 이름은??'
+					break;
+				case '3':
+					pwhint ='아버지 성함은?'
+					break;
+				case '4':
+					pwhint ='어머니 성함은?'
+					break;
+				case '5':
+					pwhint ='어릴적 내 별명은?'
+					break;
+				case '6':
+					pwhint ='가장 아끼는 물건은?'
+					break;
+				case '7':
+					pwhint ='좋아하는 동물은?'
+					break;
+				case '8':
+					pwhint ='좋아하는 색깔은?'
+					break;
+				case '9':
+					pwhint ='좋아하는 음식은?'
+					break;
+			
+				default:
+				pwhint ='미선택'
+					break;
+			}
+			
 			var pwan = "<%=pwan%>"
 			var mail = "<%=mail%>"
 			var mail2 = "<%=mail2%>"
@@ -151,10 +186,6 @@
 	
 	
 	</script>
-
-	${sessionId } 
-	${dto} 
-	alert("<%=dto.toString()%>")
 
 	<div class="colorlib-loader"></div>
 	<input type="hidden" id="dflksdj" value="<%=sessionId%>">
@@ -279,7 +310,7 @@
 																	<td bgcolor="#e2ffea"
 																		style="color: #0e7f2e; font-weight: bold;"
 																		height="40px">&nbsp;이름</td>
-																	<td><input type="text" name="name" id="name"></td>
+																	<td><input type="text" name="name" id="name" readonly="readonly"></td>
 																	<!-- 이름 텍스트 필드 -->
 																	<td>&nbsp;&nbsp;</td>
 																</tr>
@@ -290,8 +321,8 @@
 																		style="color: #0e7f2e; font-weight: bold;"
 																		height="40px">&nbsp;주민등록번호</td>
 																	<td><input type="text" name="ssn" id="ssn"
-																		width="70px"> - <!-- 주민등록번호 첫번째 텍스트 필드 --> <input
-																		type="text" name="ssn2" id="ssn2" width="70px"></td>
+																		width="70px" readonly="readonly"> - <!-- 주민등록번호 첫번째 텍스트 필드 --> <input
+																		type="text" name="ssn2" id="ssn2" width="70px" readonly="readonly"></td>
 																	<!-- 주민등록번호 두번째 텍스트 필드 -->
 																</tr>
 																<tr>
@@ -300,7 +331,7 @@
 																	<td bgcolor="#e2ffea"
 																		style="color: #0e7f2e; font-weight: bold;"
 																		height="40px">&nbsp;아이디</td>
-																	<td><input type="text" name="id" id="id"></td>
+																	<td><input type="text" name="id" id="id" readonly="readonly"></td>
 																	<!-- 아이디 텍스트 필드 -->
 																	<td>&nbsp;&nbsp; <img src="" height="30px">
 																	</td>
