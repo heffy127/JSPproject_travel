@@ -108,11 +108,7 @@
 												pick</a></li>
 									</ul></li>
 								<li><a href="../news/news.jsp">뉴스</a>
-								<%if(session.getAttribute("sessionId") == null){ %>
-								<li><a href="../member/loginPage.jsp">Login</a></li>
-								<% } else { %>
 								<li><a href="../mypage/mypage.jsp">MyPage</a></li>
-								<%}; %>
 								<li><a href="../contact/contact.jsp">고객의 소리</a></li>
 							</ul>
 						</div>
@@ -120,6 +116,7 @@
 				</div>
 			</div>
 		</nav>
+
 		<aside id="colorlib-hero">
 			<div class="flexslider">
 				<ul class="slides">
@@ -140,21 +137,19 @@
 				</ul>
 			</div>
 		</aside>
-
-
-
-		</div>
+		
+		<div>
 			<table>
 				<tr>
-					<td height="50">
-					 
-					</td>
+					<td height="50px"><font color="white">.</font></td>
 				</tr>
 			</table>
+		</div>
 		
 			<div align="center">
-			<iframe src="main.html" width="1500" height="1400" frameborder="0"></iframe>
+				<iframe src="main.html" width="1600" height="1400" frameborder="0"></iframe>
 			</div>
+	
 
 		<footer id="colorlib-footer" role="contentinfo">
 			<div class="container">
@@ -242,6 +237,7 @@
 				</div>
 			</div>
 		</footer>
+	</div>
 
 	<div class="gototop js-top">
 		<a href="#" class="js-gotop"><i class="icon-arrow-up2"></i></a>

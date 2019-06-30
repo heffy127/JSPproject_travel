@@ -57,7 +57,11 @@
 <!--[if lt IE 9]>
 	<script src="js/respond.min.js"></script>
 	<![endif]-->
-
+<script type="text/javascript">
+	function open_page(url) {
+		newPage = window.open(url);
+	}
+</script>
 </head>
 <script type="text/javascript">
 	function logout() {
@@ -143,94 +147,78 @@
 			<div class="container">
 				<table width="1200px" height="50px" align="center" border="0" style="border-collapse:collapse";>
 					<tr>
-						<td height="80px">
-						</td>
+						<td style="width : 200px; font-size: 50px; font-weight: bold; padding-top: 10%;"><a href="javascript:open_page('http://www.oworld.kr/newkfsweb/kfs/dcco/dccoMainindex.do')">오월드</a></td>
 					</tr>
 					<tr>
-						<td style="width : 200px; font-size: 25px; font-weight: bold;" >인기 핫 플레이스!</td>
-						<td><div id = "sub_title">&nbsp;한번은 꼭 가봐야하는 계절별 코스</div></td>
+						<td><div id = "sub_title">&nbsp;대전시 중구</div></td>
 					</tr>
+					<tr>
+						<td style="padding-top:2%; color: black;" align="top">
+							<span>어린이를 위한 소박한 놀이기구, 작은 동물원, 엔터테인먼트 공간을 갖추고 있는</span><br>
+							<span>서민적인 놀이공원입니다.</span>
+						</td>
+						<td width="200px;" height="200px;" align="center">
+							<img src="../course/image/OhWorld/Oworld.jpg" width="350px;" height="200px;">
+						</td>
+					</tr>	
+									
 				</table>
-				<table width="1200px" height="600px" align="center" border="1" style="border-collapse:collapse";>
+				<table width="1200px" height="600px" align="center" border="0" style="border-collapse:collapse; margin-top: 5%;">
 					<tr>
-						<td align="center">
+						<td width="200px" height="150px" align="center">
 							<div class="img">
-								<a href="NamlandDetail.jsp">
-									<img src="../course/image/Namland.jpg" width="350px;" height="300px;" >
-								</a>
-								<div class="text">
-									<strong>영화같은 배경,맑은공기 남이섬</strong>
-								</div>
+								<img src="../course/image/OhWorld/bird_info.jpg" width="200px;" height="150px;" >
 							</div>
 						</td>
-						<td align="center">
+						<td>
+							<span style="font-size: 20px; font-weight: bold; ">&nbsp;&nbsp;<a href="javascript:open_page('http://www.oworld.kr/newkfsweb/cop/bbs/selectViewPage.do?bbsId=BBSMSTR_1535&mn=KFS_34_03_07_01')">버드랜드</a></span><br>
+							<span>&nbsp;&nbsp;아마존등에 서식하는 열대조류와 펭귄 등 다양한 희귀새들을 직접 보고 , 먹이도 주며
+							 </span><br>
+							 <span>&nbsp;&nbsp;함께 사진도 찍을 수 있는 이색체험 공간입니다.</span><br><br>
+							 <span>&nbsp;&nbsp;#새 #펭귄 #열대조류 #아마존 #문화시설 #아이들 #먹이</span>
+						</td>
+					</tr>
+					<hr color="black">
+					<tr>
+						<td width="200px" height="150px" align="center" style="padding-top: 1%;">
 							<div class="img">
-								<a href="HanRiver.jsp">
-									<img src="../course/image/OneRiver.jpg" width="350px;" height="300px;" >
-								</a>
-								<div class="text">
-									<strong>한번쯤은 꼭 가봐야하는 한강</strong>
-								</div>
+								<img src="../course/image/OhWorld/Whiled_Strom.jpg" width="200px;" height="150px;" >
 							</div>
 						</td>
-						<td align="center">
-							<div class="img">
-								<a href="OhWorld.jsp">
-									<img src="../course/image/Oworld.jpg" width="350px;" height="300px;" >
-								</a>
-								<div class="text">
-									<strong>테마파크에 빠질수 없는곳 오월드</strong>
-								</div>
-							</div>
+						<td>
+							<span style="font-size: 20px; font-weight: bold; ">&nbsp;&nbsp;<a href="javascript:open_page('http://www.oworld.kr/newkfsweb/cop/bbs/selectBoardList.do?bbsId=BBSMSTR_1445&mn=KFS_34_03_01_01')">조이랜드</a></span><br>
+							<span>&nbsp;&nbsp;아이들과 함께 놀이기구를 체험할수 있는 곳으로 스릴위주의 놀이기구
+							 </span><br><br><br>
+							 <span>&nbsp;&nbsp;#놀이기구 #스릴 #가족 #아이들 #투게더</span>
 						</td>
 					</tr>
 					<tr>
-						<td align="center">
-						 <ul align="left">
-						 	<li>
-						 	<span>겨울연가 촬영지</span>
-						 	</li>
-						 	<li>
-						 	<span>병으로 만든 조형물</span>
-						 	</li>
-						 	<li>
-						 	<span>메타쉐콰이어길</span>
-						 	</li>
-						 	<li>
-						 	<span>유리분수</span>
-						 	</li>
-						 </ul>
+						<td width="200px" height="150px" align="center" style="padding-top: 1%;">
+							<div class="img">
+								<img src="../course/image/OhWorld/zooLand.jpg" width="200px;" height="150px;" >
+							</div>
 						</td>
-						<td align="center">
-						<ul align="left">
-						 	<li>
-						 	<span>녹음수 광장</span>
-						 	</li>
-						 	<li>
-						 	<span>물빛광장/물빛무대</span>
-						 	</li>
-						 	<li>
-						 	<span>63빌딩</span>
-						 	</li>
-						 	<li>
-						 	<span>무지개 분수</span>
-						 	</li>
-						 </ul>
+						<td>
+							<span style="font-size: 20px; font-weight: bold; ">&nbsp;&nbsp;<a href="javascript:open_page('http://www.oworld.kr/newkfsweb/cop/bbs/selectViewPage.do?bbsId=BBSMSTR_1485&mn=KFS_34_03_02_01')">주랜드</a></span><br>
+							<span>&nbsp;&nbsp;쥬랜드는 2002년 5월 개장하여 우리나라 대표 동물원으로 발전된 곳이며,
+							</span><br>
+							<span>&nbsp;&nbsp;멸종되어 가는 동물의 종 보존과 야생동물의 전시기능 제공등 동물원 본래의 역할에 </span><br>
+							<span>&nbsp;&nbsp;최선을 다하여 살아있는 학습의 장으로 지속하여 발전하고 있는 코스
+							</span><br>
+							<span>&nbsp;&nbsp;#동물원 #멸종동물 #학습 #야생 #가족구경 #색다른볼거리</span>
 						</td>
-						<td align="center">
-						<ul align="left">
-						 	<li>
-						 	<span>버드랜드</span>
-						 	</li>
-						 	<li>
-						 	<span>조이랜드</span>
-						 	</li>
-						 	<li>
-						 	<span>주랜드</span>
-						 	</li>
-						 	<li>
-						 	<span>테마정원</span>
-						 	</li>
+					</tr>
+					<tr>
+						<td width="200px" height="150px" align="center" style="padding-top: 1%;">
+							<div class="img">
+								<img src="../course/image/OhWorld/Flower.jpg" width="200px;" height="150px;" >
+							</div>
+						</td>
+						<td>
+							<span style="font-size: 20px; font-weight: bold; ">&nbsp;&nbsp;<a href="javascript:open_page('http://www.oworld.kr/newkfsweb/cop/bbs/selectBoardList.do?bbsId=BBSMSTR_1450&mn=KFS_34_03_03_01')">테마정원</a></span><br>
+							<span>&nbsp;&nbsp;다양한 종류의 장미를 주제로 장미축제를 개최하고 사진을 추억에 담을 수 있는 포토존을 제공
+							 </span><br><br><br>
+							 <span>&nbsp;&nbsp;#꽃 #장미 #축제 #추억 #사진 #힐링</span>
 						</td>
 					</tr>
 				</table>
@@ -291,6 +279,7 @@
 				</div>
 			</div>
 		</div>
+
 
 		<footer id="colorlib-footer" role="contentinfo">
 			<div class="container">

@@ -83,6 +83,7 @@
 	      <div class="clear"></div>
 		  <label><input type="button" onclick="movigtest()" value="회원가입"></label> 
 		  <label><input type="button" onclick="movingfindId()" value="아이디/비밀번호찾기"></label>
+		  <label><a href="../main/main.jsp"><input type="button" value="메인페이지로" style="color: yellow;"></a></label>
 	     </div>
 	    </div>
 	   </div>

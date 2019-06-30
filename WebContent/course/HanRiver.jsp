@@ -143,94 +143,80 @@
 			<div class="container">
 				<table width="1200px" height="50px" align="center" border="0" style="border-collapse:collapse";>
 					<tr>
-						<td height="80px">
-						</td>
+						<td style="width : 200px; font-size: 50px; font-weight: bold; padding-top: 10%;color: #fce247;">여의도 한강</td>
 					</tr>
 					<tr>
-						<td style="width : 200px; font-size: 25px; font-weight: bold;" >인기 핫 플레이스!</td>
-						<td><div id = "sub_title">&nbsp;한번은 꼭 가봐야하는 계절별 코스</div></td>
+						<td><div id = "sub_title">&nbsp;서울시 여의도동</div></td>
 					</tr>
+					<tr>
+						<td style="padding-top:2%; color: black;" align="top">
+							<span>강가에 위치한 대형 공원으로 아름다운 경치와 조깅 코스, 수영장 등이 있어</span><br>
+							<span>많은 사람들의 사랑을 받고 있습니다.</span>
+						</td>
+						<td width="200px;" height="200px;" align="center">
+							<img src="../course/image/OneRiver/OneRiverDe.jpg" width="350px;" height="200px;">
+						</td>
+					</tr>	
+									
 				</table>
-				<table width="1200px" height="600px" align="center" border="1" style="border-collapse:collapse";>
+				<table width="1200px" height="600px" align="center" border="0" style="border-collapse:collapse; margin-top: 5%;">
 					<tr>
-						<td align="center">
+						<td width="200px" height="150px" align="center">
 							<div class="img">
-								<a href="NamlandDetail.jsp">
-									<img src="../course/image/Namland.jpg" width="350px;" height="300px;" >
-								</a>
-								<div class="text">
-									<strong>영화같은 배경,맑은공기 남이섬</strong>
-								</div>
+								<img src="../course/image/OneRiver/Festival.jpg" width="200px;" height="150px;" >
 							</div>
 						</td>
-						<td align="center">
+						<td>
+							<span style="font-size: 20px; font-weight: bold;color: #fce247; ">&nbsp;&nbsp;녹음수 광장</span><br>
+							<span>&nbsp;&nbsp;여의도 한강공원에 힐링코스중 하나로 매년 한강나이트워크42K 행사가 열리며, 춤, 음악, 미디어아트 등
+							 </span><br>
+							 <span>&nbsp;&nbsp;러시아.호주.일본.말레이시아 등 세계 정상급 예술가들이 출현해 화려한 볼거리를 무료로 선보인다.</span><br><br>
+							 <span>&nbsp;&nbsp;#축제 #한강 #힐링코스 #공연 #문화시설 #여름 #계절</span>
+						</td>
+					</tr>
+					<hr color="black">
+					<tr>
+						<td width="200px" height="150px" align="center" style="padding-top: 1%;">
 							<div class="img">
-								<a href="HanRiver.jsp">
-									<img src="../course/image/OneRiver.jpg" width="350px;" height="300px;" >
-								</a>
-								<div class="text">
-									<strong>한번쯤은 꼭 가봐야하는 한강</strong>
-								</div>
+								<img src="../course/image/OneRiver/WaterSquare.JPG" width="200px;" height="150px;" >
 							</div>
 						</td>
-						<td align="center">
-							<div class="img">
-								<a href="OhWorld.jsp">
-									<img src="../course/image/Oworld.jpg" width="350px;" height="300px;" >
-								</a>
-								<div class="text">
-									<strong>테마파크에 빠질수 없는곳 오월드</strong>
-								</div>
-							</div>
+						<td>
+							<span style="font-size: 20px; font-weight: bold; color: #fce247;">&nbsp;&nbsp;물빛광장/물빛무대</span><br>
+							<span>&nbsp;&nbsp;여름철 휴식처로 가족들이 함께 단란하게 물놀이를 하며 더위를 피할수 있는 관광명소
+							 </span><br><br><br>
+							 <span>&nbsp;&nbsp;#여행 #물놀이 #가족 #더위 #여름 #물 </span>
 						</td>
 					</tr>
 					<tr>
-						<td align="center">
-						 <ul align="left">
-						 	<li>
-						 	<span>겨울연가 촬영지</span>
-						 	</li>
-						 	<li>
-						 	<span>병으로 만든 조형물</span>
-						 	</li>
-						 	<li>
-						 	<span>메타쉐콰이어길</span>
-						 	</li>
-						 	<li>
-						 	<span>유리분수</span>
-						 	</li>
-						 </ul>
+						<td width="200px" height="150px" align="center" style="padding-top: 1%;">
+							<div class="img">
+								<img src="../course/image/OneRiver/63Buliding.jpg" width="200px;" height="150px;" >
+							</div>
 						</td>
-						<td align="center">
-						<ul align="left">
-						 	<li>
-						 	<span>녹음수 광장</span>
-						 	</li>
-						 	<li>
-						 	<span>물빛광장/물빛무대</span>
-						 	</li>
-						 	<li>
-						 	<span>63빌딩</span>
-						 	</li>
-						 	<li>
-						 	<span>무지개 분수</span>
-						 	</li>
-						 </ul>
+						<td>
+							<span style="font-size: 20px; font-weight: bold; color: #fce247;">&nbsp;&nbsp;63빌딩</span><br>
+							<span>&nbsp;&nbsp;여행객들이 즐겨 찾고 있는 서울에 대표적인 관광명소로써   
+											황금빛 유리가 특징인 이 건물은 계절별로
+							</span><br>
+							<span>&nbsp;&nbsp;일조량에 따라 분위기가 달라지고 아름다운 한강변과 하늘의 빛에 의해 파사드(Facade)에 반사되는 모습이 장관이다.</span><br>
+							<span>&nbsp;&nbsp;특히 저녁시간 서해로 지는 노을과 강양쪽을 끼고 이어지는 강변로의 차량 불빛은 63빌딩의 조망 중 절경으로 꼽힐 정도로
+							</span><br>
+							<span>&nbsp;&nbsp;색다른 추억거리를 제공하고 있다. </span><br>
+							<span>&nbsp;&nbsp;#추억거리 #63빌딩 #야경 #데이트코스 #여행객 # 색다른볼거리</span>
 						</td>
-						<td align="center">
-						<ul align="left">
-						 	<li>
-						 	<span>버드랜드</span>
-						 	</li>
-						 	<li>
-						 	<span>조이랜드</span>
-						 	</li>
-						 	<li>
-						 	<span>주랜드</span>
-						 	</li>
-						 	<li>
-						 	<span>테마정원</span>
-						 	</li>
+					</tr>
+					<tr>
+						<td width="200px" height="150px" align="center" style="padding-top: 1%;">
+							<div class="img">
+								<img src="../course/image/OneRiver/WaterFuntain.jpg" width="200px;" height="150px;" >
+							</div>
+						</td>
+						<td>
+							<span style="font-size: 20px; font-weight: bold; color: #fce247;">&nbsp;&nbsp;무지개분수</span><br>
+							<span>&nbsp;&nbsp;배경음악과 화려한 조명이 어우러진 아름다운 분수연출로 특히 야간에는 경관조명이 이용되어 환상적인 한강 야경을 배로 확인
+							 </span><br><br><br>
+							 <span>&nbsp;&nbsp;#야경 #음악 #조명 #분수 #감동 #관광명소</span>
 						</td>
 					</tr>
 				</table>
@@ -291,6 +277,7 @@
 				</div>
 			</div>
 		</div>
+
 
 		<footer id="colorlib-footer" role="contentinfo">
 			<div class="container">

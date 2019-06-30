@@ -143,94 +143,81 @@
 			<div class="container">
 				<table width="1200px" height="50px" align="center" border="0" style="border-collapse:collapse";>
 					<tr>
-						<td height="80px">
-						</td>
+						<td style="width : 200px; font-size: 50px; font-weight: bold; padding-top: 10%; color: #fce247;">남이섬</td>
 					</tr>
 					<tr>
-						<td style="width : 200px; font-size: 25px; font-weight: bold;" >인기 핫 플레이스!</td>
-						<td><div id = "sub_title">&nbsp;한번은 꼭 가봐야하는 계절별 코스</div></td>
+						<td><div id = "sub_title">&nbsp;강원도 춘천시</div></td>
 					</tr>
+					<tr>
+						<td style="padding-top:2%; color: black;" align="top">
+							남이섬은 강원도 춘천시 남산면 방하리에 있는 섬이다. 남이 장군의 묘역이 있는 문화유적지이자 관광휴양지로 개발된 곳으로서 
+							2016년 현재 세계 122개국으로부터 130만명의 외국인관광객을 포함, 연간 총 330만명이 찾는 대한민국의 대표적인 관광지이다
+						</td>
+						<td width="200px;" height="200px;" align="center">
+							<img src="../course/image/NamlandInfo.jpg" width="350px;" height="200px;">
+						</td>
+					</tr>	
+									
 				</table>
-				<table width="1200px" height="600px" align="center" border="1" style="border-collapse:collapse";>
+				<table width="1200px" height="600px" align="center" border="0" style="border-collapse:collapse; margin-top: 5%;">
 					<tr>
-						<td align="center">
+						<td width="200px" height="150px" align="center">
 							<div class="img">
-								<a href="NamlandDetail.jsp">
-									<img src="../course/image/Namland.jpg" width="350px;" height="300px;" >
-								</a>
-								<div class="text">
-									<strong>영화같은 배경,맑은공기 남이섬</strong>
-								</div>
+								<img src="../course/image/WinterDrama.jpg" width="200px;" height="150px;" >
 							</div>
 						</td>
-						<td align="center">
+						<td>
+							<span style="font-size: 20px; font-weight: bold; color: #fce247;">&nbsp;&nbsp;겨울연가 첫키스 촬영장소</span><br>
+							<span>&nbsp;&nbsp;겨울연가에서 준상(배용준)이와 유진(최지우)이가 함께 자전거를 탔던 아름다운 장면을 기억하고 오는 
+											사람들이 많은데
+							 </span><br>
+							 <span>&nbsp;&nbsp;이 곳은 본래 70~80년대에는 대학생들의 MT 장소로, 그리고 강변가요제로 유명한 곳</span><br><br>
+							 <span>&nbsp;&nbsp;#여행 #연인 #데이트코스 #힐링 #문화시설</span>
+						</td>
+					</tr>
+					<hr color="black">
+					<tr>
+						<td width="200px" height="150px" align="center" style="padding-top: 1%;">
 							<div class="img">
-								<a href="HanRiver.jsp">
-									<img src="../course/image/OneRiver.jpg" width="350px;" height="300px;" >
-								</a>
-								<div class="text">
-									<strong>한번쯤은 꼭 가봐야하는 한강</strong>
-								</div>
+								<img src="../course/image/buttle.jpg" width="200px;" height="150px;" >
 							</div>
 						</td>
-						<td align="center">
-							<div class="img">
-								<a href="OhWorld.jsp">
-									<img src="../course/image/Oworld.jpg" width="350px;" height="300px;" >
-								</a>
-								<div class="text">
-									<strong>테마파크에 빠질수 없는곳 오월드</strong>
-								</div>
-							</div>
+						<td>
+							<span style="font-size: 20px; font-weight: bold; color: #fce247;">&nbsp;&nbsp;병으로 만든 조형물</span><br>
+							<span>&nbsp;&nbsp;모든 조형물은 ‘재활용’을 거쳤다 해도 과언이 아니다. 재활용은 남이섬의 원천이자 상징이다. 
+										깨진 타일은 불을 밝히는 등대가 되고
+							 </span><br>
+							 <span>&nbsp;&nbsp;찌그러진 캔은 공연장 벽면이 되었다.가장 대표적인 게 소주병인데,소주병은 때로 타일이 되었다가,식당의 휴지꽂이가 되기도 한다.</span><br><br>
+							 <span>&nbsp;&nbsp;#여행 #조형물 #데이트코스 #소주병 #편의점 #쓰레기 #예술 #작품</span>
 						</td>
 					</tr>
 					<tr>
-						<td align="center">
-						 <ul align="left">
-						 	<li>
-						 	<span>겨울연가 촬영지</span>
-						 	</li>
-						 	<li>
-						 	<span>병으로 만든 조형물</span>
-						 	</li>
-						 	<li>
-						 	<span>메타쉐콰이어길</span>
-						 	</li>
-						 	<li>
-						 	<span>유리분수</span>
-						 	</li>
-						 </ul>
+						<td width="200px" height="150px" align="center" style="padding-top: 1%;">
+							<div class="img">
+								<img src="../course/image/buttyLoad.jpg" width="200px;" height="150px;" >
+							</div>
 						</td>
-						<td align="center">
-						<ul align="left">
-						 	<li>
-						 	<span>녹음수 광장</span>
-						 	</li>
-						 	<li>
-						 	<span>물빛광장/물빛무대</span>
-						 	</li>
-						 	<li>
-						 	<span>63빌딩</span>
-						 	</li>
-						 	<li>
-						 	<span>무지개 분수</span>
-						 	</li>
-						 </ul>
+						<td>
+							<span style="font-size: 20px; font-weight: bold; color: #fce247;">&nbsp;&nbsp;메타쉐콰이어길</span><br>
+							<span>&nbsp;&nbsp;남이섬의 대표적인 코스와 동시에 겨울연가 촬영지로 유명한 이곳은 아직까지도 수많은 연인들의
+											대표 데이트 코스로 자리잡고 있다.
+							 </span><br><br><br>
+							 <span>&nbsp;&nbsp;#여행 #남자친구 #여자친구 #데이트코스 #힐링 #관광지 #명소 #힐링</span>
 						</td>
-						<td align="center">
-						<ul align="left">
-						 	<li>
-						 	<span>버드랜드</span>
-						 	</li>
-						 	<li>
-						 	<span>조이랜드</span>
-						 	</li>
-						 	<li>
-						 	<span>주랜드</span>
-						 	</li>
-						 	<li>
-						 	<span>테마정원</span>
-						 	</li>
+					</tr>
+					<tr>
+						<td width="200px" height="150px" align="center" style="padding-top: 1%;">
+							<div class="img">
+								<img src="../course/image/glassWater.jpg" width="200px;" height="150px;" >
+							</div>
+						</td>
+						<td>
+							<span style="font-size: 20px; font-weight: bold; color: #fce247;">&nbsp;&nbsp;유리분수</span><br>
+							<span>&nbsp;&nbsp;남이섬 창조 프로젝트의 상징이다. 압축 소주병을 쌓은 기단 위에 세로 2.5m, 가로 1.1m 크기의 강화유리를 겹겹이 세우고 그 위에 
+							 </span><br>
+							 <span>&nbsp;&nbsp;다시 15장의 강화유리를 덮었다. 삼성증권이 지난해 서울 종로2가 본사를 태평로로 이전하면서 뜯어낸 350장의 사무실 벽 유리를</span><br>
+							 <span>&nbsp;&nbsp;옮겨 유리분수대를 만든 것</span><br>
+							 <span>&nbsp;&nbsp;#재활용 #감동 #분수 #유리 #문화시설 #물 #관광지</span>
 						</td>
 					</tr>
 				</table>
