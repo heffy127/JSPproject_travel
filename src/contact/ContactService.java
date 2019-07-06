@@ -9,7 +9,7 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-// 실제로 이메일이 보내지는 클래시
+// 실제로 이메일이 보내지는 클래스
 public class ContactService {
 	public void mailSender(ContactDTO dto) throws Exception {
 		String host = "smtp.gmail.com"; // smtp 서버 주소

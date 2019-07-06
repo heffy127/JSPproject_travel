@@ -17,7 +17,7 @@
 	Configure the location of uploaded files. See the following article for more details:
 	http://docs.cksource.com/CKFinder_2.x/Developers_Guide/Java/Configuration/baseURL_and_baseDir
 	-->
-	<baseDir>C:/eclipse_Workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/travel/board/userfiles</baseDir>
+	<baseDir>C:/eclipse_Workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp1/wtpwebapps/travel/board/userfiles</baseDir>
 	<baseURL>/travel/board/userfiles</baseURL>
 	<licenseKey></licenseKey>
 	<licenseName></licenseName>
